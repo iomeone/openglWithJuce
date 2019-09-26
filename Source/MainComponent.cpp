@@ -22,10 +22,9 @@ MainComponent::MainComponent()
 	if (hm.contains(curSubCompIndex))
 	{
 		TCompType * ct = hm[curSubCompIndex];
-		_curSubComp = nullptr;
-		_curSubComp = ct->createComponent();
+		_curSubComp.reset( ct->createComponent());
 		//_curSubComp->setFocusContainer(true);
-		addAndMakeVisible(_curSubComp);
+		addAndMakeVisible(_curSubComp.get());
 	}
 
 	setSize(1200, 800);
@@ -53,11 +52,11 @@ void MainComponent::resized()
     // update their positions.
 
 	auto r = getLocalBounds();
-	int listBoxWidth = proportionOfWidth(0.2000f);
 	if (_lstBox)
 	{
-		_lstBox->setBounds(r.removeFromLeft(listBoxWidth));
+		_lstBox->setBounds(r.removeFromLeft(proportionOfWidth(0.2000f)));
 	}
+
 	if (_curSubComp)
 	{
 		_curSubComp->setBounds(r);

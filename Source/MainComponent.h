@@ -64,9 +64,8 @@ public:
 		if (hm.contains(lastRowSelected))
 		{
 			TCompType * ct = hm[lastRowSelected];
-			_curSubComp = nullptr;
-			_curSubComp = ct->createComponent();
-			addAndMakeVisible(_curSubComp);
+			_curSubComp.reset(ct->createComponent());
+			addAndMakeVisible(_curSubComp.get());
 			//	_curSubComp->setFocusContainer(true);
 			_curSubComp->grabKeyboardFocus();
 			resized();
@@ -81,8 +80,9 @@ private:
     // Your private member variables go here...
 
 	std::unique_ptr<ListBox> _lstBox;
+	
+	std::unique_ptr<Component> _curSubComp{ nullptr };
 
-	ScopedPointer<Component> _curSubComp;
 	int curSubCompIndex{ 0 };
 
 	

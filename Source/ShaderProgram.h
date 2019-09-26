@@ -207,7 +207,7 @@ struct DynamicTexture
 class ShaderProgram :public Thread
 {
 public:
-	ShaderProgram(OpenGLContext & ogc, String vertexFilePath, String fragmentFilePath, Label * lblToShowCompileResult = nullptr)
+	ShaderProgram(OpenGLContext & ogc, String vertexFilePath, String fragmentFilePath)
 		: Thread("Shader Thread"), _openGLContext(ogc)
 	{
 		_fVertex = vertexFilePath;
@@ -255,8 +255,7 @@ public:
 				break;
 		}
 
-		if (lblToShowCompileResult)
-			_lblshader.reset(lblToShowCompileResult);
+
 		startThread();
 	}
 
@@ -271,7 +270,7 @@ public:
 		while (!threadShouldExit())
 		{
 			wait(500);
-
+			_isReadingFile = true;
 		 
 			{
 				juce::Time tVertex = _fVertex.getLastModificationTime();
@@ -314,15 +313,20 @@ public:
 				}
 				
 			}
+			_isReadingFile = false;
 		}
 	}
 
 
-	void updateShader()
+	bool updateShader()
 	{
+		if (_isReadingFile.get())
+		{
+			return false;
+		}
 		if (_strFragment.length() == 0 || _strVertex.length() == 0)
-			return;
-		String _compileResult;
+			return false;
+		auto _compileResult = getCompileResult();
 		ScopedPointer<OpenGLShaderProgram> newShader(new OpenGLShaderProgram(_openGLContext));
 		jassert(_openGLContext.isActive());
 		jassert(_openGLContext.isAttached());
@@ -339,40 +343,42 @@ public:
 			_uniforms = nullptr;
 			_uniforms = new Uniforms(_openGLContext, *_shader);
 
-			if (_lblshader)
-			{
-				_compileResult = "GLSL: v" + String(juce::OpenGLShaderProgram::getLanguageVersion(), 2);
-
-				const MessageManagerLock mmLock;
-				if (mmLock.lockWasGained())
-				{
-					_lblshader->setText(_compileResult, NotificationType::dontSendNotification);
-					//msg(_compileResult);
-					//l->setText(_compileResult, dontSendNotification);
-				}
-			}
+	
+			_compileResult = "GLSL: v" + String(juce::OpenGLShaderProgram::getLanguageVersion(), 2);
+			
+				//const MessageManagerLock mmLock;
+				//if (mmLock.lockWasGained())
+				//{
+				//	AlertWindow::showMessageBox(AlertWindow::AlertIconType::InfoIcon, "GLSL Success", _compileResult);
+				//}
+			
 		}
 		else
 		{
-			String s = newShader->getLastError();
-			if (0)
-				AlertWindow::showMessageBox(AlertWindow::AlertIconType::InfoIcon, "error", s);
+			_compileResult = newShader->getLastError();
+		
 
-			if (_lblshader)
-			{
-				_compileResult = s;
 
-				const MessageManagerLock mmLock;
+				//_compileResult = s;
 
-				if (mmLock.lockWasGained())
-					_lblshader->setText(_compileResult, NotificationType::dontSendNotification);
-			}
+				//const MessageManagerLock mmLock;
+
+				//if (mmLock.lockWasGained())
+				//	;
+			
 		}
 		_strVertex = String();
 		_strFragment = String();
+		return true;
 	}
 
 	ScopedPointer<OpenGLShaderProgram> _shader{ nullptr };
+
+	static String& getCompileResult()
+	{
+		static String _compileResult;
+		return _compileResult;
+	}
 
 private:
 	
@@ -388,9 +394,11 @@ private:
 	ScopedPointer<Attributes> _attributes;
 	ScopedPointer<Uniforms> _uniforms;
 
-	std::unique_ptr<Label> _lblshader{ nullptr };
+ 
 
 	OpenGLContext & _openGLContext;
+
+	juce::Atomic<bool> _isReadingFile{ false };
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ShaderProgram)
 };

@@ -32,12 +32,12 @@ public:
 
 
 
-	void init(float x, float y, float width, float height)
+	void init()
 	{
 
-			_openGLContext.extensions.glGenVertexArrays(1, &VAO);
-			_openGLContext.extensions.glGenBuffers(1, &VBO);
-			_openGLContext.extensions.glGenBuffers(1, &EBO);
+		_openGLContext.extensions.glGenVertexArrays(1, &VAO);
+		_openGLContext.extensions.glGenBuffers(1, &VBO);
+		_openGLContext.extensions.glGenBuffers(1, &EBO);
 
 		float vertices[] = {
 		 0.5f,  0.5f, 0.0f,  // top right
@@ -68,67 +68,15 @@ public:
 		_openGLContext.extensions.glBindVertexArray(0);
 	}
 
-	//void setShader(OpenGLShaderProgram * shader)
-	//{
-	//	attributes = nullptr;
-	//	attributes = new Attributes(_openGLContext, *shader);
-
-	//	uniforms = new Uniforms(_openGLContext, *shader);
-	//}
-
-	//void setColor(float r, float g, float b, float a)
-	//{
-	//	if (uniforms)
-	//	{
-	//		if (uniforms->lightPosition != nullptr)
-	//			uniforms->lightPosition->set(r, g, b, a);
-	//	}
-	//}
-	//void setTexture(GLint i)
-	//{
-	//	if (uniforms)
-	//	{
-	//		if (uniforms->texture != nullptr)
-	//			uniforms->texture->set(i);
-	//	}
-	//}
 
 	void draw()
 	{
 
 		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-		//glDrawArrays(GL_TRIANGLES, 0, 6);
+
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		//_openGLContext.extensions.glBindVertexArray(0); // no need to unbind it every time 
-
-		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-		// -------------------------------------------------------------------------------
-		 
 		return;
-		//if (attributes == nullptr || uniforms == nullptr)
-		//	return;
-		//if (!attributes->getStatus() || !uniforms->getStatus())
-		//	return;
-
-
-		//attributes->enable(_openGLContext);
-		//double curTime = Time::getMillisecondCounterHiRes();
-
-		//setColor(sin(curTime), 0, 1, 1);
-
-		//setTexture(0);
-		//	i = ::GetLastError();
-			_openGLContext.extensions.glEnableVertexAttribArray(0);
-
-			_openGLContext.extensions.glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
-
-		glDrawArrays(GL_TRIANGLES, 0, 6);// sizeof(vertexData)/sizeof(float)/2
-
-			_openGLContext.extensions.glDisableVertexAttribArray(0);
-										 	//attributes->disable(_openGLContext);
-										 	
-		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
-		//	i = ::GetLastError();
 	}
 
 public:
@@ -149,6 +97,11 @@ public:
 	//==============================================================================
 	Tutorial1() : _sprite(openGLContext)
 	{
+		openGLContext.setComponentPaintingEnabled(true);
+
+		_lblCompileInfo.reset(new Label("compileInfo", "Shader source build info."));
+		addAndMakeVisible(_lblCompileInfo.get());
+
 		setSize(800, 600);
 	}
 	~Tutorial1()
@@ -165,7 +118,7 @@ public:
 		auto fragmentFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("fragment.h");
 		_shaderProgram.reset(new ShaderProgram(openGLContext, vertexFile.getFullPathName(), fragmentFile.getFullPathName()));
 
-		_sprite.init(0.0, 0.0, 0.5, 0.5);
+		_sprite.init();
 	}
 	void shutdown() override
 	{
@@ -174,29 +127,26 @@ public:
 	}
 	void render() override
 	{
-		bool isActive = OpenGLHelpers::isContextActive();
-		if (!isActive)
+		if (!OpenGLHelpers::isContextActive())
 			return;
 	
-		_shaderProgram->updateShader();
+		if (_shaderProgram->updateShader())
+		{
+			const MessageManagerLock mmLock;
+			if (mmLock.lockWasGained())
+			{
+				_lblCompileInfo->setText(_shaderProgram->getCompileResult(), NotificationType::dontSendNotification);
+			}
+		}
+
 		OpenGLHelpers::clear(juce::Colour(0.2f, 0.3f, 0.3f, 1.0f));
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LESS);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glEnable(GL_TEXTURE_2D);
-
-
-		
 		if (_shaderProgram->_shader)
 		{
 			_shaderProgram->_shader->use();
 			_sprite.draw();
 		}
-			
-		
 	}
 
 	//==============================================================================
@@ -206,7 +156,11 @@ public:
 	}
 	void resized() override
 	{
-		
+		auto r = getLocalBounds();
+		if (_lblCompileInfo)
+		{
+			_lblCompileInfo->setBounds(r.removeFromTop(proportionOfHeight(0.05000f)));
+		}
 	}
 
 private:
@@ -215,6 +169,7 @@ private:
 
 	Sprite _sprite;
 	std::unique_ptr<ShaderProgram> _shaderProgram;
+	std::unique_ptr<Label> _lblCompileInfo{ nullptr };
 	bool init{ false };
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial1)
