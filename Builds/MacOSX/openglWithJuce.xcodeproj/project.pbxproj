@@ -141,6 +141,13 @@
 			path = System/Library/Frameworks/OpenGL.framework;
 			sourceTree = SDKROOT;
 		};
+		0A7BD6785C62D0A713D5AF06 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = fragment.h;
+			path = ../../Source/fragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		139CD54986567409B87ED944 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -161,6 +168,13 @@
 			name = AudioToolbox.framework;
 			path = System/Library/Frameworks/AudioToolbox.framework;
 			sourceTree = SDKROOT;
+		};
+		1DE189E24075E308D75A8B62 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = vertex.h;
+			path = ../../Source/vertex.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		1E21BF4A5A526E0F34DBAFA4 = {
 			isa = PBXFileReference;
@@ -365,6 +379,15 @@
 			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		35CF69214B759D83E3A0C7B0 = {
+			isa = PBXGroup;
+			children = (
+				0A7BD6785C62D0A713D5AF06,
+				1DE189E24075E308D75A8B62,
+			);
+			name = Shader;
+			sourceTree = "<group>";
+		};
 		79390D4DEAC6512B514A024D = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +421,7 @@
 		53203316B70E4AE49079A836 = {
 			isa = PBXGroup;
 			children = (
+				35CF69214B759D83E3A0C7B0,
 				79390D4DEAC6512B514A024D,
 				FE6B1701DEF39C38B902EACA,
 				33E3668D0FC72EDA25DB352F,
@@ -486,6 +510,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"JUCE_OPENGL3",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
@@ -502,6 +527,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../../JuceLibraryCode",
 					"../../JuceLibraryCode/modules",
+					""./../../source"",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-App.plist;
@@ -528,6 +554,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"JUCE_OPENGL3",
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
 					"JUCE_APP_VERSION=1.0.0",
 					"JUCE_APP_VERSION_HEX=0x10000",
@@ -545,6 +572,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../../JuceLibraryCode",
 					"../../JuceLibraryCode/modules",
+					""./../../source"",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-App.plist;

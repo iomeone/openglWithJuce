@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="openglWithJuce\Shader">
+      <UniqueIdentifier>{5A915126-A968-D910-5404-8AEFA812C1CF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="openglWithJuce\Engine">
       <UniqueIdentifier>{661CF54D-A66D-B033-A642-4A66CFBF6585}</UniqueIdentifier>
     </Filter>
@@ -66,6 +69,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\fragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\vertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Camera2D.h">
       <Filter>openglWithJuce\Engine</Filter>
     </ClInclude>

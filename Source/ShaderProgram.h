@@ -71,10 +71,10 @@ struct Attributes
 {
 	Attributes(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
 	{
-		position = createAttribute(openGLContext, shader, "position");
+		position = createAttribute(openGLContext, shader, "aPos");
 		/*normal = createAttribute(openGLContext, shader, "normal");
 		sourceColour = createAttribute(openGLContext, shader, "sourceColour");*/
-		textureCoordIn = createAttribute(openGLContext, shader, "textureCoordIn");
+		//textureCoordIn = createAttribute(openGLContext, shader, "textureCoordIn");
 	}
 
 	void enable(OpenGLContext& openGLContext)
@@ -207,11 +207,12 @@ struct DynamicTexture
 class ShaderProgram :public Thread
 {
 public:
-	ShaderProgram(String vertexFilePath, String fragmentFilePath, Label * lblToShowCompileResult = nullptr)
-		: Thread("Shader Thread")
+	ShaderProgram(OpenGLContext & ogc, String vertexFilePath, String fragmentFilePath, Label * lblToShowCompileResult = nullptr)
+		: Thread("Shader Thread"), _openGLContext(ogc)
 	{
 		_fVertex = vertexFilePath;
 		_fFragment = fragmentFilePath;
+		
 		while (true)
 		{
 			bool bfind = true;
@@ -267,7 +268,6 @@ public:
 
 	void run() override
 	{
-	 
 		while (!threadShouldExit())
 		{
 			wait(500);
@@ -312,7 +312,7 @@ public:
 				{
 					_strVertex = _oldVertex;
 				}
-				updateShader();
+				
 			}
 		}
 	}
@@ -320,10 +320,12 @@ public:
 
 	void updateShader()
 	{
-
+		if (_strFragment.length() == 0 || _strVertex.length() == 0)
+			return;
 		String _compileResult;
 		ScopedPointer<OpenGLShaderProgram> newShader(new OpenGLShaderProgram(_openGLContext));
-
+		jassert(_openGLContext.isActive());
+		jassert(_openGLContext.isAttached());
 		if (newShader->addVertexShader(OpenGLHelpers::translateVertexShaderToV3(_strVertex))
 			&& newShader->addFragmentShader(OpenGLHelpers::translateFragmentShaderToV3(_strFragment))
 			&& newShader->link())
@@ -370,6 +372,8 @@ public:
 		_strFragment = String();
 	}
 
+	ScopedPointer<OpenGLShaderProgram> _shader{ nullptr };
+
 private:
 	
 	juce::File _fVertex;
@@ -384,7 +388,6 @@ private:
 	ScopedPointer<Attributes> _attributes;
 	ScopedPointer<Uniforms> _uniforms;
 
-	ScopedPointer<OpenGLShaderProgram> _shader;
 	std::unique_ptr<Label> _lblshader{ nullptr };
 
 	OpenGLContext & _openGLContext;
