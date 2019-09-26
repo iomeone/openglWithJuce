@@ -135,7 +135,7 @@ public:
 			const MessageManagerLock mmLock;
 			if (mmLock.lockWasGained())
 			{
-				_lblCompileInfo->setText(_shaderProgram->getCompileResult(), NotificationType::dontSendNotification);
+				_lblCompileInfo->setText(_shaderProgram->getCompileResult() + " \nlearnopengl.com/Getting-started/Hello-Triangle" , NotificationType::dontSendNotification);
 			}
 		}
 
