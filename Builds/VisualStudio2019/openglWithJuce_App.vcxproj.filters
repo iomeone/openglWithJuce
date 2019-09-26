@@ -69,10 +69,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\fragment.h">
+    <ClInclude Include="..\..\Source\Shader\fragmentT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\vertex.h">
+    <ClInclude Include="..\..\Source\Shader\fragmentT2.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\vertexT1.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\vertexT2.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Camera2D.h">

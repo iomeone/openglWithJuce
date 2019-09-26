@@ -141,13 +141,6 @@
 			path = System/Library/Frameworks/OpenGL.framework;
 			sourceTree = SDKROOT;
 		};
-		0A7BD6785C62D0A713D5AF06 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = fragment.h;
-			path = ../../Source/fragment.h;
-			sourceTree = "SOURCE_ROOT";
-		};
 		139CD54986567409B87ED944 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -168,13 +161,6 @@
 			name = AudioToolbox.framework;
 			path = System/Library/Frameworks/AudioToolbox.framework;
 			sourceTree = SDKROOT;
-		};
-		1DE189E24075E308D75A8B62 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = vertex.h;
-			path = ../../Source/vertex.h;
-			sourceTree = "SOURCE_ROOT";
 		};
 		1E21BF4A5A526E0F34DBAFA4 = {
 			isa = PBXFileReference;
@@ -239,6 +225,13 @@
 			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		3AA27D12F0BA3B7C70290C5C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = vertexT2.h;
+			path = ../../Source/Shader/vertexT2.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		550C45D188AE47EF84F544FD = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -279,6 +272,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = AppConfig.h;
 			path = ../../JuceLibraryCode/AppConfig.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		7BA1A6E2032DFBA9D111ED64 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = fragmentT1.h;
+			path = ../../Source/Shader/fragmentT1.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		8324FDA763F8EA77A62FE181 = {
@@ -323,6 +323,13 @@
 			path = ../../Source/Camera2D.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		C0CB4A22C6F5E42E468CA76E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = vertexT1.h;
+			path = ../../Source/Shader/vertexT1.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		CA5B2386E6B6591E414251DF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -342,6 +349,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_cryptography.mm";
 			path = "../../JuceLibraryCode/include_juce_cryptography.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		D56C4E0EF8C8DB75B6747BEF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = fragmentT2.h;
+			path = ../../Source/Shader/fragmentT2.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		EABF18DBEED4362A3B9603C6 = {
@@ -382,8 +396,10 @@
 		35CF69214B759D83E3A0C7B0 = {
 			isa = PBXGroup;
 			children = (
-				0A7BD6785C62D0A713D5AF06,
-				1DE189E24075E308D75A8B62,
+				7BA1A6E2032DFBA9D111ED64,
+				D56C4E0EF8C8DB75B6747BEF,
+				C0CB4A22C6F5E42E468CA76E,
+				3AA27D12F0BA3B7C70290C5C,
 			);
 			name = Shader;
 			sourceTree = "<group>";

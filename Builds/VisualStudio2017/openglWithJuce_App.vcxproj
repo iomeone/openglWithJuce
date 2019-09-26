@@ -155,8 +155,10 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\fragment.h"/>
-    <ClInclude Include="..\..\Source\vertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\fragmentT1.h"/>
+    <ClInclude Include="..\..\Source\Shader\fragmentT2.h"/>
+    <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
+    <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
     <ClInclude Include="..\..\Source\Camera2D.h"/>
     <ClInclude Include="..\..\Source\ShaderProgram.h"/>
     <ClInclude Include="..\..\Source\Tutorial1.h"/>

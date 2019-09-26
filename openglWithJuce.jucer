@@ -4,8 +4,10 @@
               headerPath="&quot;./../../source&quot;" defines="JUCE_OPENGL3">
   <MAINGROUP id="WwC13L" name="openglWithJuce">
     <GROUP id="{9BAD5BA1-9290-2241-5422-76CFDF24FEAD}" name="Shader">
-      <FILE id="lzGbiY" name="fragment.h" compile="0" resource="0" file="Source/fragment.h"/>
-      <FILE id="d79PTl" name="vertex.h" compile="0" resource="0" file="Source/vertex.h"/>
+      <FILE id="MDfjh0" name="fragmentT1.h" compile="0" resource="0" file="Source/Shader/fragmentT1.h"/>
+      <FILE id="HaKALH" name="fragmentT2.h" compile="0" resource="0" file="Source/Shader/fragmentT2.h"/>
+      <FILE id="PJcivr" name="vertexT1.h" compile="0" resource="0" file="Source/Shader/vertexT1.h"/>
+      <FILE id="lDtqGz" name="vertexT2.h" compile="0" resource="0" file="Source/Shader/vertexT2.h"/>
     </GROUP>
     <GROUP id="{B1DAD2A2-892A-BB42-C3E1-9D2B1B6FDD70}" name="Engine">
       <FILE id="yLkSH4" name="Camera2D.cpp" compile="1" resource="0" file="Source/Camera2D.cpp"/>
