@@ -53,6 +53,10 @@
 			isa = PBXBuildFile;
 			fileRef = 20F81EFD5B1C783258F175FE;
 		};
+		10420A46DF3CE40EE920853A = {
+			isa = PBXBuildFile;
+			fileRef = AF4B0C07436D0F3CEF93E9FE;
+		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -144,6 +148,13 @@
 			path = "../../JuceLibraryCode/include_juce_core.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		15C44923405F379F6FBF0CB2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = CompList.h;
+			path = ../../Source/CompList.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		15ED5A0BE70E869B988B9462 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -151,11 +162,25 @@
 			path = System/Library/Frameworks/AudioToolbox.framework;
 			sourceTree = SDKROOT;
 		};
+		1E21BF4A5A526E0F34DBAFA4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ShaderProgram.h;
+			path = ../../Source/ShaderProgram.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		20F81EFD5B1C783258F175FE = {
 			isa = PBXFileReference;
 			lastKnownFileType = file.nib;
 			name = RecentFilesMenuTemplate.nib;
 			path = RecentFilesMenuTemplate.nib;
+			sourceTree = "SOURCE_ROOT";
+		};
+		260C81135FA6326F4F03D336 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Camera2D.h;
+			path = ../../Source/Camera2D.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		290DAEB2D78A9294E69E0295 = {
@@ -186,11 +211,11 @@
 			path = "../../JuceLibraryCode/include_juce_opengl.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
-		348F49281E513CFA9D51C20B = {
+		33C3D339CB442B2CA6056D0F = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			name = engine.h;
-			path = ../../Source/engine.h;
+			name = Tutorial1.h;
+			path = ../../Source/Tutorial1.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		38B933902EF64119093802EF = {
@@ -256,6 +281,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		8770F75A70CE19D86AA89A54 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial2.h;
+			path = ../../Source/Tutorial2.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9F9EC6B35995C56D076D8332 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -269,6 +301,13 @@
 			name = CoreAudio.framework;
 			path = System/Library/Frameworks/CoreAudio.framework;
 			sourceTree = SDKROOT;
+		};
+		AF4B0C07436D0F3CEF93E9FE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Camera2D.cpp;
+			path = ../../Source/Camera2D.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		CA5B2386E6B6591E414251DF = {
 			isa = PBXFileReference;
@@ -326,17 +365,29 @@
 			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		79390D4DEAC6512B514A024D = {
+			isa = PBXGroup;
+			children = (
+				AF4B0C07436D0F3CEF93E9FE,
+				260C81135FA6326F4F03D336,
+				1E21BF4A5A526E0F34DBAFA4,
+			);
+			name = Engine;
+			sourceTree = "<group>";
+		};
 		FE6B1701DEF39C38B902EACA = {
 			isa = PBXGroup;
 			children = (
-				348F49281E513CFA9D51C20B,
+				33C3D339CB442B2CA6056D0F,
+				8770F75A70CE19D86AA89A54,
 			);
-			name = Engine;
+			name = Tutorial;
 			sourceTree = "<group>";
 		};
 		33E3668D0FC72EDA25DB352F = {
 			isa = PBXGroup;
 			children = (
+				15C44923405F379F6FBF0CB2,
 				793D3C354C10DB122187B75C,
 				72381FB64487E1DB72E64BAB,
 				CBE272D00522BD1CBB781987,
@@ -347,6 +398,7 @@
 		53203316B70E4AE49079A836 = {
 			isa = PBXGroup;
 			children = (
+				79390D4DEAC6512B514A024D,
 				FE6B1701DEF39C38B902EACA,
 				33E3668D0FC72EDA25DB352F,
 			);
@@ -630,6 +682,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10420A46DF3CE40EE920853A,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				5EBDC89CCC422FBA06BADF81,

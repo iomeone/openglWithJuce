@@ -13,15 +13,15 @@
 
 
 
-class MainScreen : public OpenGLAppComponent
+class Tutorial1 : public OpenGLAppComponent
 {
 public:
 	//==============================================================================
-	MainScreen()
+	Tutorial1()
 	{
 		setSize(800, 600);
 	}
-	~MainScreen()
+	~Tutorial1()
 	{
 
 		shutdownOpenGL();
@@ -58,7 +58,7 @@ private:
 	// Your private member variables go here...
 
 
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainScreen)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial1)
 };
 
 

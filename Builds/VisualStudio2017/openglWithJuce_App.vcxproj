@@ -138,6 +138,7 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Camera2D.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
@@ -154,7 +155,11 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\engine.h"/>
+    <ClInclude Include="..\..\Source\Camera2D.h"/>
+    <ClInclude Include="..\..\Source\ShaderProgram.h"/>
+    <ClInclude Include="..\..\Source\Tutorial1.h"/>
+    <ClInclude Include="..\..\Source\Tutorial2.h"/>
+    <ClInclude Include="..\..\Source\CompList.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>

@@ -9,9 +9,10 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-
-#include "engine.h"
 #include <vector>
+#include "CompList.h"
+
+
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
@@ -31,8 +32,7 @@ public:
 
 	int getNumRows() override
 	{
-
-		return   _tutorialList.size();
+		return  TCompType::getCompTypeList().size();
 	}
 
 	void paintListBoxItem(int rowNumber, Graphics& g, int width, int height, bool rowIsSelected) override
@@ -40,35 +40,38 @@ public:
 		if (rowIsSelected)
 			g.fillAll(Colours::deepskyblue);
 
-		if (rowNumber < _tutorialList.size())
+		HashMap <int, TCompType*>& hm = TCompType::getCompTypeList();
+		if (hm.contains(rowNumber))
 		{
-			auto s = _tutorialList[rowNumber];
+			TCompType * ct = hm[rowNumber];
 			AttributedString a;
 			a.setJustification(Justification::centredLeft);
-			a.append(s, Font(20.0f), Colours::white);
+			a.append(ct->name, Font(20.0f), Colours::white);
 			a.draw(g, Rectangle<int>(width + 10, height).reduced(6, 0).toFloat());
 		}
-
 		
 	}
 
 
 	void selectedRowsChanged(int lastRowSelected) override
 	{
-		if (_curTutorialIndex == lastRowSelected)
+		if (curSubCompIndex == lastRowSelected)
 		{
 			return;
 		}
-		_curTutorialIndex = lastRowSelected;
-
-		if (lastRowSelected < _tutorialList.size())
+		curSubCompIndex = lastRowSelected;
+		HashMap <int, TCompType*>& hm = TCompType::getCompTypeList();
+		if (hm.contains(lastRowSelected))
 		{
-			auto s = _tutorialList[lastRowSelected];
-			
+			TCompType * ct = hm[lastRowSelected];
+			_curSubComp = nullptr;
+			_curSubComp = ct->createComponent();
+			addAndMakeVisible(_curSubComp);
+			//	_curSubComp->setFocusContainer(true);
+			_curSubComp->grabKeyboardFocus();
+			resized();
 
 		}
-
-
 	
 	}
 
@@ -76,11 +79,13 @@ public:
 private:
     //==============================================================================
     // Your private member variables go here...
-	MainScreen _ms;
 
 	std::unique_ptr<ListBox> _lstBox;
-	int _curTutorialIndex{ 0 };
-	std::vector<String> _tutorialList{ "tutorial 1", "tutorial 2" };
+
+	ScopedPointer<Component> _curSubComp;
+	int curSubCompIndex{ 0 };
+
+	
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

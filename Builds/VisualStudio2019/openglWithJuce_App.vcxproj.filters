@@ -5,6 +5,9 @@
     <Filter Include="openglWithJuce\Engine">
       <UniqueIdentifier>{661CF54D-A66D-B033-A642-4A66CFBF6585}</UniqueIdentifier>
     </Filter>
+    <Filter Include="openglWithJuce\Tutorial">
+      <UniqueIdentifier>{789BC0D0-410A-05AA-5E24-A58A2BF46BE5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="openglWithJuce\Source">
       <UniqueIdentifier>{B6F1A4AA-A71C-894A-CFCE-D13898F6A18F}</UniqueIdentifier>
     </Filter>
@@ -16,6 +19,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Camera2D.cpp">
+      <Filter>openglWithJuce\Engine</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>openglWithJuce\Source</Filter>
     </ClCompile>
@@ -60,8 +66,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\engine.h">
+    <ClInclude Include="..\..\Source\Camera2D.h">
       <Filter>openglWithJuce\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ShaderProgram.h">
+      <Filter>openglWithJuce\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tutorial1.h">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tutorial2.h">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CompList.h">
+      <Filter>openglWithJuce\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MainComponent.h">
       <Filter>openglWithJuce\Source</Filter>
