@@ -126,14 +126,15 @@ public:
 	}
 
 
-	bool updateShader()
+	int updateShader()
 	{
+		bool result = -1;
 		if (_isReadingFile.get())
 		{
-			return false;
+			return -1;
 		}
 		if (_strFragment.length() == 0 || _strVertex.length() == 0)
-			return false;
+			return -1;
 		
 		ScopedPointer<OpenGLShaderProgram> newShader(new OpenGLShaderProgram(_openGLContext));
 		jassert(_openGLContext.isActive());
@@ -145,16 +146,17 @@ public:
 			_shader = nullptr;
 			_shader = newShader;
 			_compileResult = "GLSL: v" + String(juce::OpenGLShaderProgram::getLanguageVersion(), 2);
-			
+			result = 1;
 		}
 		else
 		{
+			result = 0;
 			_compileResult = newShader->getLastError();
 
 		}
 		_strVertex = String();
 		_strFragment = String();
-		return true;
+		return result;
 	}
 
 	String getCompileResult()

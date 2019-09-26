@@ -19,7 +19,7 @@ struct Uniforms
 {
 	Uniforms(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
 	{
-		ourColor = createUniform(openGLContext, shader, "ourColor");
+		ourColor = createUniform(openGLContext, shader, "uniformColor");
 	}
  
 	ScopedPointer<OpenGLShaderProgram::Uniform> ourColor{ nullptr };
@@ -43,10 +43,9 @@ private:
 class SpriteTutorial2
 {
 public:
-	SpriteTutorial2(OpenGLContext& openGLContext, bool& useUniform, bool& useAttribute) :VBO(0), VAO(0), EBO(0),
+	SpriteTutorial2(OpenGLContext& openGLContext, bool& useUniform) :VBO(0), VAO(0), EBO(0),
 		_openGLContext(openGLContext),
-		_useUniform(useUniform),
-		_useAttribute(useAttribute)
+		_useUniform(useUniform)
 	{
 	}
 
@@ -68,10 +67,10 @@ public:
 		_openGLContext.extensions.glGenBuffers(1, &EBO);
 
 		float vertices[] = {
-		 0.5f,  0.5f, 0.0f,  // top right
-		 0.5f, -0.5f, 0.0f,  // bottom right
-		-0.5f, -0.5f, 0.0f,  // bottom left
-		-0.5f,  0.5f, 0.0f   // top left 
+		 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // top right
+		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,  // bottom right
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, // bottom left
+		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f // top left 
 		};
 		unsigned int indices[] = {  // note that we start from 0!
 			0, 1, 3,  // first Triangle
@@ -88,8 +87,17 @@ public:
 		_openGLContext.extensions.glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 
-		_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	/*	_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		_openGLContext.extensions.glEnableVertexAttribArray(0);*/
+
+		// position attribute
+		_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 		_openGLContext.extensions.glEnableVertexAttribArray(0);
+		// color attribute
+		_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+		_openGLContext.extensions.glEnableVertexAttribArray(1);
+
+
 
 		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -123,7 +131,7 @@ public:
 	OpenGLContext& _openGLContext;
 
 	bool& _useUniform;
-	bool& _useAttribute;
+
 
 	std::unique_ptr<Uniforms> _uniforms;
 
@@ -137,7 +145,7 @@ class Tutorial2 : public OpenGLAppComponent ,
 {
 public:
 	//==============================================================================
-	Tutorial2() : _sprite(openGLContext, _useUniform, _useAttribute)
+	Tutorial2() : _sprite(openGLContext, _useUniform)
 	{
 		openGLContext.setComponentPaintingEnabled(true);
 
@@ -149,9 +157,7 @@ public:
 		addAndMakeVisible(_useUniformToggleButton.get());
 		_useUniformToggleButton->addListener(this);
 		
-		_useAttributeToggleButton.reset(new ToggleButton("Use Attribute"));
-		addAndMakeVisible(_useAttributeToggleButton.get());
-		_useAttributeToggleButton->addListener(this);
+
 
 
 		setSize(800, 600);
@@ -181,15 +187,19 @@ public:
 	{
 		if (!OpenGLHelpers::isContextActive())
 			return;
-
-		if (_shaderProgram->updateShader())
+		auto res = _shaderProgram->updateShader();
+		if (res >=  0 )
 		{
-			_sprite.setUniformEnv(openGLContext, _shaderProgram->_shader);
+			if (res == 1)
+			{
+				_sprite.setUniformEnv(openGLContext, _shaderProgram->_shader);
+			}
+			
 
 			const MessageManagerLock mmLock;
 			if (mmLock.lockWasGained())
 			{
-				_lblCompileInfo->setText(_shaderProgram->getCompileResult() + " \nlearnopengl.com/Getting-started/Hello-Triangle", NotificationType::dontSendNotification);
+				_lblCompileInfo->setText(_shaderProgram->getCompileResult() + " \nlearnopengl.com/Getting-started/Shaders", NotificationType::dontSendNotification);
 			}
 		}
 
@@ -220,7 +230,7 @@ public:
 		auto areaToggle = r.removeFromRight(proportionOfWidth(0.1));
 
 		_useUniformToggleButton->setBounds(areaToggle.removeFromTop(proportionOfHeight(0.05)));
-		_useAttributeToggleButton->setBounds(areaToggle.removeFromTop(proportionOfHeight(0.05)));
+		
 
 	}
 
@@ -231,10 +241,7 @@ public:
 		{
 			_useUniform = _useUniformToggleButton->getToggleState();
 		}
-		else if (buttonThatWasClicked == _useAttributeToggleButton.get())
-		{
-			_useAttribute = _useAttributeToggleButton->getToggleState();
-		}
+
 		//[UserbuttonClicked_Post]
 		//[/UserbuttonClicked_Post]
 	}
@@ -253,7 +260,7 @@ private:
 
 	std::unique_ptr<ToggleButton> _useUniformToggleButton;
 
-	std::unique_ptr<ToggleButton> _useAttributeToggleButton;
+
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial2)
 };

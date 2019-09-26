@@ -130,7 +130,7 @@ public:
 		if (!OpenGLHelpers::isContextActive())
 			return;
 	
-		if (_shaderProgram->updateShader())
+		if (_shaderProgram->updateShader()>=0)
 		{
 			const MessageManagerLock mmLock;
 			if (mmLock.lockWasGained())
