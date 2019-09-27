@@ -130,6 +130,13 @@
 			path = "../../JuceLibraryCode/include_juce_events.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		0450E9D615469E9D39B3E044 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial5.h;
+			path = ../../Source/Tutorial5.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		05DA703710746D2F6D2C3C41 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -319,6 +326,13 @@
 			path = ../../Source/Tutorial2.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		9BC252BD7D7D1A4B22D27C52 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = fragmentT5.h;
+			path = ../../Source/Shader/fragmentT5.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9F9EC6B35995C56D076D8332 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -366,6 +380,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = TextureCache.h;
 			path = ../../Source/TextureCache.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		CD8C16C6DAA4E1E27EDE03B6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = vertexT5.h;
+			path = ../../Source/Shader/vertexT5.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		D1CD9BB8E01E7A8EB385E30C = {
@@ -431,10 +452,12 @@
 				D56C4E0EF8C8DB75B6747BEF,
 				238A448976E27390497BE5C9,
 				60DEBF03A448086A9AD720F5,
+				9BC252BD7D7D1A4B22D27C52,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
 				D6BE726DEC2AD026AF3772C0,
+				CD8C16C6DAA4E1E27EDE03B6,
 			);
 			name = Shader;
 			sourceTree = "<group>";
@@ -455,6 +478,7 @@
 				8770F75A70CE19D86AA89A54,
 				7D2E2AB99BCA2759B88CB7E7,
 				219815B87A36E3497282D51E,
+				0450E9D615469E9D39B3E044,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";

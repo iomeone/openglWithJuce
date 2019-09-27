@@ -7,4 +7,7 @@
 
 ## tutorial3 and tutorial4
 
-![tutorial3_texutre.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce3And4.gif)  
+![openglWithJuce3And4.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce3And4.gif)  
+
+## tutorial5
+![openglWithJuce5.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce5.gif)  

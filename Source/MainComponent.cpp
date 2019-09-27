@@ -11,6 +11,7 @@
 #include "Tutorial2.h"
 #include "Tutorial3.h"
 #include "Tutorial4.h"
+#include "Tutorial5.h"
 //==============================================================================
 MainComponent::MainComponent()
 {
@@ -56,7 +57,7 @@ void MainComponent::resized()
 	auto r = getLocalBounds();
 	if (_lstBox)
 	{
-		_lstBox->setBounds(r.removeFromLeft(proportionOfWidth(0.2000f)));
+		_lstBox->setBounds(r.removeFromLeft(proportionOfWidth(0.3000f)));
 	}
 
 	if (_curSubComp)
@@ -71,3 +72,4 @@ static ComponentList<Tutorial1> t1((const String)("Tutorial1: Triangle"), 0);
 static ComponentList<Tutorial2> t2((const String)("Tutorial2: Shader"), 1);
 static ComponentList<Tutorial3> t3((const String)("Tutorial3: Texture"), 2);
 static ComponentList<Tutorial4> t4((const String)("Tutorial4: Transformations"), 3);
+static ComponentList<Tutorial5> t5((const String)("Tutorial5: Coordinate Systems"), 4);

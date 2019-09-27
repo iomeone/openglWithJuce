@@ -228,7 +228,7 @@ public:
 			const MessageManagerLock mmLock;
 			if (mmLock.lockWasGained())
 			{
-				_lblCompileInfo->setText(_shaderProgram->getCompileResult() + " \nlearnopengl.com/Getting-started/Textures", NotificationType::dontSendNotification);
+				_lblCompileInfo->setText(_shaderProgram->getCompileResult() + " \nlearnopengl.com/Getting-started/Transformations", NotificationType::dontSendNotification);
 			}
 		}
 
