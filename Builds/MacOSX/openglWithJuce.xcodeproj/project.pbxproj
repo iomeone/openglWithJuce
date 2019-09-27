@@ -603,7 +603,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../../JuceLibraryCode",
 					"../../JuceLibraryCode/modules",
-					""./../../source"",
+					"./../../source",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-App.plist;
@@ -648,7 +648,7 @@
 				HEADER_SEARCH_PATHS = (
 					"../../JuceLibraryCode",
 					"../../JuceLibraryCode/modules",
-					""./../../source"",
+					"./../../source",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-App.plist;

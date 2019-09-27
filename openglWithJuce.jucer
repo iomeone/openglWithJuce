@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="lbTQtQ" name="openglWithJuce" projectType="guiapp" jucerVersion="5.4.3"
-              headerPath="&quot;./../../source&quot;" defines="JUCE_OPENGL3">
+              headerPath="./../../source" defines="JUCE_OPENGL3">
   <MAINGROUP id="WwC13L" name="openglWithJuce">
     <GROUP id="{9BAD5BA1-9290-2241-5422-76CFDF24FEAD}" name="Shader">
       <FILE id="MDfjh0" name="fragmentT1.h" compile="0" resource="0" file="Source/Shader/fragmentT1.h"/>
