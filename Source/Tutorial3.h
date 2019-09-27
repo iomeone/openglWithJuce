@@ -12,10 +12,11 @@ struct UniformsTutorial3
 	UniformsTutorial3(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
 	{
 		ourColor = createUniform(openGLContext, shader, "uniformColor");
-		ourTexture = createUniform(openGLContext, shader, "ourTexture");
+		ourTextureBox = createUniform(openGLContext, shader, "ourTextureBox");
+		ourTextureFace = createUniform(openGLContext, shader, "ourTextureFace");
 	}
 
-	ScopedPointer<OpenGLShaderProgram::Uniform> ourColor{ nullptr }, ourTexture{ nullptr };
+	ScopedPointer<OpenGLShaderProgram::Uniform> ourColor{ nullptr }, ourTextureBox{ nullptr }, ourTextureFace{ nullptr };
 
 
 private:
@@ -52,11 +53,12 @@ public:
 
 
 
-	void init(String texturePath)
+	void init(String BoxPath, String awsomeFacePath)
 	{
-		_pTexture = TextureCache::getTexture(texturePath);
+		_pTextureBox = TextureCache::getTexture(BoxPath);
+		_pTextureFace = TextureCache::getTexture(awsomeFacePath);
 		
-		if (_pTexture == nullptr)
+		if (!_pTextureBox || !_pTextureFace)
 		{
 			return;
 		}
@@ -110,10 +112,19 @@ public:
 	void draw()
 	{
 		_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
-		if(_pTexture)
-			_pTexture->bind();
-		if (_uniforms->ourTexture)
-			_uniforms->ourTexture->set(0);
+		if(_pTextureBox)
+			_pTextureBox->bind();
+		else return;
+
+		_openGLContext.extensions.glActiveTexture(GL_TEXTURE1);
+		if (_pTextureFace)
+			_pTextureFace->bind();
+		else return;
+
+		if (_uniforms->ourTextureBox)
+			_uniforms->ourTextureBox->set(0);
+		if (_uniforms->ourTextureFace)
+			_uniforms->ourTextureFace->set(1);
 
 
 		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
@@ -135,7 +146,7 @@ public:
 	OpenGLContext& _openGLContext;
 
 	bool& _useUniform;
-	OpenGLTexture* _pTexture{ nullptr };
+	OpenGLTexture* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
 
 	std::unique_ptr<UniformsTutorial3> _uniforms;
 
@@ -180,8 +191,9 @@ public:
 		_shaderProgram.reset(new ShaderProgram(openGLContext, vertexFile.getFullPathName(), fragmentFile.getFullPathName()));
 
 		auto textureBoxFile = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("container.jpg").getFullPathName();
+		auto textureAwsomeFace = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("awesomeface.png").getFullPathName();
 
-		_sprite.init(textureBoxFile);
+		_sprite.init(textureBoxFile, textureAwsomeFace);
 	}
 	void shutdown() override
 	{

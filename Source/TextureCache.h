@@ -39,7 +39,6 @@ public:
 		if (mit == getTextureMap().end()) {
 			File f = texturePath;
 			
-
 			if (!f.existsAsFile())
 			{
 				AlertWindow::showMessageBox(AlertWindow::AlertIconType::InfoIcon, "Error Texture Path", texturePath);
