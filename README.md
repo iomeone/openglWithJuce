@@ -1,13 +1,13 @@
 # Port opengl tutorial on https://learnopengl.com/ to JUCE framework!
 
 
-## tutorial1 and tutorial2
+## Tutorial1:Triangle and Tutorial2:Shader
 
 ![tutorial1And2.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/tutorial1And2.gif)  
 
-## tutorial3 and tutorial4
+## Tutorial3:Texture and Tutorial4:Transormations
 
 ![openglWithJuce3And4.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce3And4.gif)  
 
-## tutorial5
+## Tutorial5:Coordinate Systems
 ![openglWithJuce5.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce5.gif)  
