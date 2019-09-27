@@ -2,7 +2,7 @@
 
 
 ## Tutorial1:Triangle  https://learnopengl.com/Getting-started/Hello-Triangle
-##Tutorial2:Shader     https://learnopengl.com/Getting-started/Shaders
+## Tutorial2:Shader     https://learnopengl.com/Getting-started/Shaders
 
 ![tutorial1And2.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/tutorial1And2.gif)  
 
