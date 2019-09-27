@@ -3,18 +3,20 @@
 #include "ShaderProgram.h"
 #include "TextureCache.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-
-struct UniformsTutorial3
+struct UniformsTutorial4
 {
-	UniformsTutorial3(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
+	UniformsTutorial4(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
 	{
-		mixValue = createUniform(openGLContext, shader, "mixValue");
+		transform = createUniform(openGLContext, shader, "transform");
 		ourTextureBox = createUniform(openGLContext, shader, "ourTextureBox");
 		ourTextureFace = createUniform(openGLContext, shader, "ourTextureFace");
 	}
 
-	ScopedPointer<OpenGLShaderProgram::Uniform> mixValue{ nullptr }, ourTextureBox{ nullptr }, ourTextureFace{ nullptr };
+	ScopedPointer<OpenGLShaderProgram::Uniform> transform{ nullptr }, ourTextureBox{ nullptr }, ourTextureFace{ nullptr };
 
 
 private:
@@ -32,17 +34,17 @@ private:
 
 
 
-class SpriteTutorial3
+class SpriteTutorial4
 {
 public:
-	SpriteTutorial3(OpenGLContext& openGLContext, bool& useUniform) :VBO(0), VAO(0), EBO(0),
+	SpriteTutorial4(OpenGLContext& openGLContext, bool& useUniform) :VBO(0), VAO(0), EBO(0),
 		_openGLContext(openGLContext),
 		_useUniform(useUniform)
 	{
 	}
 
 
-	~SpriteTutorial3()
+	~SpriteTutorial4()
 	{
 		_openGLContext.extensions.glDeleteVertexArrays(1, &VAO);
 		_openGLContext.extensions.glDeleteBuffers(1, &VBO);
@@ -55,7 +57,7 @@ public:
 	{
 		_pTextureBox = TextureCache::getTexture(BoxPath);
 		_pTextureFace = TextureCache::getTexture(awsomeFacePath);
-		
+
 		if (!_pTextureBox || !_pTextureFace)
 		{
 			return;
@@ -104,13 +106,13 @@ public:
 
 	void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
 	{
-		_uniforms.reset(new UniformsTutorial3(ogc, *shader));
+		_uniforms.reset(new UniformsTutorial4(ogc, *shader));
 	}
 
 	void draw()
 	{
 		_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
-		if(_pTextureBox)
+		if (_pTextureBox)
 			_pTextureBox->bind();
 		else return;
 
@@ -127,13 +129,25 @@ public:
 
 		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
-		if (_uniforms->mixValue && _useUniform)
+		if (_uniforms->transform)
 		{
-			float x = abs(cos(juce::Time::getCurrentTime().getMilliseconds() / 500.f ));
-			_uniforms->mixValue->set(x);
+			static float radian = 0.;
+			radian += 0.05;
+
+			glm::mat4 trans = glm::mat4(1.0f);
+			glm::mat4 identityMatrix = glm::mat4(1.0f);
+			trans = glm::rotate(trans, glm::radians(radian), glm::vec3(0.0, 0.0, 1.0));
+			trans = glm::scale(trans, glm::vec3(0.8, 0.8, 0.8));
+
+			if (_useUniform)
+				_uniforms->transform->setMatrix4(glm::value_ptr(trans), 1, GL_FALSE);
+			else
+				_uniforms->transform->setMatrix4(glm::value_ptr(identityMatrix), 1, GL_FALSE);
+
+
 		}
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		//_openGLContext.extensions.glBindVertexArray(0); // no need to unbind it every time 
+	
 		return;
 	}
 
@@ -146,19 +160,19 @@ public:
 	bool& _useUniform;
 	OpenGLTexture* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
 
-	std::unique_ptr<UniformsTutorial3> _uniforms;
+	std::unique_ptr<UniformsTutorial4> _uniforms;
 
 };
 
 
 
 
-class Tutorial3 : public OpenGLAppComponent,
+class Tutorial4 : public OpenGLAppComponent,
 	public Button::Listener
 {
 public:
 	//==============================================================================
-	Tutorial3() : _sprite(openGLContext, _useUniform)
+	Tutorial4() : _sprite(openGLContext, _useUniform)
 	{
 		openGLContext.setComponentPaintingEnabled(true);
 
@@ -175,7 +189,7 @@ public:
 
 		setSize(800, 600);
 	}
-	~Tutorial3()
+	~Tutorial4()
 	{
 		shutdownOpenGL();
 	}
@@ -184,8 +198,8 @@ public:
 	void initialise() override
 	{
 		File f = File::getCurrentWorkingDirectory();
-		auto vertexFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("vertexT3.h");
-		auto fragmentFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("fragmentT3.h");
+		auto vertexFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("vertexT4.h");
+		auto fragmentFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("fragmentT4.h");
 		_shaderProgram.reset(new ShaderProgram(openGLContext, vertexFile.getFullPathName(), fragmentFile.getFullPathName()));
 
 		auto textureBoxFile = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("container.jpg").getFullPathName();
@@ -265,7 +279,7 @@ private:
 	//==============================================================================
 	// Your private member variables go here...
 
-	SpriteTutorial3 _sprite;
+	SpriteTutorial4 _sprite;
 	std::unique_ptr<ShaderProgram> _shaderProgram;
 	std::unique_ptr<Label> _lblCompileInfo{ nullptr };
 	bool init{ false };
@@ -277,5 +291,5 @@ private:
 
 
 
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial3)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial4)
 };

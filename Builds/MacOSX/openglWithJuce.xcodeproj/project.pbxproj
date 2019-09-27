@@ -172,6 +172,13 @@
 			path = RecentFilesMenuTemplate.nib;
 			sourceTree = "SOURCE_ROOT";
 		};
+		219815B87A36E3497282D51E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial4.h;
+			path = ../../Source/Tutorial4.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		238A448976E27390497BE5C9 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -233,6 +240,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_gui_extra.mm";
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		60DEBF03A448086A9AD720F5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = fragmentT4.h;
+			path = ../../Source/Shader/fragmentT4.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		6102C4B41A5C2560C35FC809 = {
@@ -368,6 +382,13 @@
 			path = ../../Source/Shader/fragmentT2.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		D6BE726DEC2AD026AF3772C0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = vertexT4.h;
+			path = ../../Source/Shader/vertexT4.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		EABF18DBEED4362A3B9603C6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -409,9 +430,11 @@
 				7BA1A6E2032DFBA9D111ED64,
 				D56C4E0EF8C8DB75B6747BEF,
 				238A448976E27390497BE5C9,
+				60DEBF03A448086A9AD720F5,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
+				D6BE726DEC2AD026AF3772C0,
 			);
 			name = Shader;
 			sourceTree = "<group>";
@@ -431,6 +454,7 @@
 				33C3D339CB442B2CA6056D0F,
 				8770F75A70CE19D86AA89A54,
 				7D2E2AB99BCA2759B88CB7E7,
+				219815B87A36E3497282D51E,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
