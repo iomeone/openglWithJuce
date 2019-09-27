@@ -9,6 +9,7 @@
 #include "MainComponent.h"
 #include "Tutorial1.h"
 #include "Tutorial2.h"
+#include "Tutorial3.h"
 //==============================================================================
 MainComponent::MainComponent()
 {
@@ -65,5 +66,6 @@ void MainComponent::resized()
 }
 
 
-static ComponentList<Tutorial1> td1((const String)("Tutorial1"), 0);
-static ComponentList<Tutorial2> td2((const String)("Tutorial2"), 1);
+static ComponentList<Tutorial1> t1((const String)("Tutorial1: Triangle"), 0);
+static ComponentList<Tutorial2> t2((const String)("Tutorial2: Shader"), 1);
+static ComponentList<Tutorial3> t3((const String)("Tutorial3: Texture"), 2);

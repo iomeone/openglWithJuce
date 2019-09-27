@@ -53,10 +53,6 @@
 			isa = PBXBuildFile;
 			fileRef = 20F81EFD5B1C783258F175FE;
 		};
-		10420A46DF3CE40EE920853A = {
-			isa = PBXBuildFile;
-			fileRef = AF4B0C07436D0F3CEF93E9FE;
-		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -176,11 +172,11 @@
 			path = RecentFilesMenuTemplate.nib;
 			sourceTree = "SOURCE_ROOT";
 		};
-		260C81135FA6326F4F03D336 = {
+		238A448976E27390497BE5C9 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			name = Camera2D.h;
-			path = ../../Source/Camera2D.h;
+			name = fragmentT3.h;
+			path = ../../Source/Shader/fragmentT3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		290DAEB2D78A9294E69E0295 = {
@@ -281,6 +277,13 @@
 			path = ../../Source/Shader/fragmentT1.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		7D2E2AB99BCA2759B88CB7E7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial3.h;
+			path = ../../Source/Tutorial3.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		8324FDA763F8EA77A62FE181 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -316,11 +319,11 @@
 			path = System/Library/Frameworks/CoreAudio.framework;
 			sourceTree = SDKROOT;
 		};
-		AF4B0C07436D0F3CEF93E9FE = {
+		A219B18E57DC9E454F0F395F = {
 			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = Camera2D.cpp;
-			path = ../../Source/Camera2D.cpp;
+			lastKnownFileType = sourcecode.c.h;
+			name = vertexT3.h;
+			path = ../../Source/Shader/vertexT3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		C0CB4A22C6F5E42E468CA76E = {
@@ -342,6 +345,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = Main.cpp;
 			path = ../../Source/Main.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		CC450442567FDABAB56138EB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = TextureCache.h;
+			path = ../../Source/TextureCache.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		D1CD9BB8E01E7A8EB385E30C = {
@@ -398,8 +408,10 @@
 			children = (
 				7BA1A6E2032DFBA9D111ED64,
 				D56C4E0EF8C8DB75B6747BEF,
+				238A448976E27390497BE5C9,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
+				A219B18E57DC9E454F0F395F,
 			);
 			name = Shader;
 			sourceTree = "<group>";
@@ -407,9 +419,8 @@
 		79390D4DEAC6512B514A024D = {
 			isa = PBXGroup;
 			children = (
-				AF4B0C07436D0F3CEF93E9FE,
-				260C81135FA6326F4F03D336,
 				1E21BF4A5A526E0F34DBAFA4,
+				CC450442567FDABAB56138EB,
 			);
 			name = Engine;
 			sourceTree = "<group>";
@@ -419,6 +430,7 @@
 			children = (
 				33C3D339CB442B2CA6056D0F,
 				8770F75A70CE19D86AA89A54,
+				7D2E2AB99BCA2759B88CB7E7,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -726,7 +738,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10420A46DF3CE40EE920853A,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				5EBDC89CCC422FBA06BADF81,

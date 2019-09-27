@@ -22,9 +22,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Camera2D.cpp">
-      <Filter>openglWithJuce\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>openglWithJuce\Source</Filter>
     </ClCompile>
@@ -75,22 +72,31 @@
     <ClInclude Include="..\..\Source\Shader\fragmentT2.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\fragmentT3.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Camera2D.h">
-      <Filter>openglWithJuce\Engine</Filter>
+    <ClInclude Include="..\..\Source\Shader\vertexT3.h">
+      <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ShaderProgram.h">
+      <Filter>openglWithJuce\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\TextureCache.h">
       <Filter>openglWithJuce\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Tutorial1.h">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Tutorial2.h">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tutorial3.h">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CompList.h">

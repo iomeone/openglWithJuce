@@ -138,7 +138,6 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Camera2D.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
@@ -157,12 +156,15 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\Shader\fragmentT1.h"/>
     <ClInclude Include="..\..\Source\Shader\fragmentT2.h"/>
+    <ClInclude Include="..\..\Source\Shader\fragmentT3.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
-    <ClInclude Include="..\..\Source\Camera2D.h"/>
+    <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>
     <ClInclude Include="..\..\Source\ShaderProgram.h"/>
+    <ClInclude Include="..\..\Source\TextureCache.h"/>
     <ClInclude Include="..\..\Source\Tutorial1.h"/>
     <ClInclude Include="..\..\Source\Tutorial2.h"/>
+    <ClInclude Include="..\..\Source\Tutorial3.h"/>
     <ClInclude Include="..\..\Source\CompList.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>

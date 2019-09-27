@@ -64,6 +64,7 @@ public:
 		if (hm.contains(lastRowSelected))
 		{
 			TCompType * ct = hm[lastRowSelected];
+			_curSubComp.reset();
 			_curSubComp.reset(ct->createComponent());
 			addAndMakeVisible(_curSubComp.get());
 			//	_curSubComp->setFocusContainer(true);

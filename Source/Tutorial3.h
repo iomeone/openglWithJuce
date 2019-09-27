@@ -1,29 +1,22 @@
-/*
-  ==============================================================================
-
-    Tutorial2.h
-    Created: 26 Sep 2019 11:36:18am
-    Author:  user
-
-  ==============================================================================
-*/
+#pragma once
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ShaderProgram.h"
+#include "TextureCache.h"
 
 
 
-
-struct Uniforms
+struct UniformsTutorial3
 {
-	Uniforms(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
+	UniformsTutorial3(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
 	{
 		ourColor = createUniform(openGLContext, shader, "uniformColor");
+		ourTexture = createUniform(openGLContext, shader, "ourTexture");
 	}
- 
-	ScopedPointer<OpenGLShaderProgram::Uniform> ourColor{ nullptr };
-	
+
+	ScopedPointer<OpenGLShaderProgram::Uniform> ourColor{ nullptr }, ourTexture{ nullptr };
+
 
 private:
 	static OpenGLShaderProgram::Uniform* createUniform(OpenGLContext& openGLContext,
@@ -40,17 +33,17 @@ private:
 
 
 
-class SpriteTutorial2
+class SpriteTutorial3
 {
 public:
-	SpriteTutorial2(OpenGLContext& openGLContext, bool& useUniform) :VBO(0), VAO(0), EBO(0),
+	SpriteTutorial3(OpenGLContext& openGLContext, bool& useUniform) :VBO(0), VAO(0), EBO(0),
 		_openGLContext(openGLContext),
 		_useUniform(useUniform)
 	{
 	}
 
 
-	~SpriteTutorial2()
+	~SpriteTutorial3()
 	{
 		_openGLContext.extensions.glDeleteVertexArrays(1, &VAO);
 		_openGLContext.extensions.glDeleteBuffers(1, &VBO);
@@ -59,18 +52,25 @@ public:
 
 
 
-	void init()
+	void init(String texturePath)
 	{
+		_pTexture = TextureCache::getTexture(texturePath);
+		
+		if (_pTexture == nullptr)
+		{
+			return;
+		}
 
 		_openGLContext.extensions.glGenVertexArrays(1, &VAO);
 		_openGLContext.extensions.glGenBuffers(1, &VBO);
 		_openGLContext.extensions.glGenBuffers(1, &EBO);
 
 		float vertices[] = {
-		 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // top right
-		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,  // bottom right
-		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, // bottom left
-		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f // top left 
+			// positions          // colors           // texture coords
+			  0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
+			  0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
+			 -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
+			 -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
 		};
 		unsigned int indices[] = {  // note that we start from 0!
 			0, 1, 3,  // first Triangle
@@ -86,14 +86,16 @@ public:
 		_openGLContext.extensions.glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		_openGLContext.extensions.glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
+
 		// position attribute
-		_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		_openGLContext.extensions.glEnableVertexAttribArray(0);
 		// color attribute
-		_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+		_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		_openGLContext.extensions.glEnableVertexAttribArray(1);
 
-
+		_openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		_openGLContext.extensions.glEnableVertexAttribArray(2);
 
 		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -102,17 +104,23 @@ public:
 
 	void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
 	{
-		 _uniforms.reset(new Uniforms(ogc, *shader));
+		_uniforms.reset(new UniformsTutorial3(ogc, *shader));
 	}
 
 	void draw()
 	{
+		_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
+		if(_pTexture)
+			_pTexture->bind();
+		if (_uniforms->ourTexture)
+			_uniforms->ourTexture->set(0);
+
 
 		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
 		if (_uniforms->ourColor && _useUniform)
 		{
-			float x = cos(juce::Time::getCurrentTime().getMilliseconds() / 50) / 2.0f + 0.5f ;
+			float x = cos(juce::Time::getCurrentTime().getMilliseconds() / 50) / 2.0f + 0.5f;
 			_uniforms->ourColor->set(0.f, x, 0.0f, 1.0f);
 		}
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -127,21 +135,21 @@ public:
 	OpenGLContext& _openGLContext;
 
 	bool& _useUniform;
+	OpenGLTexture* _pTexture{ nullptr };
 
-
-	std::unique_ptr<Uniforms> _uniforms;
+	std::unique_ptr<UniformsTutorial3> _uniforms;
 
 };
 
 
 
 
-class Tutorial2 : public OpenGLAppComponent ,
+class Tutorial3 : public OpenGLAppComponent,
 	public Button::Listener
 {
 public:
 	//==============================================================================
-	Tutorial2() : _sprite(openGLContext, _useUniform)
+	Tutorial3() : _sprite(openGLContext, _useUniform)
 	{
 		openGLContext.setComponentPaintingEnabled(true);
 
@@ -152,15 +160,14 @@ public:
 		_useUniformToggleButton.reset(new ToggleButton("Use Uniform"));
 		addAndMakeVisible(_useUniformToggleButton.get());
 		_useUniformToggleButton->addListener(this);
-		
+
 
 
 
 		setSize(800, 600);
 	}
-	~Tutorial2()
+	~Tutorial3()
 	{
-
 		shutdownOpenGL();
 	}
 
@@ -168,29 +175,31 @@ public:
 	void initialise() override
 	{
 		File f = File::getCurrentWorkingDirectory();
-		auto vertexFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("vertexT2.h");
-		auto fragmentFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("fragmentT2.h");
+		auto vertexFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("vertexT3.h");
+		auto fragmentFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("fragmentT3.h");
 		_shaderProgram.reset(new ShaderProgram(openGLContext, vertexFile.getFullPathName(), fragmentFile.getFullPathName()));
 
-		_sprite.init();
+		auto textureBoxFile = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("container.jpg").getFullPathName();
+
+		_sprite.init(textureBoxFile);
 	}
 	void shutdown() override
 	{
 		_shaderProgram->stopThread(1000);
 		_shaderProgram.reset();
+		TextureCache::clear();
 	}
 	void render() override
 	{
 		if (!OpenGLHelpers::isContextActive())
 			return;
 		auto res = _shaderProgram->updateShader();
-		if (res >=  0 )
+		if (res >= 0)
 		{
 			if (res == 1)
 			{
 				_sprite.setUniformEnv(openGLContext, _shaderProgram->_shader);
 			}
-			
 
 			const MessageManagerLock mmLock;
 			if (mmLock.lockWasGained())
@@ -226,7 +235,7 @@ public:
 		auto areaToggle = r.removeFromRight(proportionOfWidth(0.1));
 
 		_useUniformToggleButton->setBounds(areaToggle.removeFromTop(proportionOfHeight(0.05)));
-		
+
 
 	}
 
@@ -246,7 +255,7 @@ private:
 	//==============================================================================
 	// Your private member variables go here...
 
-	SpriteTutorial2 _sprite;
+	SpriteTutorial3 _sprite;
 	std::unique_ptr<ShaderProgram> _shaderProgram;
 	std::unique_ptr<Label> _lblCompileInfo{ nullptr };
 	bool init{ false };
@@ -258,5 +267,5 @@ private:
 
 
 
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial2)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial3)
 };
