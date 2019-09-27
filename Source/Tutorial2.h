@@ -112,7 +112,7 @@ public:
 
 		if (_uniforms->ourColor && _useUniform)
 		{
-			float x = cos(juce::Time::getCurrentTime().getMilliseconds() / 50) / 2.0f + 0.5f ;
+			float x = abs(cos(juce::Time::getCurrentTime().getMilliseconds() / 500.f));
 			_uniforms->ourColor->set(0.f, x, 0.0f, 1.0f);
 		}
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

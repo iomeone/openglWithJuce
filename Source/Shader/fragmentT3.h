@@ -1,6 +1,6 @@
 out vec4 FragColor;
 
-uniform vec4 uniformColor;
+uniform float mixValue;
 uniform sampler2D ourTextureBox;
 uniform sampler2D ourTextureFace;
 
@@ -13,7 +13,7 @@ void main()
 	//FragColor = vec4(ourColor.r, ourColor.g, ourColor.b, 1.0) + uniformColor;
 	//FragColor = texture(ourTextureBox, ourTexCoord);
 
-	FragColor = mix(texture(ourTextureBox, ourTexCoord), texture(ourTextureFace, ourTexCoord), 0.2);
+	FragColor = mix(texture(ourTextureBox, ourTexCoord), texture(ourTextureFace, ourTexCoord), mixValue);
 }
 
 

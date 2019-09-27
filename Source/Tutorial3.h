@@ -11,12 +11,12 @@ struct UniformsTutorial3
 {
 	UniformsTutorial3(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
 	{
-		ourColor = createUniform(openGLContext, shader, "uniformColor");
+		mixValue = createUniform(openGLContext, shader, "mixValue");
 		ourTextureBox = createUniform(openGLContext, shader, "ourTextureBox");
 		ourTextureFace = createUniform(openGLContext, shader, "ourTextureFace");
 	}
 
-	ScopedPointer<OpenGLShaderProgram::Uniform> ourColor{ nullptr }, ourTextureBox{ nullptr }, ourTextureFace{ nullptr };
+	ScopedPointer<OpenGLShaderProgram::Uniform> mixValue{ nullptr }, ourTextureBox{ nullptr }, ourTextureFace{ nullptr };
 
 
 private:
@@ -129,10 +129,10 @@ public:
 
 		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
-		if (_uniforms->ourColor && _useUniform)
+		if (_uniforms->mixValue && _useUniform)
 		{
-			float x = cos(juce::Time::getCurrentTime().getMilliseconds() / 50) / 2.0f + 0.5f;
-			_uniforms->ourColor->set(0.f, x, 0.0f, 1.0f);
+			float x = abs(cos(juce::Time::getCurrentTime().getMilliseconds() / 500.f ));
+			_uniforms->mixValue->set(x);
 		}
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		//_openGLContext.extensions.glBindVertexArray(0); // no need to unbind it every time 
@@ -216,7 +216,7 @@ public:
 			const MessageManagerLock mmLock;
 			if (mmLock.lockWasGained())
 			{
-				_lblCompileInfo->setText(_shaderProgram->getCompileResult() + " \nlearnopengl.com/Getting-started/Shaders", NotificationType::dontSendNotification);
+				_lblCompileInfo->setText(_shaderProgram->getCompileResult() + " \nlearnopengl.com/Getting-started/Textures", NotificationType::dontSendNotification);
 			}
 		}
 
