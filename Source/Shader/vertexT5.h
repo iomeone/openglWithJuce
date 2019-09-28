@@ -5,7 +5,7 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
-out vec2 ourTexCoord;
+varying vec2 ourTexCoord;
 void main()
 {
 	ourTexCoord = aTexCoord;

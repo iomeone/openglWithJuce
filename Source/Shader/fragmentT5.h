@@ -2,7 +2,7 @@
 uniform sampler2D ourTextureBox;
 uniform sampler2D ourTextureFace;
 
-in vec2 ourTexCoord;
+varying vec2 ourTexCoord;
 
 void main()
 {

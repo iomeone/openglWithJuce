@@ -4,8 +4,8 @@ attribute vec2  aTexCoord;
 
 uniform mat4  transform;
 
-out vec3 ourColor;
-out vec2 ourTexCoord;
+varying vec3 ourColor;
+varying vec2 ourTexCoord;
 void main()
 {
 	ourColor = aColor;

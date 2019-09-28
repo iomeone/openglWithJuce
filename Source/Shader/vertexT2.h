@@ -1,6 +1,6 @@
 attribute vec3  aPos;
 attribute vec3  aColor;
-out vec3 ourColor;
+varying vec3 ourColor;
 void main()
 {
 	ourColor = aColor;

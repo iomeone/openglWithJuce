@@ -1,5 +1,5 @@
 uniform vec4 uniformColor;
-in vec3 ourColor;
+varying vec3 ourColor;
 
 void main()
 {
