@@ -97,6 +97,7 @@ public:
 	//==============================================================================
 	Tutorial1() : _sprite(openGLContext)
 	{
+		openGLContext.setOpenGLVersionRequired(juce::OpenGLContext::openGL3_2);
 		openGLContext.setComponentPaintingEnabled(true);
 
 		_lblCompileInfo.reset(new Label("compileInfo", "Shader source build info."));
