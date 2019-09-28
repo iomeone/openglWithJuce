@@ -81,6 +81,9 @@
     <ClInclude Include="..\..\Source\Shader\fragmentT5.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\fragmentT6.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
@@ -94,6 +97,9 @@
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT5.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\vertexT6.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Camera.h">
@@ -118,6 +124,9 @@
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Tutorial5.h">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tutorial6.h">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CompList.h">

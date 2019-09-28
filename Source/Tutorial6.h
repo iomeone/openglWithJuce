@@ -2,20 +2,22 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "ShaderProgram.h"
 #include "TextureCache.h"
+#include "Camera.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-namespace T5 {
-	const String tutorialLink = "learnopengl.com/Getting-started/Coordinate-Systems";
-	const String vertexFilename = "vertexT5.h";
-	const String fragmentFileName = "fragmentT5.h";
+
+namespace T6 {
+	const String tutorialLink = "learnopengl.com/Getting-started/Camera";
+	const String vertexFilename = "vertexT6.h";
+	const String fragmentFileName = "fragmentT6.h";
 
 
-	struct UniformsTutorial5
+	struct UniformsTutorial6
 	{
-		UniformsTutorial5(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
+		UniformsTutorial6(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
 		{
 			model = createUniform(openGLContext, shader, "model");
 			view = createUniform(openGLContext, shader, "view");
@@ -40,7 +42,7 @@ namespace T5 {
 	};
 
 #pragma pack(1)
-	struct VertexTutorial5 {
+	struct VertexTutorial6 {
 		struct Position {
 			float x;
 			float y;
@@ -55,7 +57,7 @@ namespace T5 {
 
 		UV uv;
 
-		VertexTutorial5(float x, float y, float z, float u, float v)
+		VertexTutorial6(float x, float y, float z, float u, float v)
 		{
 			position.x = x;
 			position.y = y;
@@ -67,17 +69,18 @@ namespace T5 {
 	};
 #pragma pack()
 
-	class SpriteTutorial5
+	class SpriteTutorial6
 	{
 	public:
-		SpriteTutorial5(OpenGLContext& openGLContext, bool& useUniform) :VBO(0), VAO(0),
+		SpriteTutorial6(OpenGLContext& openGLContext, Camera& camera, bool& useUniform) :VBO(0), VAO(0),
 			_openGLContext(openGLContext),
-			_useUniform(useUniform)
+			_useUniform(useUniform),
+			_camera(camera)
 		{
 		}
 
 
-		~SpriteTutorial5()
+		~SpriteTutorial6()
 		{
 			_openGLContext.extensions.glDeleteVertexArrays(1, &VAO);
 			_openGLContext.extensions.glDeleteBuffers(1, &VBO);
@@ -101,7 +104,7 @@ namespace T5 {
 
 
 
-			VertexTutorial5 vertices[] = {
+			VertexTutorial6 vertices[] = {
 				{-0.5f, -0.5f, -0.5f,  0.0f, 0.0f},
 				{ 0.5f, -0.5f, -0.5f,  1.0f, 0.0f},
 				{ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f},
@@ -152,11 +155,11 @@ namespace T5 {
 
 
 			// position attribute
-			_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTutorial5), (GLvoid*)offsetof(VertexTutorial5, position));
+			_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTutorial6), (GLvoid*)offsetof(VertexTutorial6, position));
 			_openGLContext.extensions.glEnableVertexAttribArray(0);
 
 
-			_openGLContext.extensions.glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexTutorial5), (GLvoid*)offsetof(VertexTutorial5, uv));
+			_openGLContext.extensions.glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(VertexTutorial6), (GLvoid*)offsetof(VertexTutorial6, uv));
 			_openGLContext.extensions.glEnableVertexAttribArray(1);
 
 
@@ -167,7 +170,7 @@ namespace T5 {
 
 		void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
 		{
-			_uniforms.reset(new UniformsTutorial5(ogc, *shader));
+			_uniforms.reset(new UniformsTutorial6(ogc, *shader));
 		}
 
 		void draw()
@@ -189,7 +192,26 @@ namespace T5 {
 
 
 			_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+			if (_uniforms->view)
+			{
+				float radius = 10.0f;
+				static float inc = 0.;
+				inc += 0.001;
 
+				_camera.setCameraPosX( sin(inc) * radius);
+				_camera.setCameraPosZ (cos(inc) * radius);
+
+				glm::mat4 view = _camera.getViewMat();
+
+				_uniforms->view->setMatrix4(glm::value_ptr(view), 1, GL_FALSE);
+			}
+
+			if (_uniforms->projection)
+			{
+				glm::mat4 projection;
+				projection = glm::perspective(glm::radians(_angleValue), _screenWidth / _screenHeight, _zValue, 100.0f);
+				_uniforms->projection->setMatrix4(glm::value_ptr(projection), 1, GL_FALSE);
+			}
 			for (unsigned int i = 0; i < 10; i++)
 			{
 				if (_uniforms->model)
@@ -207,21 +229,6 @@ namespace T5 {
 						model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
 
 					_uniforms->model->setMatrix4(glm::value_ptr(model), 1, GL_FALSE);
-				}
-
-				if (_uniforms->view)
-				{
-					glm::mat4 view = glm::mat4(1.0f);
-					// note that we're translating the scene in the reverse direction of where we want to move
-					view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-					_uniforms->view->setMatrix4(glm::value_ptr(view), 1, GL_FALSE);
-				}
-
-				if (_uniforms->projection)
-				{
-					glm::mat4 projection;
-					projection = glm::perspective(glm::radians(_angleValue), _screenWidth / _screenHeight, _zValue, 100.0f);
-					_uniforms->projection->setMatrix4(glm::value_ptr(projection), 1, GL_FALSE);
 				}
 
 				glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -265,24 +272,25 @@ namespace T5 {
 		GLuint VBO, VAO;
 
 		OpenGLContext& _openGLContext;
+		Camera& _camera;
 
 		bool& _useUniform;
 		OpenGLTexture* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
 
-		std::unique_ptr<UniformsTutorial5> _uniforms;
+		std::unique_ptr<UniformsTutorial6> _uniforms;
 
 	};
 
 
 
 
-	class Tutorial5 : public OpenGLAppComponent,
+	class Tutorial6 : public OpenGLAppComponent,
 		public Button::Listener,
 		public Slider::Listener
 	{
 	public:
 		//==============================================================================
-		Tutorial5() : _sprite(openGLContext, _useUniform)
+		Tutorial6() : _sprite(openGLContext, _camera, _useUniform)
 		{
 			openGLContext.setOpenGLVersionRequired(juce::OpenGLContext::openGL3_2);
 			openGLContext.setComponentPaintingEnabled(true);
@@ -323,7 +331,7 @@ namespace T5 {
 
 			setSize(800, 600);
 		}
-		~Tutorial5()
+		~Tutorial6()
 		{
 			shutdownOpenGL();
 		}
@@ -431,8 +439,8 @@ namespace T5 {
 	private:
 		//==============================================================================
 		// Your private member variables go here...
-
-		SpriteTutorial5 _sprite;
+		Camera _camera;
+		SpriteTutorial6 _sprite;
 		std::unique_ptr<ShaderProgram> _shaderProgram;
 		std::unique_ptr<Label> _lblCompileInfo{ nullptr };
 		bool init{ false };
@@ -448,6 +456,6 @@ namespace T5 {
 		Label _lblAngle;
 
 		Label _lblZ;
-		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial5)
+		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial6)
 	};
 }

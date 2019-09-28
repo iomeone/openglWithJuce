@@ -228,6 +228,13 @@
 			path = ../../Source/Tutorial1.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		34C0B8EB4C25135EC7E23250 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial6.h;
+			path = ../../Source/Tutorial6.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		38B933902EF64119093802EF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -361,6 +368,13 @@
 			path = ../../Source/Shader/vertexT3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		BFFB4944A42C1C6DD2B3C3FD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = fragmentT6.h;
+			path = ../../Source/Shader/fragmentT6.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		C0CB4A22C6F5E42E468CA76E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -394,6 +408,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = vertexT5.h;
 			path = ../../Source/Shader/vertexT5.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		D09964DFC32191D6307F0537 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = vertexT6.h;
+			path = ../../Source/Shader/vertexT6.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		D1CD9BB8E01E7A8EB385E30C = {
@@ -460,11 +481,13 @@
 				238A448976E27390497BE5C9,
 				60DEBF03A448086A9AD720F5,
 				9BC252BD7D7D1A4B22D27C52,
+				BFFB4944A42C1C6DD2B3C3FD,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
 				D6BE726DEC2AD026AF3772C0,
 				CD8C16C6DAA4E1E27EDE03B6,
+				D09964DFC32191D6307F0537,
 			);
 			name = Shader;
 			sourceTree = "<group>";
@@ -487,6 +510,7 @@
 				7D2E2AB99BCA2759B88CB7E7,
 				219815B87A36E3497282D51E,
 				0450E9D615469E9D39B3E044,
+				34C0B8EB4C25135EC7E23250,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";

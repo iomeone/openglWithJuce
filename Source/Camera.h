@@ -16,26 +16,39 @@
 
 
 //Camera class for 2D games
-class Camera2D
+class Camera
 {
 public:
-	Camera2D() {};
-	~Camera2D() {};
+	Camera() {};
+	~Camera() {};
 	
 	glm::mat4 getViewMat()
 	{
-		auto view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f),
-			glm::vec3(0.0f, 0.0f, 0.0f),
-			glm::vec3(0.0f, 1.0f, 0.0f));
+		auto view = glm::lookAt(_cameraPos,
+			_targetPos,
+			_upDirection);
 
 		return view;
 	}
 
+	void setCameraPos(float x, float y, float z)
+	{
+		_cameraPos.x = x;
+		_cameraPos.y = y;
+		_cameraPos.z = z;
+	}
+	void setCameraPosX(float x)
+	{
+		_cameraPos.x = x;
+	}
 
+	void setCameraPosZ(float z)
+	{
+		_cameraPos.z = z;
+	}
 private:
-	
 
-	glm::vec3 _cameraPos{ 0.f, 0.f, 3.f };
+	glm::vec3 _cameraPos{0.0f, 0.0f, 13.0f};
 	glm::vec3 _targetPos{ 0.f, 0.f, 0.f };
 	glm::vec3 _upDirection{ 0.f, 1.f, 0.f };
 };
