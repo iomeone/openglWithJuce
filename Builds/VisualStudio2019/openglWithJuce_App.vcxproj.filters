@@ -96,6 +96,9 @@
     <ClInclude Include="..\..\Source\Shader\vertexT5.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Camera.h">
+      <Filter>openglWithJuce\Engine</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ShaderProgram.h">
       <Filter>openglWithJuce\Engine</Filter>
     </ClInclude>

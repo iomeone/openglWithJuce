@@ -164,6 +164,7 @@
     <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT4.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT5.h"/>
+    <ClInclude Include="..\..\Source\Camera.h"/>
     <ClInclude Include="..\..\Source\ShaderProgram.h"/>
     <ClInclude Include="..\..\Source\TextureCache.h"/>
     <ClInclude Include="..\..\Source\Tutorial1.h"/>

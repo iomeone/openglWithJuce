@@ -32,6 +32,47 @@ private:
 };
 
 
+#pragma pack(1)
+struct VertexTutorial4 {
+	struct Position {
+		float x;
+		float y;
+		float z;
+	};
+
+	struct ColorRGB {
+		ColorRGB() : r(0), g(0), b(0) { }
+		ColorRGB(float R, float G, float B) :
+			r(R), g(G), b(B) { }
+		float r;
+		float g;
+		float b;
+	};
+
+	struct UV {
+		float u;
+		float v;
+	};
+	Position position;
+	ColorRGB color;
+	UV uv;
+
+	VertexTutorial4(float x, float y, float z, float r, float g, float b, float u, float v)
+	{
+		position.x = x;
+		position.y = y;
+		position.z = z;
+
+		color.r = r;
+		color.g = g;
+		color.b = b;
+
+		uv.u = u;
+		uv.v = v;
+	}
+};
+#pragma pack()
+
 
 
 class SpriteTutorial4
@@ -67,12 +108,12 @@ public:
 		_openGLContext.extensions.glGenBuffers(1, &VBO);
 		_openGLContext.extensions.glGenBuffers(1, &EBO);
 
-		float vertices[] = {
+		VertexTutorial4 vertices[] = {
 			// positions          // colors           // texture coords
-			  0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-			  0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-			 -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-			 -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
+			{0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f},   // top right
+			{0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f},   // bottom right
+			{-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f},   // bottom left
+			{-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f}    // top left 
 		};
 		unsigned int indices[] = {  // note that we start from 0!
 			0, 1, 3,  // first Triangle
@@ -90,13 +131,13 @@ public:
 
 
 		// position attribute
-		_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+		_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTutorial4), (GLvoid*)offsetof(VertexTutorial4, position));
 		_openGLContext.extensions.glEnableVertexAttribArray(0);
 		// color attribute
-		_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+		_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTutorial4), (GLvoid*)offsetof(VertexTutorial4, color));
 		_openGLContext.extensions.glEnableVertexAttribArray(1);
 
-		_openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		_openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexTutorial4), (GLvoid*)offsetof(VertexTutorial4, uv));
 		_openGLContext.extensions.glEnableVertexAttribArray(2);
 
 		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);

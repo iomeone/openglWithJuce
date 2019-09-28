@@ -198,3 +198,68 @@ inline void macPath(File & f)
 		f = f.getParentDirectory().getParentDirectory();
 	}
 }
+
+
+
+
+
+//
+//struct AttributesTutorial3
+//{
+//	AttributesTutorial3(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) : _ogc(openGLContext)
+//	{
+//		aPos = createAttribute(openGLContext, shader, "aPos");
+//		aColor = createAttribute(openGLContext, shader, "aColor");
+//		aTexCoord = createAttribute(openGLContext, shader, "aTexCoord");
+//	}
+//
+//	void enable()
+//	{
+//		if (aPos != nullptr)
+//		{
+//			_ogc.extensions.glEnableVertexAttribArray(aPos->attributeID);
+//			_ogc.extensions.glVertexAttribPointer(aPos->attributeID, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
+//
+//		}
+//		else jassertfalse;
+//
+//		if (aColor != nullptr)
+//		{
+//			_ogc.extensions.glVertexAttribPointer(aColor->attributeID, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
+//			_ogc.extensions.glEnableVertexAttribArray(aColor->attributeID);
+//		}
+//		else jassertfalse;
+//
+//		if (aTexCoord != nullptr)
+//		{
+//			_ogc.extensions.glVertexAttribPointer(aTexCoord->attributeID, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
+//			_ogc.extensions.glEnableVertexAttribArray(aTexCoord->attributeID);
+//		}
+//		else jassertfalse;
+//	}
+//
+//	void disable()
+//	{
+//		if (aPos != nullptr)       _ogc.extensions.glDisableVertexAttribArray(aPos->attributeID);
+//		else jassertfalse;
+//		if (aColor != nullptr)		 _ogc.extensions.glDisableVertexAttribArray(aColor->attributeID);
+//		else jassertfalse;
+//		if (aTexCoord != nullptr)  _ogc.extensions.glDisableVertexAttribArray(aTexCoord->attributeID);
+//		else jassertfalse;
+//	}
+//
+// 
+//	ScopedPointer<OpenGLShaderProgram::Attribute> aPos, aColor, aTexCoord;
+//	OpenGLContext & _ogc;
+//
+//private:
+//	static OpenGLShaderProgram::Attribute* createAttribute(OpenGLContext& openGLContext,
+//		OpenGLShaderProgram& shader,
+//		const char* attributeName)
+//	{
+//		if (openGLContext.extensions.glGetAttribLocation(shader.getProgramID(), attributeName) < 0)
+//			return nullptr;
+//
+//		return new juce::OpenGLShaderProgram::Attribute(shader, attributeName);
+//	}
+//};

@@ -16,6 +16,7 @@
       <FILE id="WCBvfL" name="vertexT5.h" compile="0" resource="0" file="Source/Shader/vertexT5.h"/>
     </GROUP>
     <GROUP id="{B1DAD2A2-892A-BB42-C3E1-9D2B1B6FDD70}" name="Engine">
+      <FILE id="DhjyiY" name="Camera.h" compile="0" resource="0" file="Source/Camera.h"/>
       <FILE id="i5qh9u" name="ShaderProgram.h" compile="0" resource="0" file="Source/ShaderProgram.h"/>
       <FILE id="cCQyvZ" name="TextureCache.h" compile="0" resource="0" file="Source/TextureCache.h"/>
     </GROUP>

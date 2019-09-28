@@ -39,8 +39,33 @@ private:
 	}
 };
 
+#pragma pack(1)
+struct VertexTutorial5 {
+	struct Position {
+		float x;
+		float y;
+		float z;
+	};
 
+	struct UV {
+		float u;
+		float v;
+	};
+	Position position;
+	 
+	UV uv;
 
+	VertexTutorial5(float x, float y, float z,  float u, float v)
+	{
+		position.x = x;
+		position.y = y;
+		position.z = z;
+
+		uv.u = u;
+		uv.v = v;
+	}
+};
+#pragma pack()
 
 class SpriteTutorial5
 {
@@ -76,53 +101,49 @@ public:
 
 
 
-		float vertices[] = {
-			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-			 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+		VertexTutorial5 vertices[] = {
+			{-0.5f, -0.5f, -0.5f,  0.0f, 0.0f},
+			{ 0.5f, -0.5f, -0.5f,  1.0f, 0.0f},
+			{ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f},
+			{ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f},
+			{-0.5f,  0.5f, -0.5f,  0.0f, 1.0f},
+			{-0.5f, -0.5f, -0.5f,  0.0f, 0.0f},
 
-			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-			-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+			{-0.5f, -0.5f,  0.5f,  0.0f, 0.0f},
+			{ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f},
+			{ 0.5f,  0.5f,  0.5f,  1.0f, 1.0f},
+			{ 0.5f,  0.5f,  0.5f,  1.0f, 1.0f},
+			{-0.5f,  0.5f,  0.5f,  0.0f, 1.0f},
+			{-0.5f, -0.5f,  0.5f,  0.0f, 0.0f},
 
-			-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			{-0.5f,  0.5f,  0.5f,  1.0f, 0.0f},
+			{-0.5f,  0.5f, -0.5f,  1.0f, 1.0f},
+			{-0.5f, -0.5f, -0.5f,  0.0f, 1.0f},
+			{-0.5f, -0.5f, -0.5f,  0.0f, 1.0f},
+			{-0.5f, -0.5f,  0.5f,  0.0f, 0.0f},
+			{-0.5f,  0.5f,  0.5f,  1.0f, 0.0f},
 
-			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+			{ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f},
+			{ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f},
+			{ 0.5f, -0.5f, -0.5f,  0.0f, 1.0f},
+			{ 0.5f, -0.5f, -0.5f,  0.0f, 1.0f},
+			{ 0.5f, -0.5f,  0.5f,  0.0f, 0.0f},
+			{ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f},
 
-			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-			-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-			-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+			{-0.5f, -0.5f, -0.5f,  0.0f, 1.0f},
+			{ 0.5f, -0.5f, -0.5f,  1.0f, 1.0f},
+			{ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f},
+			{ 0.5f, -0.5f,  0.5f,  1.0f, 0.0f},
+			{-0.5f, -0.5f,  0.5f,  0.0f, 0.0f},
+			{-0.5f, -0.5f, -0.5f,  0.0f, 1.0f},
 
-			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-		};
-
-		
-	 
- 
+			{-0.5f,  0.5f, -0.5f,  0.0f, 1.0f},
+			{ 0.5f,  0.5f, -0.5f,  1.0f, 1.0f},
+			{ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f},
+			{ 0.5f,  0.5f,  0.5f,  1.0f, 0.0f},
+			{-0.5f,  0.5f,  0.5f,  0.0f, 0.0f},
+			{-0.5f,  0.5f, -0.5f,  0.0f, 1.0f}
+		}; 
 
 		_openGLContext.extensions.glBindVertexArray(VAO);
 
@@ -130,15 +151,12 @@ public:
 		_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 
-
-
-
 		// position attribute
-		_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+		_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexTutorial5), (GLvoid*)offsetof(VertexTutorial5, position));
 		_openGLContext.extensions.glEnableVertexAttribArray(0);
 
 
-		_openGLContext.extensions.glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+		_openGLContext.extensions.glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE,  sizeof(VertexTutorial5), (GLvoid*)offsetof(VertexTutorial5, uv));
 		_openGLContext.extensions.glEnableVertexAttribArray(1);
 
 
@@ -172,7 +190,7 @@ public:
 
 		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
-		for (unsigned int i = 0; i < 10; i++)
+		for (unsigned int i = 0; i < 1; i++)
 		{
 			if (_uniforms->model)
 			{

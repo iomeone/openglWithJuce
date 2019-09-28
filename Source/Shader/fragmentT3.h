@@ -11,7 +11,7 @@ void main()
 	//FragColor = vec4(ourColor.r, ourColor.g, ourColor.b, 1.0) + uniformColor;
 	//FragColor = texture(ourTextureBox, ourTexCoord);
 
-	gl_FragColor = mix(texture2D(ourTextureBox, ourTexCoord), texture2D(ourTextureFace, ourTexCoord), mixValue);
+	gl_FragColor = mix(texture2D(ourTextureBox, ourTexCoord), texture2D(ourTextureFace, ourTexCoord), mixValue) + vec4(ourColor, .5);
 }
 
 

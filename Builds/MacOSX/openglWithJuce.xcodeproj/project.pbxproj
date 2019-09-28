@@ -242,6 +242,13 @@
 			path = ../../Source/Shader/vertexT2.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		53CCC3C1E179A464D885395D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Camera.h;
+			path = ../../Source/Camera.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		550C45D188AE47EF84F544FD = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -465,6 +472,7 @@
 		79390D4DEAC6512B514A024D = {
 			isa = PBXGroup;
 			children = (
+				53CCC3C1E179A464D885395D,
 				1E21BF4A5A526E0F34DBAFA4,
 				CC450442567FDABAB56138EB,
 			);
