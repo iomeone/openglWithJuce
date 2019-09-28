@@ -74,7 +74,7 @@ namespace T6 {
 	public:
 		SpriteTutorial6(OpenGLContext& openGLContext, Camera& camera, bool& useUniform) :VBO(0), VAO(0),
 			_openGLContext(openGLContext),
-			_useUniform(useUniform),
+			_useCircle(useUniform),
 			_camera(camera)
 		{
 		}
@@ -194,16 +194,28 @@ namespace T6 {
 			_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 			if (_uniforms->view)
 			{
-				float radius = 10.0f;
-				static float inc = 0.;
-				inc += 0.001;
+				if (_useCircle)  // true for demo of rotating the camera around our scene
+				{
+					float radius = 10.0f;
+					static float inc = 0.;
+					inc += 0.001;
 
-				_camera.setCameraPosX( sin(inc) * radius);
-				_camera.setCameraPosZ (cos(inc) * radius);
+					_camera.setCameraPosX(sin(inc) * radius);
+					_camera.setCameraPosZ(cos(inc) * radius);
+					glm::mat4 view = _camera.getViewMat_();
 
-				glm::mat4 view = _camera.getViewMat();
+					_uniforms->view->setMatrix4(glm::value_ptr(view), 1, GL_FALSE);
+				}
+				else
+				{
+						glm::mat4 view = _camera.getViewMat();
 
-				_uniforms->view->setMatrix4(glm::value_ptr(view), 1, GL_FALSE);
+						_uniforms->view->setMatrix4(glm::value_ptr(view), 1, GL_FALSE);
+					
+				}
+
+
+
 			}
 
 			if (_uniforms->projection)
@@ -274,7 +286,7 @@ namespace T6 {
 		OpenGLContext& _openGLContext;
 		Camera& _camera;
 
-		bool& _useUniform;
+		bool& _useCircle;
 		OpenGLTexture* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
 
 		std::unique_ptr<UniformsTutorial6> _uniforms;
@@ -290,7 +302,7 @@ namespace T6 {
 	{
 	public:
 		//==============================================================================
-		Tutorial6() : _sprite(openGLContext, _camera, _useUniform)
+		Tutorial6() : _sprite(openGLContext, _camera, _useCircle)
 		{
 			openGLContext.setOpenGLVersionRequired(juce::OpenGLContext::openGL3_2);
 			openGLContext.setComponentPaintingEnabled(true);
@@ -299,9 +311,9 @@ namespace T6 {
 			addAndMakeVisible(_lblCompileInfo.get());
 
 
-			_useUniformToggleButton.reset(new ToggleButton("Use Uniform"));
-			addAndMakeVisible(_useUniformToggleButton.get());
-			_useUniformToggleButton->addListener(this);
+			_useCircleDemo.reset(new ToggleButton("show Circle demo?"));
+			addAndMakeVisible(_useCircleDemo.get());
+			_useCircleDemo->addListener(this);
 
 			_sliderAngle.reset(new Slider("_sliderAngle"));
 			addAndMakeVisible(_sliderAngle.get());
@@ -403,7 +415,7 @@ namespace T6 {
 
 			auto areaToggle = r.removeFromRight(proportionOfWidth(0.5));
 
-			//_useUniformToggleButton->setBounds(areaToggle.removeFromTop(proportionOfHeight(0.05)));
+			_useCircleDemo->setBounds(areaToggle.removeFromTop(proportionOfHeight(0.05)));
 			_sliderAngle->setBounds(areaToggle.removeFromTop(proportionOfHeight(0.05)));
 			_sliderZ->setBounds(areaToggle.removeFromTop(proportionOfHeight(0.05)));
 
@@ -414,9 +426,13 @@ namespace T6 {
 		void buttonClicked(Button* buttonThatWasClicked)
 		{
 
-			if (buttonThatWasClicked == _useUniformToggleButton.get())
+			if (buttonThatWasClicked == _useCircleDemo.get())
 			{
-				_useUniform = _useUniformToggleButton->getToggleState();
+				_useCircle = _useCircleDemo->getToggleState();
+				if (!_useCircle)
+				{
+					_camera.init();
+				}
 			}
 
 			//[UserbuttonClicked_Post]
@@ -434,7 +450,29 @@ namespace T6 {
 				_sprite.setZValue(_sliderZ->getValue());
 			}
 		}
-
+		bool keyPressed(const KeyPress& key) override
+		{
+			float cameraSpeed = 0.6f; // adjust accordingly
+			if (key == 'w' || key == 'W')
+			{
+				
+				_camera.setCameraPos(_camera.getCameraPos() +  cameraSpeed * _camera.getFrontPos() );
+			}
+			if (key == 's' || key == 'S')
+			{
+				_camera.setCameraPos(_camera.getCameraPos() - cameraSpeed * _camera.getFrontPos());
+			}
+			if (key == 'a' || key == 'A')
+			{
+				_camera.setCameraPos(_camera.getCameraPos() - glm::normalize(glm::cross(_camera.getFrontPos(), _camera.getUpPos() )) * cameraSpeed);
+				
+			}
+			if (key == 'd' || key == 'D')
+			{
+				_camera.setCameraPos(_camera.getCameraPos() + glm::normalize(glm::cross(_camera.getFrontPos(), _camera.getUpPos())) * cameraSpeed);
+			}
+			return false;
+		}
 
 	private:
 		//==============================================================================
@@ -445,10 +483,10 @@ namespace T6 {
 		std::unique_ptr<Label> _lblCompileInfo{ nullptr };
 		bool init{ false };
 
-		bool _useUniform{ false };
+		bool _useCircle{ false };
 		bool _useAttribute{ false };
 
-		std::unique_ptr<ToggleButton> _useUniformToggleButton;
+		std::unique_ptr<ToggleButton> _useCircleDemo;
 
 		std::unique_ptr<Slider> _sliderAngle;
 		std::unique_ptr<Slider> _sliderZ;
