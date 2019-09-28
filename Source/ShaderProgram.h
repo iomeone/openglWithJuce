@@ -189,3 +189,12 @@ private:
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ShaderProgram)
 };
+
+inline void macPath(File & f)
+{
+	if ((juce::SystemStats::getOperatingSystemType()
+		& juce::SystemStats::MacOSX) != 0)
+	{
+		f = f.getParentDirectory().getParentDirectory();
+	}
+}

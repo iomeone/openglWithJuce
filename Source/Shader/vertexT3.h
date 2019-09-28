@@ -3,8 +3,8 @@ attribute vec3  aColor;
 attribute vec2  aTexCoord;
 
 
-out vec3 ourColor;
-out vec2 ourTexCoord;
+varying vec3 ourColor;
+varying vec2 ourTexCoord;
 void main()
 {
 	ourColor = aColor;

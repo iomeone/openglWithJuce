@@ -184,6 +184,7 @@ public:
 	void initialise() override
 	{
 		File f = File::getCurrentWorkingDirectory();
+		macPath(f);
 		auto vertexFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("vertexT3.h");
 		auto fragmentFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("fragmentT3.h");
 		_shaderProgram.reset(new ShaderProgram(openGLContext, vertexFile.getFullPathName(), fragmentFile.getFullPathName()));

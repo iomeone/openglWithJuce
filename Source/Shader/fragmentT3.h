@@ -1,11 +1,9 @@
-out vec4 FragColor;
-
 uniform float mixValue;
 uniform sampler2D ourTextureBox;
 uniform sampler2D ourTextureFace;
 
-in vec3 ourColor;
-in vec2 ourTexCoord;
+varying vec3 ourColor;
+varying vec2 ourTexCoord;
 
 void main()
 {
@@ -13,7 +11,7 @@ void main()
 	//FragColor = vec4(ourColor.r, ourColor.g, ourColor.b, 1.0) + uniformColor;
 	//FragColor = texture(ourTextureBox, ourTexCoord);
 
-	FragColor = mix(texture(ourTextureBox, ourTexCoord), texture(ourTextureFace, ourTexCoord), mixValue);
+	gl_FragColor = mix(texture2D(ourTextureBox, ourTexCoord), texture(ourTextureFace, ourTexCoord), mixValue);
 }
 
 

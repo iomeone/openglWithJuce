@@ -110,10 +110,12 @@ public:
 		shutdownOpenGL();
 	}
 
+
 	//==============================================================================
 	void initialise() override
 	{
 		File f = File::getCurrentWorkingDirectory();
+		macPath(f);
 		auto vertexFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("vertexT1.h");
 		auto fragmentFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile("fragmentT1.h");
 		_shaderProgram.reset(new ShaderProgram(openGLContext, vertexFile.getFullPathName(), fragmentFile.getFullPathName()));
