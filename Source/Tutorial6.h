@@ -423,16 +423,15 @@ namespace T6 {
 			_sprite.setScreenWidthAndHeight(getBounds().getWidth(), getBounds().getHeight());
 		}
 
-		void buttonClicked(Button* buttonThatWasClicked)
+		void buttonClicked(Button* buttonThatWasClicked) override
 		{
 
 			if (buttonThatWasClicked == _useCircleDemo.get())
 			{
 				_useCircle = _useCircleDemo->getToggleState();
 				if (!_useCircle)
-				{
-					_camera.init();
-				}
+					_camera.setCameraPos({ 0.0f, 0.0f, 3.0f });
+	
 			}
 
 			//[UserbuttonClicked_Post]
@@ -452,27 +451,76 @@ namespace T6 {
 		}
 		bool keyPressed(const KeyPress& key) override
 		{
-			float cameraSpeed = 0.6f; // adjust accordingly
+			float cameraSpeed = 0.5f; //
 			if (key == 'w' || key == 'W')
 			{
-				
-				_camera.setCameraPos(_camera.getCameraPos() +  cameraSpeed * _camera.getFrontPos() );
+				_camera.ProcessKeyboard(Camera_Movement::FORWARD, cameraSpeed);
+		 
 			}
 			if (key == 's' || key == 'S')
 			{
-				_camera.setCameraPos(_camera.getCameraPos() - cameraSpeed * _camera.getFrontPos());
+				_camera.ProcessKeyboard(Camera_Movement::BACKWARD, cameraSpeed);
 			}
 			if (key == 'a' || key == 'A')
 			{
-				_camera.setCameraPos(_camera.getCameraPos() - glm::normalize(glm::cross(_camera.getFrontPos(), _camera.getUpPos() )) * cameraSpeed);
+				_camera.ProcessKeyboard(Camera_Movement::LEFT, cameraSpeed);
 				
 			}
 			if (key == 'd' || key == 'D')
 			{
-				_camera.setCameraPos(_camera.getCameraPos() + glm::normalize(glm::cross(_camera.getFrontPos(), _camera.getUpPos())) * cameraSpeed);
+				_camera.ProcessKeyboard(Camera_Movement::RIGHT, cameraSpeed);
 			}
 			return false;
 		}
+
+		bool firstMouse{ true };
+		void mouseMove(const MouseEvent& e) override
+		{
+			
+			static float lastX = 0., lastY = 0.;
+
+			float xpos = e.getPosition().x;
+			float ypos = e.getPosition().y;
+
+			if (firstMouse)
+			{
+				lastX = xpos;
+				lastY = ypos;
+				firstMouse = false;
+			}
+
+			float xoffset = xpos - lastX;
+			float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
+			lastX = xpos;
+			lastY = ypos;
+
+
+			_camera.ProcessMouseMovement(xoffset, yoffset);
+
+		}
+
+
+		void mouseEnter(const MouseEvent& event) override
+		{
+			firstMouse = true;
+		}
+
+	
+	
+		void mouseExit(const MouseEvent& event) override
+		{
+			firstMouse = true;
+		}
+
+		void mouseWheelMove(const MouseEvent& event,
+			const MouseWheelDetails& wheel) override
+		{
+			_camera.ProcessMouseScroll(wheel.deltaY * 10.);
+			_sprite.setAngleValue(_camera.getZoom());
+		}
+
+
 
 	private:
 		//==============================================================================
