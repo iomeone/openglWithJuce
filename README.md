@@ -13,3 +13,8 @@
 
 ## Tutorial5:Coordinate Systems  https://learnopengl.com/Getting-started/Coordinate-Systems
 ![openglWithJuce5.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce5.gif)  
+
+## Tutorial6:Camera  https://learnopengl.com/Getting-started/Camera
+![openglWithJuce6.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce6.gif)  
+### how pitch yaw work!
+![pitch_yaw.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/pitch_yaw.png)  
