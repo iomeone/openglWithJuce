@@ -197,6 +197,13 @@
 			path = ../../Source/Shader/fragmentT3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		28544965842600E1BFB1136E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T8LampVertex.h;
+			path = ../../Source/Shader/T8LampVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		290DAEB2D78A9294E69E0295 = {
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.xml;
@@ -302,6 +309,13 @@
 			path = openglWithJuce.app;
 			sourceTree = "BUILT_PRODUCTS_DIR";
 		};
+		720136A83E4CB87232C3EF52 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial8.h;
+			path = ../../Source/Tutorial8.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		72381FB64487E1DB72E64BAB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -372,6 +386,13 @@
 			path = "../../Source/Shader/T7LampFragment .h";
 			sourceTree = "SOURCE_ROOT";
 		};
+		90700C0CF3D836C0A3E819D7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T8ColorsVertex.h;
+			path = ../../Source/Shader/T8ColorsVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9BC252BD7D7D1A4B22D27C52 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -426,6 +447,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_processors.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_processors.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		CB904987A7E88E67BA50EAB4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T8LampFragment.h;
+			path = ../../Source/Shader/T8LampFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		CBE272D00522BD1CBB781987 = {
@@ -491,6 +519,13 @@
 			path = ../../Source/Shader/vertexT4.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		E8A2366C9937BBB905DF4B6F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T8ColorsFragment.h;
+			path = ../../Source/Shader/T8ColorsFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		EABF18DBEED4362A3B9603C6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -546,6 +581,10 @@
 				CF575781BE5086F5562C8FE3,
 				897494B3711B18C2994D83D9,
 				FF073883E4CD7C3630E70EE4,
+				E8A2366C9937BBB905DF4B6F,
+				90700C0CF3D836C0A3E819D7,
+				CB904987A7E88E67BA50EAB4,
+				28544965842600E1BFB1136E,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
@@ -576,6 +615,7 @@
 				0450E9D615469E9D39B3E044,
 				34C0B8EB4C25135EC7E23250,
 				631D94CAB57D5ABB7AC5E418,
+				720136A83E4CB87232C3EF52,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";

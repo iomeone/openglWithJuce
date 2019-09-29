@@ -14,6 +14,7 @@
 #include "Tutorial5.h"
 #include "Tutorial6.h"
 #include "Tutorial7.h"
+#include "Tutorial8.h"
 //==============================================================================
 MainComponent::MainComponent()
 {
@@ -77,3 +78,4 @@ static ComponentList<T4::Tutorial4> t4((const String)("Tutorial4: Transformation
 static ComponentList<T5::Tutorial5> t5((const String)("Tutorial5: Coordinate Systems"), 4);
 static ComponentList<T6::Tutorial6> t6((const String)("Tutorial6: Camera"), 5);
 static ComponentList<T7::Tutorial7> t7((const String)("Tutorial7: Colors"), 6);
+static ComponentList<T8::Tutorial8> t8((const String)("Tutorial8: Basic-Lighting"), 7);

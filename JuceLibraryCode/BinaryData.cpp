@@ -11,6 +11,8 @@ namespace BinaryData
 static const unsigned char temp_binary_data_0[] =
 "# Port opengl tutorial on https://learnopengl.com/ to JUCE framework!\r\n"
 "\r\n"
+"## how to build \r\n"
+"Just open the solution file in master/Builds (current only support xcode visual studio), and there you go! If you can not build or errors come out, please let me know!\r\n"
 "\r\n"
 "## Tutorial1:Triangle  https://learnopengl.com/Getting-started/Hello-Triangle\r\n"
 "## Tutorial2:Shader     https://learnopengl.com/Getting-started/Shaders\r\n"
@@ -28,7 +30,10 @@ static const unsigned char temp_binary_data_0[] =
 "## Tutorial6:Camera  https://learnopengl.com/Getting-started/Camera\r\n"
 "![openglWithJuce6.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce6.gif)  \r\n"
 "### how pitch yaw work!\r\n"
-"![pitch_yaw.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/pitch_yaw.png)  ";
+"![pitch_yaw.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/pitch_yaw.png)  \r\n"
+"\r\n"
+"## Tutorial7:Colors  https://learnopengl.com/Lighting/Colors\r\n"
+"![Colors.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Colors.png)  ";
 
 const char* README_md = (const char*) temp_binary_data_0;
 
@@ -43,7 +48,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x64791dc8:  numBytes = 1162; return README_md;
+        case 0x64791dc8:  numBytes = 1513; return README_md;
         default: break;
     }
 
