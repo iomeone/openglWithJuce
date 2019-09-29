@@ -61,6 +61,10 @@
 			isa = PBXBuildFile;
 			fileRef = CBE272D00522BD1CBB781987;
 		};
+		D473426BFE34164F2B044D35 = {
+			isa = PBXBuildFile;
+			fileRef = 5BE738FD704228F87F29460C;
+		};
 		5EBDC89CCC422FBA06BADF81 = {
 			isa = PBXBuildFile;
 			fileRef = 8336ED87CF193C99A8448AEC;
@@ -263,6 +267,13 @@
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		5BE738FD704228F87F29460C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = BinaryData.cpp;
+			path = ../../JuceLibraryCode/BinaryData.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		60DEBF03A448086A9AD720F5 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -275,6 +286,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_devices.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		631D94CAB57D5ABB7AC5E418 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial7.h;
+			path = ../../Source/Tutorial7.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		6CC35DD479EB051C6EDC69E5 = {
@@ -333,11 +351,25 @@
 			path = "../../JuceLibraryCode/include_juce_audio_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		85B29E715AEB1AA8A297AA1E = {
+			isa = PBXFileReference;
+			lastKnownFileType = file.md;
+			name = README.md;
+			path = ../../README.md;
+			sourceTree = "SOURCE_ROOT";
+		};
 		8770F75A70CE19D86AA89A54 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = Tutorial2.h;
 			path = ../../Source/Tutorial2.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		897494B3711B18C2994D83D9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "T7LampFragment .h";
+			path = "../../Source/Shader/T7LampFragment .h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		9BC252BD7D7D1A4B22D27C52 = {
@@ -366,6 +398,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = vertexT3.h;
 			path = ../../Source/Shader/vertexT3.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		ADCBED73B98CF1E948EB9427 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T7ColorsFragment.h;
+			path = ../../Source/Shader/T7ColorsFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BFFB4944A42C1C6DD2B3C3FD = {
@@ -403,11 +442,25 @@
 			path = ../../Source/TextureCache.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		CCEFCC4C063F8D5B28BF35CD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = BinaryData.h;
+			path = ../../JuceLibraryCode/BinaryData.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		CD8C16C6DAA4E1E27EDE03B6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = vertexT5.h;
 			path = ../../Source/Shader/vertexT5.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		CF575781BE5086F5562C8FE3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T7ColorsVertex.h;
+			path = ../../Source/Shader/T7ColorsVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		D09964DFC32191D6307F0537 = {
@@ -473,6 +526,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		FF073883E4CD7C3630E70EE4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T7LampVertex.h;
+			path = ../../Source/Shader/T7LampVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		35CF69214B759D83E3A0C7B0 = {
 			isa = PBXGroup;
 			children = (
@@ -482,6 +542,10 @@
 				60DEBF03A448086A9AD720F5,
 				9BC252BD7D7D1A4B22D27C52,
 				BFFB4944A42C1C6DD2B3C3FD,
+				ADCBED73B98CF1E948EB9427,
+				CF575781BE5086F5562C8FE3,
+				897494B3711B18C2994D83D9,
+				FF073883E4CD7C3630E70EE4,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
@@ -511,6 +575,7 @@
 				219815B87A36E3497282D51E,
 				0450E9D615469E9D39B3E044,
 				34C0B8EB4C25135EC7E23250,
+				631D94CAB57D5ABB7AC5E418,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -529,6 +594,7 @@
 		53203316B70E4AE49079A836 = {
 			isa = PBXGroup;
 			children = (
+				85B29E715AEB1AA8A297AA1E,
 				35CF69214B759D83E3A0C7B0,
 				79390D4DEAC6512B514A024D,
 				FE6B1701DEF39C38B902EACA,
@@ -541,6 +607,8 @@
 			isa = PBXGroup;
 			children = (
 				7B8A031CA8C14F89F0AACCEF,
+				5BE738FD704228F87F29460C,
+				CCEFCC4C063F8D5B28BF35CD,
 				8336ED87CF193C99A8448AEC,
 				6102C4B41A5C2560C35FC809,
 				F39084825F1348048A415D7E,
@@ -820,6 +888,7 @@
 			files = (
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
+				D473426BFE34164F2B044D35,
 				5EBDC89CCC422FBA06BADF81,
 				C3CAFD70A64E16076BF8DBF0,
 				4C70CB579831EF403E5BAC24,

@@ -18,3 +18,6 @@
 ![openglWithJuce6.gif](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce6.gif)  
 ### how pitch yaw work!
 ![pitch_yaw.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/pitch_yaw.png)  
+
+## Tutorial8:Colors  https://learnopengl.com/Lighting/Colors
+![Colors.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Colors.png)  

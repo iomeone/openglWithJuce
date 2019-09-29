@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
@@ -160,6 +161,10 @@
     <ClInclude Include="..\..\Source\Shader\fragmentT4.h"/>
     <ClInclude Include="..\..\Source\Shader\fragmentT5.h"/>
     <ClInclude Include="..\..\Source\Shader\fragmentT6.h"/>
+    <ClInclude Include="..\..\Source\Shader\T7ColorsFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T7ColorsVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T7LampFragment .h"/>
+    <ClInclude Include="..\..\Source\Shader\T7LampVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>
@@ -175,10 +180,15 @@
     <ClInclude Include="..\..\Source\Tutorial4.h"/>
     <ClInclude Include="..\..\Source\Tutorial5.h"/>
     <ClInclude Include="..\..\Source\Tutorial6.h"/>
+    <ClInclude Include="..\..\Source\Tutorial7.h"/>
     <ClInclude Include="..\..\Source\CompList.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include=".\resources.rc"/>

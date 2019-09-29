@@ -3,6 +3,7 @@
 <JUCERPROJECT id="lbTQtQ" name="openglWithJuce" projectType="guiapp" jucerVersion="5.4.3"
               headerPath="./../../source" defines="JUCE_OPENGL3">
   <MAINGROUP id="WwC13L" name="openglWithJuce">
+    <FILE id="XhanRu" name="README.md" compile="0" resource="1" file="README.md"/>
     <GROUP id="{9BAD5BA1-9290-2241-5422-76CFDF24FEAD}" name="Shader">
       <FILE id="MDfjh0" name="fragmentT1.h" compile="0" resource="0" file="Source/Shader/fragmentT1.h"/>
       <FILE id="HaKALH" name="fragmentT2.h" compile="0" resource="0" file="Source/Shader/fragmentT2.h"/>
@@ -10,6 +11,13 @@
       <FILE id="ww5lQ0" name="fragmentT4.h" compile="0" resource="0" file="Source/Shader/fragmentT4.h"/>
       <FILE id="Y8004P" name="fragmentT5.h" compile="0" resource="0" file="Source/Shader/fragmentT5.h"/>
       <FILE id="H48hrf" name="fragmentT6.h" compile="0" resource="0" file="Source/Shader/fragmentT6.h"/>
+      <FILE id="UPavlB" name="T7ColorsFragment.h" compile="0" resource="0"
+            file="Source/Shader/T7ColorsFragment.h"/>
+      <FILE id="HRdVR8" name="T7ColorsVertex.h" compile="0" resource="0"
+            file="Source/Shader/T7ColorsVertex.h"/>
+      <FILE id="nh9OcM" name="T7LampFragment .h" compile="0" resource="0"
+            file="Source/Shader/T7LampFragment .h"/>
+      <FILE id="OCN6AC" name="T7LampVertex.h" compile="0" resource="0" file="Source/Shader/T7LampVertex.h"/>
       <FILE id="PJcivr" name="vertexT1.h" compile="0" resource="0" file="Source/Shader/vertexT1.h"/>
       <FILE id="lDtqGz" name="vertexT2.h" compile="0" resource="0" file="Source/Shader/vertexT2.h"/>
       <FILE id="irgfxX" name="vertexT3.h" compile="0" resource="0" file="Source/Shader/vertexT3.h"/>
@@ -29,6 +37,7 @@
       <FILE id="HX9P54" name="Tutorial4.h" compile="0" resource="0" file="Source/Tutorial4.h"/>
       <FILE id="xs969f" name="Tutorial5.h" compile="0" resource="0" file="Source/Tutorial5.h"/>
       <FILE id="yeWonE" name="Tutorial6.h" compile="0" resource="0" file="Source/Tutorial6.h"/>
+      <FILE id="bJON57" name="Tutorial7.h" compile="0" resource="0" file="Source/Tutorial7.h"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>
