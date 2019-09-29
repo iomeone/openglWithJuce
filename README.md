@@ -1,5 +1,7 @@
 # Port opengl tutorial on https://learnopengl.com/ to JUCE framework!
 
+## how to build 
+Just open the solution file (current only support xcode visual studio), and there you go!
 
 ## Tutorial1:Triangle  https://learnopengl.com/Getting-started/Hello-Triangle
 ## Tutorial2:Shader     https://learnopengl.com/Getting-started/Shaders
@@ -19,5 +21,5 @@
 ### how pitch yaw work!
 ![pitch_yaw.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/pitch_yaw.png)  
 
-## Tutorial8:Colors  https://learnopengl.com/Lighting/Colors
+## Tutorial7:Colors  https://learnopengl.com/Lighting/Colors
 ![Colors.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Colors.png)  
