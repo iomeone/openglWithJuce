@@ -1,7 +1,7 @@
 # Port opengl tutorial on https://learnopengl.com/ to JUCE framework!
 
 ## how to build 
-Just open the solution file (current only support xcode visual studio), and there you go!
+Just open the solution file in master/Builds (current only support xcode visual studio), and there you go! If you can not build or errors comes out, please let me know!
 
 ## Tutorial1:Triangle  https://learnopengl.com/Getting-started/Hello-Triangle
 ## Tutorial2:Shader     https://learnopengl.com/Getting-started/Shaders
