@@ -122,6 +122,10 @@ public:
 		return _Zoom;
 	}
 	
+	glm::vec3& getCameraPos()
+	{
+		return _cameraPos;
+	}
 private:
 
  

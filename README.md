@@ -23,3 +23,6 @@ Just open the solution file in master/Builds (current only support xcode visual 
 
 ## Tutorial7:Colors  https://learnopengl.com/Lighting/Colors
 ![Colors.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Colors.png)  
+
+## Tutorial7:Basic-Lighting  https://learnopengl.com/Lighting/Basic-Lighting
+![Basic-Lighting](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Basic-Lighting.gif)  

@@ -25,11 +25,15 @@ namespace T8 {
 			model = createUniform(openGLContext, shader, "model");
 			view = createUniform(openGLContext, shader, "view");
 			projection = createUniform(openGLContext, shader, "projection");
+
 			objectColor = createUniform(openGLContext, shader, "objectColor");
 			lightColor = createUniform(openGLContext, shader, "lightColor");
+
+			lightPos = createUniform(openGLContext, shader, "lightPos");
+			viewPos = createUniform(openGLContext, shader, "viewPos");
 		}
 
-		ScopedPointer<OpenGLShaderProgram::Uniform>  model{ nullptr }, view{ nullptr }, projection{ nullptr }, objectColor{ nullptr }, lightColor{ nullptr };
+		ScopedPointer<OpenGLShaderProgram::Uniform>  model{ nullptr }, view{ nullptr }, projection{ nullptr }, objectColor{ nullptr }, lightColor{ nullptr }, lightPos{ nullptr }, viewPos{ nullptr };
 
 
 	private:
@@ -51,16 +55,25 @@ namespace T8 {
 			float y;
 			float z;
 		};
+		struct Normal
+		{
+			float nx;
+			float ny;
+			float nz;
+		};
 
 		Position position;
+		Normal normal;
 
-		Vertex(float x, float y, float z)
+		Vertex(float x, float y, float z, float nx, float ny, float nz)
 		{
 			position.x = x;
 			position.y = y;
 			position.z = z;
 
-
+			normal.nx = nx;
+			normal.ny = ny;
+			normal.nz = nz;
 		}
 	};
 #pragma pack()
@@ -93,47 +106,48 @@ namespace T8 {
 			_openGLContext.extensions.glGenBuffers(1, &VBO);
 
 			Vertex vertices[] = {
-				{-0.5f, -0.5f, -0.5f},
-				{ 0.5f, -0.5f, -0.5f},
-				{ 0.5f,  0.5f, -0.5f},
-				{ 0.5f,  0.5f, -0.5f},
-				{-0.5f,  0.5f, -0.5f},
-				{-0.5f, -0.5f, -0.5f},
+				{-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
+				{0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
+				{0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
+				{0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
+				{-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
+				{-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
 
-				{-0.5f, -0.5f,  0.5f},
-				{ 0.5f, -0.5f,  0.5f},
-				{ 0.5f,  0.5f,  0.5f},
-				{ 0.5f,  0.5f,  0.5f},
-				{-0.5f,  0.5f,  0.5f},
-				{-0.5f, -0.5f,  0.5f},
+				{-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
+				{ 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
+				{ 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
+				{ 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
+				{-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
+				{-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
 
-				{-0.5f,  0.5f,  0.5f},
-				{-0.5f,  0.5f, -0.5f},
-				{-0.5f, -0.5f, -0.5f},
-				{-0.5f, -0.5f, -0.5f},
-				{-0.5f, -0.5f,  0.5f},
-				{-0.5f,  0.5f,  0.5f},
+				{-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f},
+				{-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f},
+				{-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f},
+				{-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f},
+				{-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f},
+				{-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f},
 
-				{ 0.5f,  0.5f,  0.5f},
-				{ 0.5f,  0.5f, -0.5f},
-				{ 0.5f, -0.5f, -0.5f},
-				{ 0.5f, -0.5f, -0.5f},
-				{ 0.5f, -0.5f,  0.5f},
-				{ 0.5f,  0.5f,  0.5f},
+				{ 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f},
+				{ 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f},
+				 {0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f},
+				{ 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f},
+				{ 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f},
+				{ 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f},
 
-				{-0.5f, -0.5f, -0.5f},
-				{ 0.5f, -0.5f, -0.5f},
-				{ 0.5f, -0.5f,  0.5f},
-				{ 0.5f, -0.5f,  0.5f},
-				{-0.5f, -0.5f,  0.5f},
-				{-0.5f, -0.5f, -0.5f},
+				{-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f},
+				{ 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f},
+				{ 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f},
+				{ 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f},
+				{-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f},
+				{-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f},
 
-				{-0.5f,  0.5f, -0.5f},
-				{ 0.5f,  0.5f, -0.5f},
-				{ 0.5f,  0.5f,  0.5f},
-				{ 0.5f,  0.5f,  0.5f},
-				{-0.5f,  0.5f,  0.5f},
-				{-0.5f,  0.5f, -0.5f}
+				{-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f},
+				{ 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f},
+				{ 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f},
+				{ 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f},
+				{-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f},
+				{-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f}
+
 			};
 
 			_openGLContext.extensions.glBindVertexArray(VAO);
@@ -144,6 +158,11 @@ namespace T8 {
 			// position attribute
 			_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
 			_openGLContext.extensions.glEnableVertexAttribArray(0);
+
+
+			_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
+			_openGLContext.extensions.glEnableVertexAttribArray(1);
+
 
 
 			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -210,14 +229,18 @@ namespace T8 {
 		public Slider::Listener
 	{
 	public:
+		
 		//==============================================================================
 		Tutorial8() :
 			_spriteLight(openGLContext, _camera, glm::mat4(1.0f)),
 			_spriteLamp(openGLContext, _camera)
 		{
 			setWantsKeyboardFocus(true);
-			_camera.setCameraPosZ(5);
-			auto m = glm::scale(glm::translate(glm::mat4(1.0f), glm::vec3(1.2f, 1.0f, 2.0f)), glm::vec3(.2f));
+
+
+			_spriteLight._model = glm::rotate(glm::mat4(1.0f), 0.85f, glm::vec3(0.0f, 0.3f, 0.0f));
+
+			auto m = glm::scale(glm::translate(glm::mat4(1.0f), lightPos), glm::vec3(.2f));
 			_spriteLamp.setModel(m);
 
 			openGLContext.setOpenGLVersionRequired(juce::OpenGLContext::openGL3_2);
@@ -291,10 +314,16 @@ namespace T8 {
 			glEnable(GL_DEPTH_TEST);
 
 
+			static float inc = 0.0;
+			inc += 0.0005;
+			lightPos.x = 2 * sin(inc);
+			lightPos.z =  8 * cos(inc);
+
+			/*_spriteLight._model = glm::rotate(glm::mat4(1.0f), float(inc/10), glm::vec3(0.0f, 0.3f, 0.0f));*/
+
 			if (_shaderProgramLight->_shader)
 			{
 				_shaderProgramLight->_shader->use();
-
 
 				if (_spriteLight._uniforms)
 				{
@@ -306,6 +335,15 @@ namespace T8 {
 					{
 						_spriteLight._uniforms->objectColor->set(1.0f, 1.0f, 1.0f);
 					}
+					if (_spriteLight._uniforms->lightPos)
+					{
+						_spriteLight._uniforms->lightPos->set(lightPos.x, lightPos.y, lightPos.z);
+					}
+					if (_spriteLight._uniforms->viewPos)
+					{
+						auto cp = _camera.getCameraPos();
+						_spriteLight._uniforms->viewPos->set(cp.x, cp.y, cp.z);
+					}
 				}
 
 				_spriteLight.draw();
@@ -314,6 +352,10 @@ namespace T8 {
 
 			if (_shaderProgramLamp->_shader)
 			{
+
+				auto m = glm::scale(glm::translate(glm::mat4(1.0f), lightPos), glm::vec3(.4f));
+				_spriteLamp.setModel(m);
+
 				_shaderProgramLamp->_shader->use();
 				_spriteLamp.draw();
 			}
@@ -432,6 +474,8 @@ namespace T8 {
 		std::unique_ptr<Label> _lblCompileInfo{ nullptr };
 		bool init{ false };
 
+
+		glm::vec3 lightPos{ 1.2f, 0.0f, 2.0f };
 
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial8)
 	};
