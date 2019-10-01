@@ -25,6 +25,13 @@
       <FILE id="zjeD4A" name="T8LampFragment.h" compile="0" resource="0"
             file="Source/Shader/T8LampFragment.h"/>
       <FILE id="lbBkR4" name="T8LampVertex.h" compile="0" resource="0" file="Source/Shader/T8LampVertex.h"/>
+      <FILE id="Xhjrri" name="T9ColorsFragment.h" compile="0" resource="0"
+            file="Source/Shader/T9ColorsFragment.h"/>
+      <FILE id="gbViAp" name="T9ColorsVertex.h" compile="0" resource="0"
+            file="Source/Shader/T9ColorsVertex.h"/>
+      <FILE id="hhRcR8" name="T9LampFragment.h" compile="0" resource="0"
+            file="Source/Shader/T9LampFragment.h"/>
+      <FILE id="s1O40t" name="T9LampVertex.h" compile="0" resource="0" file="Source/Shader/T9LampVertex.h"/>
       <FILE id="PJcivr" name="vertexT1.h" compile="0" resource="0" file="Source/Shader/vertexT1.h"/>
       <FILE id="lDtqGz" name="vertexT2.h" compile="0" resource="0" file="Source/Shader/vertexT2.h"/>
       <FILE id="irgfxX" name="vertexT3.h" compile="0" resource="0" file="Source/Shader/vertexT3.h"/>
@@ -46,6 +53,7 @@
       <FILE id="yeWonE" name="Tutorial6.h" compile="0" resource="0" file="Source/Tutorial6.h"/>
       <FILE id="bJON57" name="Tutorial7.h" compile="0" resource="0" file="Source/Tutorial7.h"/>
       <FILE id="HSQDGM" name="Tutorial8.h" compile="0" resource="0" file="Source/Tutorial8.h"/>
+      <FILE id="BtjVim" name="Tutorial9.h" compile="0" resource="0" file="Source/Tutorial9.h"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>

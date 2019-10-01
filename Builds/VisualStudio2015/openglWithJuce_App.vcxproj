@@ -169,6 +169,10 @@
     <ClInclude Include="..\..\Source\Shader\T8ColorsVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\T8LampFragment.h"/>
     <ClInclude Include="..\..\Source\Shader\T8LampVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T9ColorsFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T9ColorsVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T9LampFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T9LampVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>
@@ -186,6 +190,7 @@
     <ClInclude Include="..\..\Source\Tutorial6.h"/>
     <ClInclude Include="..\..\Source\Tutorial7.h"/>
     <ClInclude Include="..\..\Source\Tutorial8.h"/>
+    <ClInclude Include="..\..\Source\Tutorial9.h"/>
     <ClInclude Include="..\..\Source\CompList.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>

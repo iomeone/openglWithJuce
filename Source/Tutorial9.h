@@ -8,14 +8,14 @@
 #include <glm/gtc/type_ptr.hpp>
 
 
-namespace T8 {
-	const String tutorialLink = "learnopengl.com/Lighting/Basic-Lighting";
+namespace T9 {
+	const String tutorialLink = "learnopengl.com/Lighting/Materials";
 
-	const String lightVertexFilename = "T8ColorsVertex.h";
-	const String lightFragmentFileName = "T8ColorsFragment.h";
+	const String lightVertexFilename = "T9ColorsVertex.h";
+	const String lightFragmentFileName = "T9ColorsFragment.h";
 
-	const String lampVertexFilename = "T8LampVertex.h";
-	const String lampFragmentFileName = "T8LampFragment.h";
+	const String lampVertexFilename = "T9LampVertex.h";
+	const String lampFragmentFileName = "T9LampFragment.h";
 
 
 	struct Uniforms
@@ -26,14 +26,23 @@ namespace T8 {
 			view = createUniform(openGLContext, shader, "view");
 			projection = createUniform(openGLContext, shader, "projection");
 
-			objectColor = createUniform(openGLContext, shader, "objectColor");
-			lightColor = createUniform(openGLContext, shader, "lightColor");
-
-			lightPos = createUniform(openGLContext, shader, "lightPos");
+			light_position = createUniform(openGLContext, shader, "light_position");
 			viewPos = createUniform(openGLContext, shader, "viewPos");
+
+			material_ambient = createUniform(openGLContext, shader, "material_ambient");
+			material_diffuse = createUniform(openGLContext, shader, "material_diffuse");
+			material_specular = createUniform(openGLContext, shader, "material_specular");
+			material_shininess = createUniform(openGLContext, shader, "material_shininess");
+
+			light_ambient = createUniform(openGLContext, shader, "light_ambient");
+			light_diffuse = createUniform(openGLContext, shader, "light_diffuse");
+			light_specular = createUniform(openGLContext, shader, "light_specular");
 		}
 
-		ScopedPointer<OpenGLShaderProgram::Uniform>  model{ nullptr }, view{ nullptr }, projection{ nullptr }, objectColor{ nullptr }, lightColor{ nullptr }, lightPos{ nullptr }, viewPos{ nullptr };
+		ScopedPointer<OpenGLShaderProgram::Uniform>  model{ nullptr }, view{ nullptr }, projection{ nullptr }, 
+			light_position{ nullptr }, viewPos{ nullptr },
+			material_ambient{ nullptr }, material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr },
+			light_ambient{ nullptr }, light_diffuse{ nullptr }, light_specular{ nullptr };
 
 
 	private:
@@ -224,21 +233,21 @@ namespace T8 {
 
 
 
-	class Tutorial8 : public OpenGLAppComponent,
+	class Tutorial9 : public OpenGLAppComponent,
 		public Button::Listener,
 		public Slider::Listener
 	{
 	public:
 		
 		//==============================================================================
-		Tutorial8() :
+		Tutorial9() :
 			_spriteLight(openGLContext, _camera, glm::mat4(1.0f)),
 			_spriteLamp(openGLContext, _camera)
 		{
 			setWantsKeyboardFocus(true);
 
 
-			_spriteLight._model = glm::rotate(glm::mat4(1.0f), 0.85f, glm::vec3(0.0f, 0.3f, 0.0f));
+			_spriteLight._model = glm::rotate(glm::mat4(1.0f), 0.4f, glm::vec3(0.0f, 0.3f, 0.0f));
 			//_spriteLight._model = glm::translate(_spriteLight._model, glm::vec3(3.0, 0.0, 0.0));
 
 			auto m = glm::scale(glm::translate(glm::mat4(1.0f), lightPos), glm::vec3(.2f));
@@ -251,9 +260,10 @@ namespace T8 {
 			addAndMakeVisible(_lblCompileInfo.get());
 
 
+			_camera.ProcessKeyboard(Camera_Movement::BACKWARD, 1.f);
 			setSize(800, 600);
 		}
-		~Tutorial8()
+		~Tutorial9()
 		{
 			shutdownOpenGL();
 		}
@@ -317,8 +327,20 @@ namespace T8 {
 
 			static float inc = 0.0;
 			inc += 0.0005;
-			lightPos.x = 2 * sin(inc);
-			lightPos.z =  8 * cos(inc);
+	/*		lightPos.x = 2 * sin(inc);
+			lightPos.z =  8 * cos(inc);*/
+
+
+			glm::vec3 lightColor;
+			lightColor.x = sin(inc * 2.0f);
+			lightColor.y = sin(inc* 0.7f);
+			lightColor.z = sin(inc * 1.3f);
+
+			glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
+			glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
+
+	
+
 
 			/*_spriteLight._model = glm::rotate(glm::mat4(1.0f), float(inc/10), glm::vec3(0.0f, 0.3f, 0.0f));*/
 
@@ -328,23 +350,46 @@ namespace T8 {
 
 				if (_spriteLight._uniforms)
 				{
-					if (_spriteLight._uniforms->lightColor)
+					if (_spriteLight._uniforms->light_position)
 					{
-						_spriteLight._uniforms->lightColor->set(1.0f, 0.5f, 0.31f);
-					}
-					if (_spriteLight._uniforms->objectColor)
-					{
-						_spriteLight._uniforms->objectColor->set(1.0f, 1.0f, 1.0f);
-					}
-					if (_spriteLight._uniforms->lightPos)
-					{
-						_spriteLight._uniforms->lightPos->set(lightPos.x, lightPos.y, lightPos.z);
+						_spriteLight._uniforms->light_position->set(lightPos.x, lightPos.y, lightPos.z);
 					}
 					if (_spriteLight._uniforms->viewPos)
 					{
 						auto cp = _camera.getCameraPos();
 						_spriteLight._uniforms->viewPos->set(cp.x, cp.y, cp.z);
 					}
+					if (_spriteLight._uniforms->material_ambient)
+					{
+						_spriteLight._uniforms->material_ambient->set(1.0, 0.5, 0.31);
+					}
+					if (_spriteLight._uniforms->material_diffuse)
+					{
+						_spriteLight._uniforms->material_diffuse->set(1.0, 0.5, 0.31);
+					}
+					if (_spriteLight._uniforms->material_specular)
+					{
+						_spriteLight._uniforms->material_specular->set(0.5f, 0.5f, 0.5f);
+					}
+					if (_spriteLight._uniforms->material_shininess)
+					{
+						_spriteLight._uniforms->material_shininess->set(64.0f);
+					}
+				
+
+					if (_spriteLight._uniforms->light_ambient)
+					{
+						_spriteLight._uniforms->light_ambient->set(ambientColor.r, ambientColor.g, ambientColor.b);
+					}
+					if (_spriteLight._uniforms->light_diffuse)
+					{
+						_spriteLight._uniforms->light_diffuse->set(diffuseColor.r, diffuseColor.g, diffuseColor.b);
+					}
+					if (_spriteLight._uniforms->light_specular)
+					{
+						_spriteLight._uniforms->light_specular->set(1.0f, 1.0f, 1.0f);
+					}
+
 				}
 
 				_spriteLight.draw();
@@ -476,8 +521,8 @@ namespace T8 {
 		bool init{ false };
 
 
-		glm::vec3 lightPos{ 1.2f, 0.0f, 2.0f };
+		glm::vec3 lightPos{ 2.f, 0.0f, 2.0f };
 
-		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial8)
+		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial9)
 	};
 }

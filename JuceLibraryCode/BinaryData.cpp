@@ -33,7 +33,10 @@ static const unsigned char temp_binary_data_0[] =
 "![pitch_yaw.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/pitch_yaw.png)  \r\n"
 "\r\n"
 "## Tutorial7:Colors  https://learnopengl.com/Lighting/Colors\r\n"
-"![Colors.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Colors.png)  ";
+"![Colors.png](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Colors.png)  \r\n"
+"\r\n"
+"## Tutorial8:Basic-Lighting  https://learnopengl.com/Lighting/Basic-Lighting\r\n"
+"![Basic-Lighting](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Basic-Lighting.gif)  ";
 
 const char* README_md = (const char*) temp_binary_data_0;
 
@@ -48,7 +51,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x64791dc8:  numBytes = 1513; return README_md;
+        case 0x64791dc8:  numBytes = 1705; return README_md;
         default: break;
     }
 
