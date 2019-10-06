@@ -11,6 +11,55 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 
+namespace OpenGL33Helpers
+{
+    String versionString { "#version 330 core" };
+    
+    /*
+     This is modified version of juce::OpenGLHelpers::translateVertexShaderToV3.
+     */
+    String translateVertexShaderToV3 (const String& code)
+    {
+#if JUCE_OPENGL3
+        if (OpenGLShaderProgram::getLanguageVersion() > 1.2)
+        {
+            String output;
+            
+            int numAttributes = 0;
+            int last = 0;
+            
+            for (int p = code.indexOf (0, "attribute "); p >= 0; p = code.indexOf (p + 1, "attribute "))
+            {
+                output += code.substring (last, p) + "layout(location=" + String (numAttributes++) + ") in ";
+                last = p + 10;
+            }
+            
+            output += code.substring (last);
+            
+            return versionString + "\n" + output.replace ("varying", "out");
+        }
+#endif
+        
+        return code;
+    }
+    
+    /*
+     This is modified version of juce::OpenGLHelpers::translateVertexShaderToV3.
+     */
+    String translateFragmentShaderToV3 (const String& code)
+    {
+#if JUCE_OPENGL3
+        if (OpenGLShaderProgram::getLanguageVersion() > 1.2)
+            return versionString + "\n"
+                   "out " JUCE_MEDIUMP " vec4 fragColor;\n"
+                    + code.replace ("varying", "in")
+                          .replace ("texture2D", "texture")
+                          .replace ("gl_FragColor", "fragColor");
+#endif
+        
+        return code;
+    }
+};
 
 class ShaderProgram :public Thread
 {
@@ -139,8 +188,18 @@ public:
 		ScopedPointer<OpenGLShaderProgram> newShader(new OpenGLShaderProgram(_openGLContext));
 		jassert(_openGLContext.isActive());
 		jassert(_openGLContext.isAttached());
-		if (newShader->addVertexShader(OpenGLHelpers::translateVertexShaderToV3(_strVertex))
-			&& newShader->addFragmentShader(OpenGLHelpers::translateFragmentShaderToV3(_strFragment))
+        
+        auto translatedVertexShader = OpenGL33Helpers::translateVertexShaderToV3(_strVertex);
+        auto translatedFragmentShader = OpenGL33Helpers::translateFragmentShaderToV3(_strFragment);
+        
+        DBG("---- Translated vertex shader -----");
+        DBG(translatedVertexShader);
+        
+        DBG("---- Translated fragment shader -----");
+        DBG(translatedFragmentShader);
+        
+		if (newShader->addVertexShader(translatedVertexShader)
+			&& newShader->addFragmentShader(translatedFragmentShader)
 			&& newShader->link())
 		{
 			_shader = nullptr;
