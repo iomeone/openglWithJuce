@@ -267,6 +267,13 @@
 			path = ../../Source/Shader/vertexT2.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		3B05C41B73C3301DE5643C83 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T10LampFragment.h;
+			path = ../../Source/Shader/T10LampFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		3BDF1D52753E33140B720660 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -386,6 +393,13 @@
 			path = ../../README.md;
 			sourceTree = "SOURCE_ROOT";
 		};
+		86A5C3111A547D41ECEB3F09 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T10LampVertex.h;
+			path = ../../Source/Shader/T10LampVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		8770F75A70CE19D86AA89A54 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -405,6 +419,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = T8ColorsVertex.h;
 			path = ../../Source/Shader/T8ColorsVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		9643722F5F2D7DBD7B0D4CF6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T10ColorsVertex.h;
+			path = ../../Source/Shader/T10ColorsVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		9BC252BD7D7D1A4B22D27C52 = {
@@ -440,6 +461,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = T7ColorsFragment.h;
 			path = ../../Source/Shader/T7ColorsFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B1A2E91AF0FD9E9FAC20F279 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial10.h;
+			path = ../../Source/Tutorial10.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BFFB4944A42C1C6DD2B3C3FD = {
@@ -554,6 +582,13 @@
 			path = ../../Source/Shader/T8ColorsFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		E913D5B8FD8BEC5510FEBD63 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T10ColorsFragment.h;
+			path = ../../Source/Shader/T10ColorsFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		EABF18DBEED4362A3B9603C6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -624,6 +659,10 @@
 				E6CDD6A9BE6B981895A8052A,
 				F9EB1B0D2C713E888586084C,
 				3BDF1D52753E33140B720660,
+				E913D5B8FD8BEC5510FEBD63,
+				9643722F5F2D7DBD7B0D4CF6,
+				3B05C41B73C3301DE5643C83,
+				86A5C3111A547D41ECEB3F09,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
@@ -656,6 +695,7 @@
 				631D94CAB57D5ABB7AC5E418,
 				720136A83E4CB87232C3EF52,
 				368A2CBF256E3870DE5D238B,
+				B1A2E91AF0FD9E9FAC20F279,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";

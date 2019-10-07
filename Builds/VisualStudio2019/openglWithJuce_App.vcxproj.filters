@@ -123,6 +123,18 @@
     <ClInclude Include="..\..\Source\Shader\T9LampVertex.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T10ColorsFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T10ColorsVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T10LampFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T10LampVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
@@ -175,6 +187,9 @@
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Tutorial9.h">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tutorial10.h">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CompList.h">
