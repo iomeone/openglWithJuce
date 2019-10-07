@@ -225,6 +225,13 @@
 			path = System/Library/Frameworks/Accelerate.framework;
 			sourceTree = SDKROOT;
 		};
+		2B4EC547955B1A4B68924A5D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial11.h;
+			path = ../../Source/Tutorial11.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		2E62CEA0B38CA7AD1448A163 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -281,6 +288,13 @@
 			path = ../../Source/Shader/T9LampVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		52DDB94DDCA6C2CE5115062A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T11ColorsVertex.h;
+			path = ../../Source/Shader/T11ColorsVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		53CCC3C1E179A464D885395D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -329,6 +343,13 @@
 			includeInIndex = 0;
 			path = openglWithJuce.app;
 			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		6CF3B9213A51641476549089 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T11LampFragment.h;
+			path = ../../Source/Shader/T11LampFragment.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		720136A83E4CB87232C3EF52 = {
 			isa = PBXFileReference;
@@ -412,6 +433,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = "T7LampFragment .h";
 			path = "../../Source/Shader/T7LampFragment .h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		8FCD5A74494DFCD48571CB99 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T11LampVertex.h;
+			path = ../../Source/Shader/T11LampVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		90700C0CF3D836C0A3E819D7 = {
@@ -610,6 +638,13 @@
 			path = System/Library/Frameworks/IOKit.framework;
 			sourceTree = SDKROOT;
 		};
+		F243473E0DF7C835AA133E3B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T11ColorsFragment.h;
+			path = ../../Source/Shader/T11ColorsFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		F35CC20EF5D5564607F33B82 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -663,6 +698,10 @@
 				9643722F5F2D7DBD7B0D4CF6,
 				3B05C41B73C3301DE5643C83,
 				86A5C3111A547D41ECEB3F09,
+				F243473E0DF7C835AA133E3B,
+				52DDB94DDCA6C2CE5115062A,
+				6CF3B9213A51641476549089,
+				8FCD5A74494DFCD48571CB99,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
@@ -696,6 +735,7 @@
 				720136A83E4CB87232C3EF52,
 				368A2CBF256E3870DE5D238B,
 				B1A2E91AF0FD9E9FAC20F279,
+				2B4EC547955B1A4B68924A5D,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
