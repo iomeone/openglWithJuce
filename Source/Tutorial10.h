@@ -29,7 +29,6 @@ namespace T10 {
 			light_position = createUniform(openGLContext, shader, "light_position");
 			viewPos = createUniform(openGLContext, shader, "viewPos");
 
-			material_ambient = createUniform(openGLContext, shader, "material_ambient");
 			material_diffuse = createUniform(openGLContext, shader, "material_diffuse");
 			material_specular = createUniform(openGLContext, shader, "material_specular");
 			material_shininess = createUniform(openGLContext, shader, "material_shininess");
@@ -41,10 +40,10 @@ namespace T10 {
 
 		ScopedPointer<OpenGLShaderProgram::Uniform>  model{ nullptr }, view{ nullptr }, projection{ nullptr }, 
 			light_position{ nullptr }, viewPos{ nullptr },
-			material_ambient{ nullptr }, material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr },
+            material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr },
 			light_ambient{ nullptr }, light_diffuse{ nullptr }, light_specular{ nullptr };
 
-
+        
 	private:
 		static OpenGLShaderProgram::Uniform* createUniform(OpenGLContext& openGLContext,
 			OpenGLShaderProgram& shader,
@@ -70,11 +69,16 @@ namespace T10 {
 			float ny;
 			float nz;
 		};
+        struct UV {
+            float u;
+            float v;
+        };
 
 		Position position;
 		Normal normal;
+        UV uv;
 
-		Vertex(float x, float y, float z, float nx, float ny, float nz)
+		Vertex(float x, float y, float z, float nx, float ny, float nz, float u, float v)
 		{
 			position.x = x;
 			position.y = y;
@@ -83,6 +87,9 @@ namespace T10 {
 			normal.nx = nx;
 			normal.ny = ny;
 			normal.nz = nz;
+            
+            uv.u = u;
+            uv.v = v;
 		}
 	};
 #pragma pack()
@@ -109,53 +116,68 @@ namespace T10 {
 			_openGLContext.extensions.glDeleteBuffers(1, &VBO);
 		}
 
-		void init()
+		void init(bool useTexture = false , String diffuseMapPath = "", String specularMapPath = "" )
 		{
+            _useTexture = useTexture;
+            if(_useTexture)
+            {
+                _pTextureDiffuseMap = TextureCache::getTexture(diffuseMapPath);
+                _pTextureSpecularMap = TextureCache::getTexture(specularMapPath);
+                
+                if (!_pTextureDiffuseMap || !_pTextureSpecularMap)
+                {
+                        return;
+                }
+            }
+
+            
+            
 			_openGLContext.extensions.glGenVertexArrays(1, &VAO);
 			_openGLContext.extensions.glGenBuffers(1, &VBO);
 
 			Vertex vertices[] = {
-				{-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
-				{0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
-				{0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
-				{0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
-				{-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
-				{-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f},
-
-				{-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
-				{ 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
-				{ 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
-				{ 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
-				{-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
-				{-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f},
-
-				{-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f},
-				{-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f},
-				{-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f},
-				{-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f},
-				{-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f},
-				{-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f},
-
-				{ 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f},
-				{ 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f},
-				 {0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f},
-				{ 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f},
-				{ 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f},
-				{ 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f},
-
-				{-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f},
-				{ 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f},
-				{ 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f},
-				{ 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f},
-				{-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f},
-				{-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f},
-
-				{-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f},
-				{ 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f},
-				{ 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f},
-				{ 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f},
-				{-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f},
-				{-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f}
+                // positions          // normals           // texture coords
+                {-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f},
+                {0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f},
+                {0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f},
+                {0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f},
+                {-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f},
+                {-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f},
+                
+                {-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f},
+                {0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f},
+                {0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f},
+                {0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f},
+                {-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f},
+                {-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f},
+                
+                {-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f},
+                {-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f},
+                {-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f},
+                {-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f},
+                {-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f},
+                {-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f},
+                
+                {0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f},
+                {0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f},
+                {0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f},
+                {0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f},
+                {0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f},
+                {0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f},
+                
+                {-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f},
+                {0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f},
+                {0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f},
+                {0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f},
+                {-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f},
+                {-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f},
+                
+                {-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f},
+                {0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f},
+                {0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f},
+                {0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f},
+                {-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f},
+                {-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f}
 
 			};
 
@@ -172,7 +194,9 @@ namespace T10 {
 			_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
 			_openGLContext.extensions.glEnableVertexAttribArray(1);
 
-
+            _openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
+            _openGLContext.extensions.glEnableVertexAttribArray(2);
+            
 
 			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
 			_openGLContext.extensions.glBindVertexArray(0);
@@ -185,6 +209,25 @@ namespace T10 {
 
 		void draw()
 		{
+            if(_useTexture)
+            {
+                _openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
+                if (_pTextureDiffuseMap)
+                    _pTextureDiffuseMap->bind();
+                else return;
+                
+                _openGLContext.extensions.glActiveTexture(GL_TEXTURE1);
+                if (_pTextureSpecularMap)
+                    _pTextureSpecularMap->bind();
+                else return;
+                
+                if (_uniforms->material_diffuse)
+                    _uniforms->material_diffuse->set(0);
+                if (_uniforms->material_specular)
+                    _uniforms->material_specular->set(1);
+            }
+
+
 			_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 			if (_uniforms->view)
 			{
@@ -229,6 +272,9 @@ namespace T10 {
 
 		glm::mat4 _model;
 
+        OpenGLTexture* _pTextureDiffuseMap{ nullptr }, *_pTextureSpecularMap{ nullptr };
+        
+        bool _useTexture {false};
 	};
 
 
@@ -259,8 +305,8 @@ namespace T10 {
 			_lblCompileInfo.reset(new Label("compileInfo", "Shader source build info."));
 			addAndMakeVisible(_lblCompileInfo.get());
 
-
-			_camera.ProcessKeyboard(Camera_Movement::BACKWARD, 1.f);
+            _camera.ProcessKeyboard(Camera_Movement::LEFT, .3f);
+//            _camera.ProcessKeyboard(Camera_Movement::BACKWARD, 2.5f);
 			setSize(800, 600);
 		}
 		~Tutorial10()
@@ -284,7 +330,11 @@ namespace T10 {
 			_shaderProgramLamp.reset(new ShaderProgram(openGLContext, vertexFileLamp.getFullPathName(), fragmentFileLamp.getFullPathName()));
 
 
-			_spriteLight.init();
+            auto textureDiffuse = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("container2.png").getFullPathName();
+            auto textureSpecular = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("container2_specular.png").getFullPathName();
+            
+            
+			_spriteLight.init(true, textureDiffuse, textureSpecular);
 			_spriteLamp.init();
 
 		}
@@ -292,6 +342,8 @@ namespace T10 {
 		{
 			_shaderProgramLight->stopThread(1000);
 			_shaderProgramLight.reset();
+            
+            TextureCache::clear();
 		}
 
 		void updateShader(ShaderProgram* shaderProg, Sprite& sprite)
@@ -331,15 +383,15 @@ namespace T10 {
 			lightPos.z =  8 * cos(inc);*/
 
 
-			glm::vec3 lightColor;
-			lightColor.x = sin(inc * 2.0f);
-			lightColor.y = sin(inc* 0.7f);
-			lightColor.z = sin(inc * 1.3f);
-
-			glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
-			glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
-
-	
+//            glm::vec3 lightColor;
+//            lightColor.x = sin(inc * 2.0f);
+//            lightColor.y = sin(inc* 0.7f);
+//            lightColor.z = sin(inc * 1.3f);
+//
+//            glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
+//            glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
+//
+//
 
 
 			/*_spriteLight._model = glm::rotate(glm::mat4(1.0f), float(inc/10), glm::vec3(0.0f, 0.3f, 0.0f));*/
@@ -359,18 +411,7 @@ namespace T10 {
 						auto cp = _camera.getCameraPos();
 						_spriteLight._uniforms->viewPos->set(cp.x, cp.y, cp.z);
 					}
-					if (_spriteLight._uniforms->material_ambient)
-					{
-						_spriteLight._uniforms->material_ambient->set(1.0, 0.5, 0.31);
-					}
-					if (_spriteLight._uniforms->material_diffuse)
-					{
-						_spriteLight._uniforms->material_diffuse->set(1.0, 0.5, 0.31);
-					}
-					if (_spriteLight._uniforms->material_specular)
-					{
-						_spriteLight._uniforms->material_specular->set(0.5f, 0.5f, 0.5f);
-					}
+
 					if (_spriteLight._uniforms->material_shininess)
 					{
 						_spriteLight._uniforms->material_shininess->set(64.0f);
@@ -379,11 +420,11 @@ namespace T10 {
 
 					if (_spriteLight._uniforms->light_ambient)
 					{
-						_spriteLight._uniforms->light_ambient->set(ambientColor.r, ambientColor.g, ambientColor.b);
+						_spriteLight._uniforms->light_ambient->set(0.2f, 0.2f, 0.2f);
 					}
 					if (_spriteLight._uniforms->light_diffuse)
 					{
-						_spriteLight._uniforms->light_diffuse->set(diffuseColor.r, diffuseColor.g, diffuseColor.b);
+						_spriteLight._uniforms->light_diffuse->set(0.5f, 0.5f, 0.5f);
 					}
 					if (_spriteLight._uniforms->light_specular)
 					{
