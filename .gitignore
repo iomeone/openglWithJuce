@@ -1,4 +1,7 @@
-
 Builds/VisualStudio2017/.vs/
 *.user
 Builds/VisualStudio2017/x64/
+Builds/MacOSX/build/Debug/
+Builds/MacOSX/openglWithJuce.xcodeproj/project.xcworkspace/xcshareddata/
+Builds/MacOSX/openglWithJuce.xcodeproj/project.xcworkspace/xcuserdata/
+Builds/MacOSX/openglWithJuce.xcodeproj/xcuserdata/
