@@ -126,6 +126,11 @@ public:
 	{
 		return _cameraPos;
 	}
+
+	glm::vec3& getCameraFront()
+	{
+		return _Front;
+	}
 private:
 
  

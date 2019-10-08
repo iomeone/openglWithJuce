@@ -397,6 +397,13 @@
 			path = ../../Source/MainComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		7327B51B4A791A8819E28B20 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T13LampVertex.h;
+			path = ../../Source/Shader/T13LampVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		793D3C354C10DB122187B75C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -481,6 +488,13 @@
 			path = ../../Source/Shader/T8ColorsVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		9641F97028E9B7226D214DC7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial13.h;
+			path = ../../Source/Tutorial13.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9643722F5F2D7DBD7B0D4CF6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -535,6 +549,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Tutorial10.h;
 			path = ../../Source/Tutorial10.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B47043A126E2558FA45210A6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T13ColorsFragment.h;
+			path = ../../Source/Shader/T13ColorsFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BFFB4944A42C1C6DD2B3C3FD = {
@@ -628,6 +649,13 @@
 			path = "../../JuceLibraryCode/include_juce_cryptography.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		D3DF08A2783019138A88FF9E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T13ColorsVertex.h;
+			path = ../../Source/Shader/T13ColorsVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D56C4E0EF8C8DB75B6747BEF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -683,6 +711,13 @@
 			name = IOKit.framework;
 			path = System/Library/Frameworks/IOKit.framework;
 			sourceTree = SDKROOT;
+		};
+		EF8444193648125CD55E2701 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T13LampFragment.h;
+			path = ../../Source/Shader/T13LampFragment.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		F243473E0DF7C835AA133E3B = {
 			isa = PBXFileReference;
@@ -768,6 +803,10 @@
 				39156831A4D7DCCB8B45D871,
 				CE0751035D8D45A8374DA14A,
 				3E3C4B40C0DDEF038F4FFBEF,
+				B47043A126E2558FA45210A6,
+				D3DF08A2783019138A88FF9E,
+				EF8444193648125CD55E2701,
+				7327B51B4A791A8819E28B20,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
@@ -803,6 +842,7 @@
 				B1A2E91AF0FD9E9FAC20F279,
 				2B4EC547955B1A4B68924A5D,
 				338D6BA4A89D81F7E7DFE170,
+				9641F97028E9B7226D214DC7,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
