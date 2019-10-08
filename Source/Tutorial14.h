@@ -9,7 +9,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <ValueTreeView.h>
 
-namespace T13 {
+namespace T14 {
 	const String tutorialLink = "learnopengl.com/Lighting/Light-casters";
 
 	const String lightVertexFilename = "T14ColorsVertex.h";
@@ -46,13 +46,13 @@ namespace T13 {
 			light_quadratic = createUniform(openGLContext, shader, "light_quadratic");
 		}
 
-		ScopedPointer<OpenGLShaderProgram::Uniform>
+		ScopedPointer<OpenGLShaderProgram::Uniform> 
 			viewPos{ nullptr },
 
 			material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr },
 
 			light_position{ nullptr }, light_direction{ nullptr }, light_cutOff{ nullptr }, light_outerCutOff{ nullptr },
-
+			
 			light_ambient{ nullptr }, light_diffuse{ nullptr }, light_specular{ nullptr },
 
 			light_constant{ nullptr }, light_linear{ nullptr }, light_quadratic{ nullptr };
@@ -142,6 +142,7 @@ namespace T13 {
 
 	};
 
+
 	class SpriteCube : public SpriteBase
 	{
 	public:
@@ -151,17 +152,17 @@ namespace T13 {
 
 		virtual void initPre() override
 		{
+			
+				_pTextureDiffuseMap = TextureCache::getTexture(diffuseMapPath);
+				_pTextureSpecularMap = TextureCache::getTexture(specularMapPath);
 
-			_pTextureDiffuseMap = TextureCache::getTexture(diffuseMapPath);
-			_pTextureSpecularMap = TextureCache::getTexture(specularMapPath);
-
-			if (!_pTextureDiffuseMap || !_pTextureSpecularMap)
-			{
-				jassertfalse;
-				return;
-			}
+				if (!_pTextureDiffuseMap || !_pTextureSpecularMap)
+				{
+					jassertfalse;
+					return;
+				}
 		}
-
+		
 		virtual void initBuffer() override
 		{
 			
@@ -178,7 +179,7 @@ namespace T13 {
 
 			_openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
 			_openGLContext.extensions.glEnableVertexAttribArray(2);
-
+		
 		}
 
 		virtual UniformsBase * getUniformBase()
@@ -191,7 +192,7 @@ namespace T13 {
 			_uniformCube.reset(new UniformsCube(ogc, *shader));
 		}
 
-
+		
 
 		virtual void drawPost()
 		{
@@ -208,27 +209,27 @@ namespace T13 {
 										glm::vec3(1.5f,  0.2f, -1.5f),
 										glm::vec3(-1.3f,  1.0f, -1.5f)
 			};
+ 
+				_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
+				if (_pTextureDiffuseMap)
+					_pTextureDiffuseMap->bind();
+				else return;
 
-			_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
-			if (_pTextureDiffuseMap)
-				_pTextureDiffuseMap->bind();
-			else return;
+				_openGLContext.extensions.glActiveTexture(GL_TEXTURE1);
+				if (_pTextureSpecularMap)
+					_pTextureSpecularMap->bind();
+				else return;
 
-			_openGLContext.extensions.glActiveTexture(GL_TEXTURE1);
-			if (_pTextureSpecularMap)
-				_pTextureSpecularMap->bind();
-			else return;
-
-			if (_uniformCube->material_diffuse)
-				_uniformCube->material_diffuse->set(0);
-			if (_uniformCube->material_specular)
-				_uniformCube->material_specular->set(1);
-
+				if (_uniformCube->material_diffuse)
+					_uniformCube->material_diffuse->set(0);
+				if (_uniformCube->material_specular)
+					_uniformCube->material_specular->set(1);
+		 
 
 
 			_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
-
+ 
 			static float sa = 0.005;
 			for (unsigned int i = 0; i < 10; i++)
 			{
@@ -248,7 +249,7 @@ namespace T13 {
 
 			return;
 		}
-
+ 
 	public:
 
 		OpenGLTexture* _pTextureDiffuseMap{ nullptr }, *_pTextureSpecularMap{ nullptr };
@@ -271,10 +272,8 @@ namespace T13 {
 		}
 
 
-
 		virtual void initBuffer() override
 		{
-			 
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute
@@ -313,7 +312,7 @@ namespace T13 {
 		std::unique_ptr<UniformsBase> _uniformLamp;
 	};
 
-	class Tutorial13 : public OpenGLAppComponent,
+	class Tutorial14 : public OpenGLAppComponent,
 		public Button::Listener,
 		public Slider::Listener,
 		public juce::ValueTree::Listener
@@ -321,7 +320,7 @@ namespace T13 {
 	public:
 
 		//==============================================================================
-		Tutorial13() :
+		Tutorial14() :
 			_spriteLight(openGLContext, _camera, glm::mat4(1.0f)),
 			_spriteLamp(openGLContext, _camera),
 			_tree("Settings")
@@ -352,14 +351,14 @@ namespace T13 {
 
 			click.setProperty("CutOff", _CutOff, nullptr);
 			click.setProperty("OuterCutOff", _OuterCutOff, nullptr);
-
+			
 			_tree.addListener(this);
 
 
 
 			setSize(800, 600);
 		}
-		~Tutorial13()
+		~Tutorial14()
 		{
 			shutdownOpenGL();
 		}
@@ -383,8 +382,8 @@ namespace T13 {
 			_spriteLight.diffuseMapPath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("container2.png").getFullPathName();
 			_spriteLight.specularMapPath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("container2_specular.png").getFullPathName();
 
-
-
+			
+			
 			_spriteLight.init();
 			_spriteLamp.init();
 
@@ -412,7 +411,7 @@ namespace T13 {
 			String compilerInof = "";
 			int res = -1;
 			res = updateShader(_shaderProgramLight.get());
-
+	
 			if (res == 1)
 			{
 				_spriteLight.setUniformEnv(openGLContext, _shaderProgramLight->_shader);
@@ -491,7 +490,7 @@ namespace T13 {
 					{
 						_spriteLight._uniformCube->light_cutOff->set(glm::cos(glm::radians(_CutOff)));
 					}
-
+					
 					if (_spriteLight._uniformCube->light_outerCutOff)
 					{
 						_spriteLight._uniformCube->light_outerCutOff->set(glm::cos(glm::radians(_OuterCutOff)));
@@ -662,7 +661,7 @@ namespace T13 {
 		void valueTreePropertyChanged(juce::ValueTree &treeWhosePropertyHasChanged, const juce::Identifier &_property) override
 		{
 
-
+	
 			if (_property.toString() == "Constant")
 			{
 				_Constant = treeWhosePropertyHasChanged.getProperty("Constant").toString().getFloatValue();
@@ -685,7 +684,7 @@ namespace T13 {
 				_OuterCutOff = treeWhosePropertyHasChanged.getProperty("OuterCutOff").toString().getFloatValue();
 			}
 
-
+		
 		}
 		void valueTreeChildAdded(juce::ValueTree &parentTree, juce::ValueTree &childWhichHasBeenAdded) override {}
 		void valueTreeChildRemoved(juce::ValueTree &parentTree, juce::ValueTree &childWhichHasBeenRemoved, int indexFromWhichChildWasRemoved) override {}
@@ -709,17 +708,17 @@ namespace T13 {
 
 		glm::vec3 lightPos{ 2.f, 0.0f, 2.0f };
 
-
+	 
 		float _Constant{ 1.0f };
 		float _Linear{ 0.09f };
 		float _Quadratic{ 0.032f };
-
+		
 		float _CutOff{ 12.5f };
-		float _OuterCutOff{ 17.5f };
+		float _OuterCutOff{17.5f };
 
 		ValueTree _tree;
 		std::unique_ptr<ValueTreeDebugger> valueTreeDebugger;
 
-		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial13)
+		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial14)
 	};
 }

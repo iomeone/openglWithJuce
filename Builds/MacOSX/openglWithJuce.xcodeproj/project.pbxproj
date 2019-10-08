@@ -152,6 +152,13 @@
 			path = System/Library/Frameworks/OpenGL.framework;
 			sourceTree = SDKROOT;
 		};
+		05DC98A9F53854F00A2BD935 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T14LampVertex.h;
+			path = ../../Source/Shader/T14LampVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		139CD54986567409B87ED944 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -199,6 +206,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = fragmentT3.h;
 			path = ../../Source/Shader/fragmentT3.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		28142ABDE575919B85545FB6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = SpriteBase.h;
+			path = ../../Source/SpriteBase.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		28544965842600E1BFB1136E = {
@@ -339,6 +353,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = BinaryData.cpp;
 			path = ../../JuceLibraryCode/BinaryData.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		5DB69B3BEC81D060798F14D9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T14ColorsFragment.h;
+			path = ../../Source/Shader/T14ColorsFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		60DEBF03A448086A9AD720F5 = {
@@ -544,6 +565,13 @@
 			path = ../../Source/Shader/T7ColorsFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		AF8B236083ECD6F1ED9B9550 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T14ColorsVertex.h;
+			path = ../../Source/Shader/T14ColorsVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		B1A2E91AF0FD9E9FAC20F279 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -556,6 +584,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = T13ColorsFragment.h;
 			path = ../../Source/Shader/T13ColorsFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B608D26206EC7931DCE611F3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial14.h;
+			path = ../../Source/Tutorial14.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BFFB4944A42C1C6DD2B3C3FD = {
@@ -726,6 +761,13 @@
 			path = ../../Source/Shader/T11ColorsFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		F3497E75DC0C96FD2D5803B9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T14LampFragment.h;
+			path = ../../Source/Shader/T14LampFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		F35CC20EF5D5564607F33B82 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -807,6 +849,10 @@
 				D3DF08A2783019138A88FF9E,
 				EF8444193648125CD55E2701,
 				7327B51B4A791A8819E28B20,
+				5DB69B3BEC81D060798F14D9,
+				AF8B236083ECD6F1ED9B9550,
+				F3497E75DC0C96FD2D5803B9,
+				05DC98A9F53854F00A2BD935,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
@@ -822,6 +868,7 @@
 			children = (
 				53CCC3C1E179A464D885395D,
 				1E21BF4A5A526E0F34DBAFA4,
+				28142ABDE575919B85545FB6,
 				CC450442567FDABAB56138EB,
 			);
 			name = Engine;
@@ -843,6 +890,7 @@
 				2B4EC547955B1A4B68924A5D,
 				338D6BA4A89D81F7E7DFE170,
 				9641F97028E9B7226D214DC7,
+				B608D26206EC7931DCE611F3,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";

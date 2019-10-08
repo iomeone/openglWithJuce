@@ -180,6 +180,18 @@
     <ClInclude Include="..\..\Source\Shader\T13LampVertex.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T14ColorsFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T14ColorsVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T14LampFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T14LampVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
@@ -202,6 +214,9 @@
       <Filter>openglWithJuce\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ShaderProgram.h">
+      <Filter>openglWithJuce\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\SpriteBase.h">
       <Filter>openglWithJuce\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\TextureCache.h">
@@ -244,6 +259,9 @@
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Tutorial13.h">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tutorial14.h">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CompList.h">

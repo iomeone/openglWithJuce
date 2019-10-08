@@ -65,6 +65,13 @@
       <FILE id="KJfC1w" name="T13LampFragment.h" compile="0" resource="0"
             file="Source/Shader/T13LampFragment.h"/>
       <FILE id="Hd0iXd" name="T13LampVertex.h" compile="0" resource="0" file="Source/Shader/T13LampVertex.h"/>
+      <FILE id="OC3Zb5" name="T14ColorsFragment.h" compile="0" resource="0"
+            file="Source/Shader/T14ColorsFragment.h"/>
+      <FILE id="W8fAp7" name="T14ColorsVertex.h" compile="0" resource="0"
+            file="Source/Shader/T14ColorsVertex.h"/>
+      <FILE id="ZS7r7I" name="T14LampFragment.h" compile="0" resource="0"
+            file="Source/Shader/T14LampFragment.h"/>
+      <FILE id="fo85Fj" name="T14LampVertex.h" compile="0" resource="0" file="Source/Shader/T14LampVertex.h"/>
       <FILE id="PJcivr" name="vertexT1.h" compile="0" resource="0" file="Source/Shader/vertexT1.h"/>
       <FILE id="lDtqGz" name="vertexT2.h" compile="0" resource="0" file="Source/Shader/vertexT2.h"/>
       <FILE id="irgfxX" name="vertexT3.h" compile="0" resource="0" file="Source/Shader/vertexT3.h"/>
@@ -75,6 +82,7 @@
     <GROUP id="{B1DAD2A2-892A-BB42-C3E1-9D2B1B6FDD70}" name="Engine">
       <FILE id="DhjyiY" name="Camera.h" compile="0" resource="0" file="Source/Camera.h"/>
       <FILE id="i5qh9u" name="ShaderProgram.h" compile="0" resource="0" file="Source/ShaderProgram.h"/>
+      <FILE id="fECTis" name="SpriteBase.h" compile="0" resource="0" file="Source/SpriteBase.h"/>
       <FILE id="cCQyvZ" name="TextureCache.h" compile="0" resource="0" file="Source/TextureCache.h"/>
     </GROUP>
     <GROUP id="{8701B764-FC81-7CC0-D6F2-927607E9E674}" name="Tutorial">
@@ -91,6 +99,7 @@
       <FILE id="EEwaAT" name="Tutorial11.h" compile="0" resource="0" file="Source/Tutorial11.h"/>
       <FILE id="K33UTj" name="Tutorial12.h" compile="0" resource="0" file="Source/Tutorial12.h"/>
       <FILE id="QJNkwW" name="Tutorial13.h" compile="0" resource="0" file="Source/Tutorial13.h"/>
+      <FILE id="jIiaPq" name="Tutorial14.h" compile="0" resource="0" file="Source/Tutorial14.h"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>

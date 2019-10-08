@@ -191,6 +191,10 @@
     <ClInclude Include="..\..\Source\Shader\T13ColorsVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\T13LampFragment.h"/>
     <ClInclude Include="..\..\Source\Shader\T13LampVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T14ColorsFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T14ColorsVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T14LampFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T14LampVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>
@@ -199,6 +203,7 @@
     <ClInclude Include="..\..\Source\Shader\vertexT6.h"/>
     <ClInclude Include="..\..\Source\Camera.h"/>
     <ClInclude Include="..\..\Source\ShaderProgram.h"/>
+    <ClInclude Include="..\..\Source\SpriteBase.h"/>
     <ClInclude Include="..\..\Source\TextureCache.h"/>
     <ClInclude Include="..\..\Source\Tutorial1.h"/>
     <ClInclude Include="..\..\Source\Tutorial2.h"/>
@@ -213,6 +218,7 @@
     <ClInclude Include="..\..\Source\Tutorial11.h"/>
     <ClInclude Include="..\..\Source\Tutorial12.h"/>
     <ClInclude Include="..\..\Source\Tutorial13.h"/>
+    <ClInclude Include="..\..\Source\Tutorial14.h"/>
     <ClInclude Include="..\..\Source\CompList.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>
