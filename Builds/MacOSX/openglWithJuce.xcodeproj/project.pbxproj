@@ -53,6 +53,10 @@
 			isa = PBXBuildFile;
 			fileRef = 20F81EFD5B1C783258F175FE;
 		};
+		37D54CDC52CBEAD46E63D710 = {
+			isa = PBXBuildFile;
+			fileRef = A65020481B2650E5D2EBB5C5;
+		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -239,6 +243,13 @@
 			path = "../../JuceLibraryCode/include_juce_opengl.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		338D6BA4A89D81F7E7DFE170 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial12.h;
+			path = ../../Source/Tutorial12.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		33C3D339CB442B2CA6056D0F = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -267,6 +278,13 @@
 			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		39156831A4D7DCCB8B45D871 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T12ColorsVertex.h;
+			path = ../../Source/Shader/T12ColorsVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		3AA27D12F0BA3B7C70290C5C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -286,6 +304,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = T9LampVertex.h;
 			path = ../../Source/Shader/T9LampVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		3E3C4B40C0DDEF038F4FFBEF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T12LampVertex.h;
+			path = ../../Source/Shader/T12LampVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		52DDB94DDCA6C2CE5115062A = {
@@ -328,6 +353,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_devices.mm";
 			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		615E68BAE105F978847D6DF5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T12ColorsFragment.h;
+			path = ../../Source/Shader/T12ColorsFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		631D94CAB57D5ABB7AC5E418 = {
@@ -484,6 +516,13 @@
 			path = ../../Source/Shader/vertexT3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		A65020481B2650E5D2EBB5C5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ValueTreeView.cpp;
+			path = ../../Source/ValueTreeView.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		ADCBED73B98CF1E948EB9427 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -559,6 +598,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = vertexT5.h;
 			path = ../../Source/Shader/vertexT5.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		CE0751035D8D45A8374DA14A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T12LampFragment.h;
+			path = ../../Source/Shader/T12LampFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		CF575781BE5086F5562C8FE3 = {
@@ -659,6 +705,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_formats.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		F56C1F25AAEDDE62671C4D31 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ValueTreeView.h;
+			path = ../../Source/ValueTreeView.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		F9EB1B0D2C713E888586084C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -672,6 +725,15 @@
 			name = T7LampVertex.h;
 			path = ../../Source/Shader/T7LampVertex.h;
 			sourceTree = "SOURCE_ROOT";
+		};
+		E1F223ABCF9434376C9C5904 = {
+			isa = PBXGroup;
+			children = (
+				A65020481B2650E5D2EBB5C5,
+				F56C1F25AAEDDE62671C4D31,
+			);
+			name = Utility;
+			sourceTree = "<group>";
 		};
 		35CF69214B759D83E3A0C7B0 = {
 			isa = PBXGroup;
@@ -702,6 +764,10 @@
 				52DDB94DDCA6C2CE5115062A,
 				6CF3B9213A51641476549089,
 				8FCD5A74494DFCD48571CB99,
+				615E68BAE105F978847D6DF5,
+				39156831A4D7DCCB8B45D871,
+				CE0751035D8D45A8374DA14A,
+				3E3C4B40C0DDEF038F4FFBEF,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
@@ -736,6 +802,7 @@
 				368A2CBF256E3870DE5D238B,
 				B1A2E91AF0FD9E9FAC20F279,
 				2B4EC547955B1A4B68924A5D,
+				338D6BA4A89D81F7E7DFE170,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -754,6 +821,7 @@
 		53203316B70E4AE49079A836 = {
 			isa = PBXGroup;
 			children = (
+				E1F223ABCF9434376C9C5904,
 				85B29E715AEB1AA8A297AA1E,
 				35CF69214B759D83E3A0C7B0,
 				79390D4DEAC6512B514A024D,
@@ -1046,6 +1114,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D54CDC52CBEAD46E63D710,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				D473426BFE34164F2B044D35,

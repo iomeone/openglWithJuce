@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="openglWithJuce\Utility">
+      <UniqueIdentifier>{8561C894-C299-74DE-AAA3-F6B8374CD895}</UniqueIdentifier>
+    </Filter>
     <Filter Include="openglWithJuce\Shader">
       <UniqueIdentifier>{5A915126-A968-D910-5404-8AEFA812C1CF}</UniqueIdentifier>
     </Filter>
@@ -22,6 +25,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ValueTreeView.cpp">
+      <Filter>openglWithJuce\Utility</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>openglWithJuce\Source</Filter>
     </ClCompile>
@@ -69,6 +75,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ValueTreeView.h">
+      <Filter>openglWithJuce\Utility</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Shader\fragmentT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
@@ -147,6 +156,18 @@
     <ClInclude Include="..\..\Source\Shader\T11LampVertex.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T12ColorsFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T12ColorsVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T12LampFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T12LampVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
@@ -205,6 +226,9 @@
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Tutorial11.h">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tutorial12.h">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CompList.h">

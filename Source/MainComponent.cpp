@@ -18,6 +18,7 @@
 #include "Tutorial9.h"
 #include "Tutorial10.h"
 #include "Tutorial11.h"
+#include "Tutorial12.h"
 //==============================================================================
 MainComponent::MainComponent()
 {
@@ -74,14 +75,15 @@ void MainComponent::resized()
 }
 
 
-static ComponentList<T1::Tutorial1> t1((const String)("Tutorial1: Triangle"), 0);
-static ComponentList<T2::Tutorial2> t2((const String)("Tutorial2: Shader"), 1);
-static ComponentList<T3::Tutorial3> t3((const String)("Tutorial3: Texture"), 2);
-static ComponentList<T4::Tutorial4> t4((const String)("Tutorial4: Transformations"), 3);
-static ComponentList<T5::Tutorial5> t5((const String)("Tutorial5: Coordinate Systems"), 4);
-static ComponentList<T6::Tutorial6> t6((const String)("Tutorial6: Camera"), 5);
-static ComponentList<T7::Tutorial7> t7((const String)("Tutorial7: Colors"), 6);
-static ComponentList<T8::Tutorial8> t8((const String)("Tutorial8: Basic-Lighting"), 7);
-static ComponentList<T9::Tutorial9> t9((const String)("Tutorial9: Materials"), 8);
-static ComponentList<T10::Tutorial10> t10((const String)("Tutorial10: Lighting-maps"), 9);
-static ComponentList<T11::Tutorial11> t11((const String)("Tutorial11: Light-casters"), 10);
+static ComponentList<T1::Tutorial1> t1((const String)("1: Triangle"), 0);
+static ComponentList<T2::Tutorial2> t2((const String)("2: Shader"), 1);
+static ComponentList<T3::Tutorial3> t3((const String)("3: Texture"), 2);
+static ComponentList<T4::Tutorial4> t4((const String)("4: Transformations"), 3);
+static ComponentList<T5::Tutorial5> t5((const String)("5: Coordinate Systems"), 4);
+static ComponentList<T6::Tutorial6> t6((const String)("6: Camera"), 5);
+static ComponentList<T7::Tutorial7> t7((const String)("7: Colors"), 6);
+static ComponentList<T8::Tutorial8> t8((const String)("8: Basic-Lighting"), 7);
+static ComponentList<T9::Tutorial9> t9((const String)("9: Materials"), 8);
+static ComponentList<T10::Tutorial10> t10((const String)("10: Lighting-maps"), 9);
+static ComponentList<T11::Tutorial11> t11((const String)("11: Directional-Light"), 10);
+static ComponentList<T12::Tutorial12> t12((const String)("12: Point-Light"), 11);

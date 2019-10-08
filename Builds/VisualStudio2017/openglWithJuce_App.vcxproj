@@ -138,6 +138,7 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ValueTreeView.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
@@ -155,6 +156,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ValueTreeView.h"/>
     <ClInclude Include="..\..\Source\Shader\fragmentT1.h"/>
     <ClInclude Include="..\..\Source\Shader\fragmentT2.h"/>
     <ClInclude Include="..\..\Source\Shader\fragmentT3.h"/>
@@ -181,6 +183,10 @@
     <ClInclude Include="..\..\Source\Shader\T11ColorsVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\T11LampFragment.h"/>
     <ClInclude Include="..\..\Source\Shader\T11LampVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T12ColorsFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T12ColorsVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T12LampFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T12LampVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>
@@ -201,6 +207,7 @@
     <ClInclude Include="..\..\Source\Tutorial9.h"/>
     <ClInclude Include="..\..\Source\Tutorial10.h"/>
     <ClInclude Include="..\..\Source\Tutorial11.h"/>
+    <ClInclude Include="..\..\Source\Tutorial12.h"/>
     <ClInclude Include="..\..\Source\CompList.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>
