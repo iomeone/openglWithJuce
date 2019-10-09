@@ -185,8 +185,7 @@ public:
 				oldtree = newtree;
 				newtree = newtree.getParent();
 			}
-			jassert(oldtree.getType().toString() == "root");
-			
+		
 			auto _click = oldtree.getChildWithName("_click");
 
 			if (_click.isValid())

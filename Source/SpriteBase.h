@@ -84,7 +84,7 @@ public:
 
 	void draw()
 	{
-		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+		
 		if (getUniformBase()->view)
 		{
 			glm::mat4 view = _camera.getViewMat();
@@ -103,8 +103,9 @@ public:
 			getUniformBase()->model->setMatrix4(glm::value_ptr(_model), 1, GL_FALSE);
 		}
 
+		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 		drawPost();
-
+		_openGLContext.extensions.glBindVertexArray(0);
 
 		return;
 	}

@@ -26,24 +26,76 @@ namespace T14 {
 		{
 			viewPos = createUniform(openGLContext, shader, "viewPos");
 
-			material_diffuse = createUniform(openGLContext, shader, "material_diffuse");
-			material_specular = createUniform(openGLContext, shader, "material_specular");
-			material_shininess = createUniform(openGLContext, shader, "material_shininess");
+			material_diffuse = createUniform(openGLContext, shader, "material.diffuse");
+			material_specular = createUniform(openGLContext, shader, "material.specular");
+			material_shininess = createUniform(openGLContext, shader, "material.shininess");
 
 
-			light_position = createUniform(openGLContext, shader, "light_position");
-			light_direction = createUniform(openGLContext, shader, "light_direction");
-			light_cutOff = createUniform(openGLContext, shader, "light_cutOff");
-			light_outerCutOff = createUniform(openGLContext, shader, "light_outerCutOff");
+			dirLight_direction = createUniform(openGLContext, shader, "dirLight.direction");
+			dirLight_ambient = createUniform(openGLContext, shader, "dirLight.ambient");
+			dirLight_diffuse = createUniform(openGLContext, shader, "dirLight.diffuse");
+			dirLight_specular = createUniform(openGLContext, shader, "dirLight.specular");
+
+			pointLights_0_position = createUniform(openGLContext, shader, "pointLights[0].position");
+
+			pointLights_0_ambient = createUniform(openGLContext, shader, "pointLights[0].ambient");
+			pointLights_0_diffuse = createUniform(openGLContext, shader, "pointLights[0].diffuse");
+			pointLights_0_specular = createUniform(openGLContext, shader, "pointLights[0].specular");
+			
+			pointLights_0_constant = createUniform(openGLContext, shader, "pointLights[0].constant");
+			pointLights_0_linear = createUniform(openGLContext, shader, "pointLights[0].linear");
+			pointLights_0_quadratic = createUniform(openGLContext, shader, "pointLights[0].quadratic");
+
+			pointLights_1_position = createUniform(openGLContext, shader, "pointLights[1].position");
+
+			pointLights_1_ambient = createUniform(openGLContext, shader, "pointLights[1].ambient");
+			pointLights_1_diffuse = createUniform(openGLContext, shader, "pointLights[1].diffuse");
+			pointLights_1_specular = createUniform(openGLContext, shader, "pointLights[1].specular");
+
+			pointLights_1_constant = createUniform(openGLContext, shader, "pointLights[1].constant");
+			pointLights_1_linear = createUniform(openGLContext, shader, "pointLights[1].linear");
+			pointLights_1_quadratic = createUniform(openGLContext, shader, "pointLights[1].quadratic");
 
 
-			light_ambient = createUniform(openGLContext, shader, "light_ambient");
-			light_diffuse = createUniform(openGLContext, shader, "light_diffuse");
-			light_specular = createUniform(openGLContext, shader, "light_specular");
 
-			light_constant = createUniform(openGLContext, shader, "light_constant");
-			light_linear = createUniform(openGLContext, shader, "light_linear");
-			light_quadratic = createUniform(openGLContext, shader, "light_quadratic");
+			pointLights_2_position = createUniform(openGLContext, shader, "pointLights[2].position");
+
+			pointLights_2_ambient = createUniform(openGLContext, shader, "pointLights[2].ambient");
+			pointLights_2_diffuse = createUniform(openGLContext, shader, "pointLights[2].diffuse");
+			pointLights_2_specular = createUniform(openGLContext, shader, "pointLights[2].specular");
+
+			pointLights_2_constant = createUniform(openGLContext, shader, "pointLights[2].constant");
+			pointLights_2_linear = createUniform(openGLContext, shader, "pointLights[2].linear");
+			pointLights_2_quadratic = createUniform(openGLContext, shader, "pointLights[2].quadratic");
+
+
+
+			pointLights_3_position = createUniform(openGLContext, shader, "pointLights[3].position");
+
+			pointLights_3_ambient = createUniform(openGLContext, shader, "pointLights[3].ambient");
+			pointLights_3_diffuse = createUniform(openGLContext, shader, "pointLights[3].diffuse");
+			pointLights_3_specular = createUniform(openGLContext, shader, "pointLights[3].specular");
+
+			pointLights_3_constant = createUniform(openGLContext, shader, "pointLights[3].constant");
+			pointLights_3_linear = createUniform(openGLContext, shader, "pointLights[3].linear");
+			pointLights_3_quadratic = createUniform(openGLContext, shader, "pointLights[3].quadratic");
+ 
+
+
+			spotLight_position = createUniform(openGLContext, shader, "spotLight.position");
+			spotLight_direction = createUniform(openGLContext, shader, "spotLight.direction");
+
+			spotLight_ambient = createUniform(openGLContext, shader, "spotLight.ambient");
+			spotLight_diffuse = createUniform(openGLContext, shader, "spotLight.diffuse");
+			spotLight_specular = createUniform(openGLContext, shader, "spotLight.specular");
+
+			spotLight_constant = createUniform(openGLContext, shader, "spotLight.constant");
+			spotLight_linear = createUniform(openGLContext, shader, "spotLight.linear");
+			spotLight_quadratic = createUniform(openGLContext, shader, "spotLight.quadratic");
+
+			spotLight_cutOff = createUniform(openGLContext, shader, "spotLight.cutOff");
+			spotLight_outerCutOff = createUniform(openGLContext, shader, "spotLight.outerCutOff");
+ 
 		}
 
 		ScopedPointer<OpenGLShaderProgram::Uniform> 
@@ -51,11 +103,28 @@ namespace T14 {
 
 			material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr },
 
-			light_position{ nullptr }, light_direction{ nullptr }, light_cutOff{ nullptr }, light_outerCutOff{ nullptr },
-			
-			light_ambient{ nullptr }, light_diffuse{ nullptr }, light_specular{ nullptr },
+			dirLight_direction{ nullptr }, dirLight_ambient{ nullptr }, dirLight_diffuse{ nullptr }, dirLight_specular{ nullptr },
 
-			light_constant{ nullptr }, light_linear{ nullptr }, light_quadratic{ nullptr };
+			pointLights_0_position{ nullptr }, pointLights_0_ambient{ nullptr }, pointLights_0_diffuse{ nullptr }, pointLights_0_specular{ nullptr },
+			pointLights_0_constant{ nullptr }, pointLights_0_linear{ nullptr }, pointLights_0_quadratic{ nullptr },
+
+			pointLights_1_position{ nullptr }, pointLights_1_ambient{ nullptr }, pointLights_1_diffuse{ nullptr }, pointLights_1_specular{ nullptr },
+			pointLights_1_constant{ nullptr }, pointLights_1_linear{ nullptr }, pointLights_1_quadratic{ nullptr },
+
+			pointLights_2_position{ nullptr }, pointLights_2_ambient{ nullptr }, pointLights_2_diffuse{ nullptr }, pointLights_2_specular{ nullptr },
+			pointLights_2_constant{ nullptr }, pointLights_2_linear{ nullptr }, pointLights_2_quadratic{ nullptr },
+
+			pointLights_3_position{ nullptr }, pointLights_3_ambient{ nullptr }, pointLights_3_diffuse{ nullptr }, pointLights_3_specular{ nullptr },
+			pointLights_3_constant{ nullptr }, pointLights_3_linear{ nullptr }, pointLights_3_quadratic{ nullptr },
+
+			spotLight_position{ nullptr },spotLight_direction{ nullptr },
+
+			spotLight_ambient{ nullptr },spotLight_diffuse{ nullptr },spotLight_specular{ nullptr },
+
+			spotLight_constant{ nullptr },spotLight_linear{ nullptr },spotLight_quadratic{ nullptr },
+
+			spotLight_cutOff{ nullptr }, spotLight_outerCutOff{ nullptr };
+		
 	};
 
 #pragma pack(1)
@@ -143,6 +212,30 @@ namespace T14 {
 	};
 
 
+	// positions all containers
+	static glm::vec3 cubePositions[] = {
+								glm::vec3(0.0f,  0.0f,  0.0f),
+								glm::vec3(2.0f,  5.0f, -15.0f),
+								glm::vec3(-1.5f, -2.2f, -2.5f),
+								glm::vec3(-3.8f, -2.0f, -12.3f),
+								glm::vec3(2.4f, -0.4f, -3.5f),
+								glm::vec3(-1.7f,  3.0f, -7.5f),
+								glm::vec3(1.3f, -2.0f, -2.5f),
+								glm::vec3(1.5f,  2.0f, -2.5f),
+								glm::vec3(1.5f,  0.2f, -1.5f),
+								glm::vec3(-1.3f,  1.0f, -1.5f)
+	};
+
+
+	// positions of the point lights
+	glm::vec3 pointLightPositions[] = {
+		glm::vec3(0.7f,  0.2f,  2.0f),
+		glm::vec3(2.3f, -3.3f, -4.0f),
+		glm::vec3(-4.0f,  2.0f, -12.0f),
+		glm::vec3(0.0f,  0.0f, -3.0f)
+	};
+
+
 	class SpriteCube : public SpriteBase
 	{
 	public:
@@ -165,8 +258,7 @@ namespace T14 {
 		
 		virtual void initBuffer() override
 		{
-			
-
+	
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute
@@ -192,24 +284,8 @@ namespace T14 {
 			_uniformCube.reset(new UniformsCube(ogc, *shader));
 		}
 
-		
-
 		virtual void drawPost()
 		{
-			// positions all containers
-			static glm::vec3 cubePositions[] = {
-										glm::vec3(0.0f,  0.0f,  0.0f),
-										glm::vec3(2.0f,  5.0f, -15.0f),
-										glm::vec3(-1.5f, -2.2f, -2.5f),
-										glm::vec3(-3.8f, -2.0f, -12.3f),
-										glm::vec3(2.4f, -0.4f, -3.5f),
-										glm::vec3(-1.7f,  3.0f, -7.5f),
-										glm::vec3(1.3f, -2.0f, -2.5f),
-										glm::vec3(1.5f,  2.0f, -2.5f),
-										glm::vec3(1.5f,  0.2f, -1.5f),
-										glm::vec3(-1.3f,  1.0f, -1.5f)
-			};
- 
 				_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
 				if (_pTextureDiffuseMap)
 					_pTextureDiffuseMap->bind();
@@ -224,12 +300,7 @@ namespace T14 {
 					_uniformCube->material_diffuse->set(0);
 				if (_uniformCube->material_specular)
 					_uniformCube->material_specular->set(1);
-		 
 
-
-			_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-
- 
 			static float sa = 0.005;
 			for (unsigned int i = 0; i < 10; i++)
 			{
@@ -238,8 +309,8 @@ namespace T14 {
 				model = glm::translate(model, cubePositions[i]);
 				float angle = 20.0f * i;
 				angle = angle + sa;
-				sa += 0.01;
-				//model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+				sa += 0.001;
+				model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
 				if (_uniformCube->model)
 				{
 					_uniformCube->model->setMatrix4(glm::value_ptr(model), 1, GL_FALSE);
@@ -302,9 +373,20 @@ namespace T14 {
 
 		virtual void drawPost() override
 		{
+			for (unsigned int i = 0; i < 4; i++)
+			{
+				//compute the model
+				auto model = glm::mat4(1.0f);
+				model = glm::translate(model, pointLightPositions[i]);
+				model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
 
-			glDrawArrays(GL_TRIANGLES, 0, 36);
+				//set the uniform
+				jassert(_uniformLamp->model);
+				_uniformLamp->model->setMatrix4(glm::value_ptr(model), 1, GL_FALSE);
 
+				//draw the lamp
+				glDrawArrays(GL_TRIANGLES, 0, 36);
+			}
 
 		}
 
@@ -470,91 +552,143 @@ namespace T14 {
 
 			 /*_spriteLight._model = glm::rotate(glm::mat4(1.0f), float(inc/10), glm::vec3(0.0f, 0.3f, 0.0f));*/
 
-			if (_shaderProgramLight->_shader)
-			{
-				_shaderProgramLight->_shader->use();
+			jassert(_shaderProgramLight->_shader);
+			_shaderProgramLight->_shader->use();
+			jassert(_spriteLight._uniformCube);
 
-				if (_spriteLight._uniformCube)
-				{
-					if (_spriteLight._uniformCube->light_position)
-					{
-						_spriteLight._uniformCube->light_position->set(lightPos.x, lightPos.y, lightPos.z);
-					}
-
-					if (_spriteLight._uniformCube->light_direction)
-					{
-						_spriteLight._uniformCube->light_direction->set(_camera.getCameraFront().x, _camera.getCameraFront().y, _camera.getCameraFront().z);
-					}
-
-					if (_spriteLight._uniformCube->light_cutOff)
-					{
-						_spriteLight._uniformCube->light_cutOff->set(glm::cos(glm::radians(_CutOff)));
-					}
-					
-					if (_spriteLight._uniformCube->light_outerCutOff)
-					{
-						_spriteLight._uniformCube->light_outerCutOff->set(glm::cos(glm::radians(_OuterCutOff)));
-					}
+			jassert(_spriteLight._uniformCube->viewPos);
+			auto cp = _camera.getCameraPos();
+			_spriteLight._uniformCube->viewPos->set(cp.x, cp.y, cp.z);
 
 
-					if (_spriteLight._uniformCube->viewPos)
-					{
-						auto cp = _camera.getCameraPos();
-						_spriteLight._uniformCube->viewPos->set(cp.x, cp.y, cp.z);
-					}
-
-					if (_spriteLight._uniformCube->material_shininess)
-					{
-						_spriteLight._uniformCube->material_shininess->set(64.0f);
-					}
+			jassert(_spriteLight._uniformCube->material_shininess);
+			_spriteLight._uniformCube->material_shininess->set(64.0f);
 
 
-					if (_spriteLight._uniformCube->light_ambient)
-					{
-						_spriteLight._uniformCube->light_ambient->set(0.2f, 0.2f, 0.2f);
-					}
-					if (_spriteLight._uniformCube->light_diffuse)
-					{
-						_spriteLight._uniformCube->light_diffuse->set(0.5f, 0.5f, 0.5f);
-					}
-					if (_spriteLight._uniformCube->light_specular)
-					{
-						_spriteLight._uniformCube->light_specular->set(1.0f, 1.0f, 1.0f);
-					}
+			jassert(_spriteLight._uniformCube->dirLight_direction);
+			_spriteLight._uniformCube->dirLight_direction->set(-0.2f, -1.0f, -0.3f);
+			jassert(_spriteLight._uniformCube->dirLight_ambient);
+			_spriteLight._uniformCube->dirLight_ambient->set(0.05f, 0.05f, 0.05f);
+			jassert(_spriteLight._uniformCube->dirLight_diffuse);
+			_spriteLight._uniformCube->dirLight_diffuse->set(0.4f, 0.4f, 0.4f);
+			jassert(_spriteLight._uniformCube->dirLight_specular);
+			_spriteLight._uniformCube->dirLight_specular->set(0.5f, 0.5f, 0.5f);
 
 
-					if (_spriteLight._uniformCube->light_constant)
-					{
-						_spriteLight._uniformCube->light_constant->set(_Constant);
-					}
 
-					if (_spriteLight._uniformCube->light_linear)
-					{
-						_spriteLight._uniformCube->light_linear->set(_Linear);
-					}
+			//point light NO.0
+			jassert(_spriteLight._uniformCube->pointLights_0_position);
+			_spriteLight._uniformCube->pointLights_0_position->set(pointLightPositions[1].x,pointLightPositions[1].y,pointLightPositions[1].z);
 
-					if (_spriteLight._uniformCube->light_quadratic)
-					{
-						_spriteLight._uniformCube->light_quadratic->set(_Quadratic);
-					}
+			jassert(_spriteLight._uniformCube->pointLights_0_ambient);
+			_spriteLight._uniformCube->pointLights_0_ambient->set(0.05f, 0.05f, 0.05f);
+			jassert(_spriteLight._uniformCube->pointLights_0_diffuse);
+			_spriteLight._uniformCube->pointLights_0_diffuse->set(0.8f, 0.8f, 0.8f);
+			jassert(_spriteLight._uniformCube->pointLights_0_specular);
+			_spriteLight._uniformCube->pointLights_0_specular->set(1.0f, 1.0f, 1.0f);
 
-
-				}
-
-				_spriteLight.draw();
-			}
+			jassert(_spriteLight._uniformCube->pointLights_0_constant);
+			_spriteLight._uniformCube->pointLights_0_constant->set(1.0f);
+			jassert(_spriteLight._uniformCube->pointLights_0_linear);
+			_spriteLight._uniformCube->pointLights_0_linear->set(0.09f);
+			jassert(_spriteLight._uniformCube->pointLights_0_quadratic);
+			_spriteLight._uniformCube->pointLights_0_quadratic->set(0.032f);
 
 
-			if (_shaderProgramLamp->_shader)
-			{
+			//point light NO.1
+			jassert(_spriteLight._uniformCube->pointLights_1_position);
+			_spriteLight._uniformCube->pointLights_1_position->set(pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
 
-				auto m = glm::scale(glm::translate(glm::mat4(1.0f), lightPos), glm::vec3(.4f));
-				_spriteLamp.setModel(m);
+			jassert(_spriteLight._uniformCube->pointLights_1_ambient);
+			_spriteLight._uniformCube->pointLights_1_ambient->set(0.05f, 0.05f, 0.05f);
+			jassert(_spriteLight._uniformCube->pointLights_1_diffuse);
+			_spriteLight._uniformCube->pointLights_1_diffuse->set(0.8f, 0.8f, 0.8f);
+			jassert(_spriteLight._uniformCube->pointLights_1_specular);
+			_spriteLight._uniformCube->pointLights_1_specular->set(1.0f, 1.0f, 1.0f);
 
-				_shaderProgramLamp->_shader->use();
-				_spriteLamp.draw();
-			}
+			jassert(_spriteLight._uniformCube->pointLights_1_constant);
+			_spriteLight._uniformCube->pointLights_1_constant->set(1.0f);
+			jassert(_spriteLight._uniformCube->pointLights_1_linear);
+			_spriteLight._uniformCube->pointLights_1_linear->set(0.09f);
+			jassert(_spriteLight._uniformCube->pointLights_1_quadratic);
+			_spriteLight._uniformCube->pointLights_1_quadratic->set(0.032f);
 
+
+
+			//point light NO.2
+			jassert(_spriteLight._uniformCube->pointLights_2_position);
+			_spriteLight._uniformCube->pointLights_2_position->set(pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
+
+			jassert(_spriteLight._uniformCube->pointLights_2_ambient);
+			_spriteLight._uniformCube->pointLights_2_ambient->set(0.05f, 0.05f, 0.05f);
+			jassert(_spriteLight._uniformCube->pointLights_2_diffuse);
+			_spriteLight._uniformCube->pointLights_2_diffuse->set(0.8f, 0.8f, 0.8f);
+			jassert(_spriteLight._uniformCube->pointLights_2_specular);
+			_spriteLight._uniformCube->pointLights_2_specular->set(1.0f, 1.0f, 1.0f);
+
+			jassert(_spriteLight._uniformCube->pointLights_2_constant);
+			_spriteLight._uniformCube->pointLights_2_constant->set(1.0f);
+			jassert(_spriteLight._uniformCube->pointLights_2_linear);
+			_spriteLight._uniformCube->pointLights_2_linear->set(0.09f);
+			jassert(_spriteLight._uniformCube->pointLights_2_quadratic);
+			_spriteLight._uniformCube->pointLights_2_quadratic->set(0.032f);
+
+
+
+			//point light NO.3
+			jassert(_spriteLight._uniformCube->pointLights_3_position);
+			_spriteLight._uniformCube->pointLights_3_position->set(pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
+
+			jassert(_spriteLight._uniformCube->pointLights_3_ambient);
+			_spriteLight._uniformCube->pointLights_3_ambient->set(0.05f, 0.05f, 0.05f);
+			jassert(_spriteLight._uniformCube->pointLights_3_diffuse);
+			_spriteLight._uniformCube->pointLights_3_diffuse->set(0.8f, 0.8f, 0.8f);
+			jassert(_spriteLight._uniformCube->pointLights_3_specular);
+			_spriteLight._uniformCube->pointLights_3_specular->set(1.0f, 1.0f, 1.0f);
+
+			jassert(_spriteLight._uniformCube->pointLights_3_constant);
+			_spriteLight._uniformCube->pointLights_3_constant->set(1.0f);
+			jassert(_spriteLight._uniformCube->pointLights_3_linear);
+			_spriteLight._uniformCube->pointLights_3_linear->set(0.09f);
+			jassert(_spriteLight._uniformCube->pointLights_3_quadratic);
+			_spriteLight._uniformCube->pointLights_3_quadratic->set(0.032f);
+
+
+
+			jassert(_spriteLight._uniformCube->spotLight_position);
+			_spriteLight._uniformCube->spotLight_position->set(_camera.getCameraPos().x, _camera.getCameraPos().y, _camera.getCameraPos().z);
+			jassert(_spriteLight._uniformCube->spotLight_direction);
+			_spriteLight._uniformCube->spotLight_direction->set(_camera.getCameraFront().x, _camera.getCameraFront().y, _camera.getCameraFront().z);
+			jassert(_spriteLight._uniformCube->spotLight_ambient);
+			_spriteLight._uniformCube->spotLight_ambient->set(0.0f, 0.0f, 0.0f);
+			jassert(_spriteLight._uniformCube->spotLight_diffuse);
+			_spriteLight._uniformCube->spotLight_diffuse->set(1.0f, 1.0f, 1.0f);
+			jassert(_spriteLight._uniformCube->spotLight_specular);
+			_spriteLight._uniformCube->spotLight_specular->set(1.0f, 1.0f, 1.0f);
+
+			jassert(_spriteLight._uniformCube->spotLight_constant);
+			_spriteLight._uniformCube->spotLight_constant->set(1.0f);
+			jassert(_spriteLight._uniformCube->spotLight_linear);
+			_spriteLight._uniformCube->spotLight_linear->set(0.09f);
+			jassert(_spriteLight._uniformCube->spotLight_quadratic);
+			_spriteLight._uniformCube->spotLight_quadratic->set(0.032f);
+
+			jassert(_spriteLight._uniformCube->spotLight_cutOff);
+			_spriteLight._uniformCube->spotLight_cutOff->set(glm::cos(glm::radians(_CutOff)));
+
+			jassert(_spriteLight._uniformCube->spotLight_outerCutOff);
+			_spriteLight._uniformCube->spotLight_outerCutOff->set(glm::cos(glm::radians(_OuterCutOff)));
+
+
+			_spriteLight.draw();
+			
+			jassert(_shaderProgramLamp->_shader);
+
+			auto m = glm::scale(glm::translate(glm::mat4(1.0f), lightPos), glm::vec3(.4f));
+			_spriteLamp.setModel(m);
+
+			_shaderProgramLamp->_shader->use();
+			_spriteLamp.draw();
 		}
 
 		//==============================================================================
