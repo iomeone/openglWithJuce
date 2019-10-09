@@ -243,7 +243,7 @@ namespace T14 {
 		{
 		}
 
-		virtual void initPre() override
+		virtual void setupTexture() override
 		{
 			
 				_pTextureDiffuseMap = TextureCache::getTexture(diffuseMapPath);
@@ -284,23 +284,27 @@ namespace T14 {
 			_uniformCube.reset(new UniformsCube(ogc, *shader));
 		}
 
-		virtual void drawPost()
+
+		virtual void bindTexture() override
 		{
-				_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
-				if (_pTextureDiffuseMap)
-					_pTextureDiffuseMap->bind();
-				else return;
+			_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
+			if (_pTextureDiffuseMap)
+				_pTextureDiffuseMap->bind();
+			else return;
 
-				_openGLContext.extensions.glActiveTexture(GL_TEXTURE1);
-				if (_pTextureSpecularMap)
-					_pTextureSpecularMap->bind();
-				else return;
+			_openGLContext.extensions.glActiveTexture(GL_TEXTURE1);
+			if (_pTextureSpecularMap)
+				_pTextureSpecularMap->bind();
+			else return;
 
-				if (_uniformCube->material_diffuse)
-					_uniformCube->material_diffuse->set(0);
-				if (_uniformCube->material_specular)
-					_uniformCube->material_specular->set(1);
+			if (_uniformCube->material_diffuse)
+				_uniformCube->material_diffuse->set(0);
+			if (_uniformCube->material_specular)
+				_uniformCube->material_specular->set(1);
+		}
 
+		virtual void drawPost() override
+		{
 			static float sa = 0.005;
 			for (unsigned int i = 0; i < 10; i++)
 			{
@@ -370,6 +374,9 @@ namespace T14 {
 		{
 			_uniformLamp.reset(new UniformsBase(ogc, *shader));
 		}
+
+		virtual void setupTexture() override {}
+		virtual void bindTexture() override{}
 
 		virtual void drawPost() override
 		{

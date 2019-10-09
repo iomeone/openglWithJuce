@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="lbTQtQ" name="openglWithJuce" projectType="guiapp" jucerVersion="5.4.3"
-              headerPath="./../../source" defines="JUCE_OPENGL3">
+              headerPath="./../../source&#10;./../../ThirdParty/assimp/include"
+              defines="JUCE_OPENGL3">
   <MAINGROUP id="WwC13L" name="openglWithJuce">
     <GROUP id="{B133A227-1C67-EE07-D5F8-842F1CE10454}" name="Utility">
       <FILE id="hA5qj1" name="ValueTreeView.cpp" compile="1" resource="0"

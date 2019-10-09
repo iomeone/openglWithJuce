@@ -1020,6 +1020,7 @@
 					"../../JuceLibraryCode",
 					"../../JuceLibraryCode/modules",
 					"./../../source",
+					"./../../ThirdParty/assimp/include",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-App.plist;
@@ -1065,6 +1066,7 @@
 					"../../JuceLibraryCode",
 					"../../JuceLibraryCode/modules",
 					"./../../source",
+					"./../../ThirdParty/assimp/include",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info-App.plist;

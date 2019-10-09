@@ -58,14 +58,16 @@ public:
 		_openGLContext.extensions.glDeleteBuffers(1, &VBO);
 	}
 
-	virtual void initPre() {};
+	virtual void setupTexture() = 0;
 	virtual void initBuffer() = 0;
+
+	virtual void bindTexture() = 0;
 	virtual void drawPost() = 0;
 	virtual UniformsBase * getUniformBase() = 0;
 
 	void init()
 	{
-		initPre();
+		setupTexture();
 		_openGLContext.extensions.glGenVertexArrays(1, &VAO);
 		_openGLContext.extensions.glGenBuffers(1, &VBO);
 
@@ -103,6 +105,7 @@ public:
 			getUniformBase()->model->setMatrix4(glm::value_ptr(_model), 1, GL_FALSE);
 		}
 
+		bindTexture();
 		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 		drawPost();
 		_openGLContext.extensions.glBindVertexArray(0);

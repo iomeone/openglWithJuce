@@ -149,7 +149,7 @@ namespace T13 {
 		{
 		}
 
-		virtual void initPre() override
+		virtual void setupTexture() override
 		{
 
 			_pTextureDiffuseMap = TextureCache::getTexture(diffuseMapPath);
@@ -192,8 +192,24 @@ namespace T13 {
 		}
 
 
+		virtual void bindTexture() override
+		{
+			_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
+			if (_pTextureDiffuseMap)
+				_pTextureDiffuseMap->bind();
+			else return;
 
-		virtual void drawPost()
+			_openGLContext.extensions.glActiveTexture(GL_TEXTURE1);
+			if (_pTextureSpecularMap)
+				_pTextureSpecularMap->bind();
+			else return;
+
+			if (_uniformCube->material_diffuse)
+				_uniformCube->material_diffuse->set(0);
+			if (_uniformCube->material_specular)
+				_uniformCube->material_specular->set(1);
+		}
+		virtual void drawPost() override
 		{
 			// positions all containers
 			static glm::vec3 cubePositions[] = {
@@ -209,23 +225,7 @@ namespace T13 {
 										glm::vec3(-1.3f,  1.0f, -1.5f)
 			};
 
-			_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
-			if (_pTextureDiffuseMap)
-				_pTextureDiffuseMap->bind();
-			else return;
-
-			_openGLContext.extensions.glActiveTexture(GL_TEXTURE1);
-			if (_pTextureSpecularMap)
-				_pTextureSpecularMap->bind();
-			else return;
-
-			if (_uniformCube->material_diffuse)
-				_uniformCube->material_diffuse->set(0);
-			if (_uniformCube->material_specular)
-				_uniformCube->material_specular->set(1);
-
-
-
+			
 			_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
 
@@ -301,12 +301,11 @@ namespace T13 {
 			_uniformLamp.reset(new UniformsBase(ogc, *shader));
 		}
 
+		virtual void setupTexture() override {}
+		virtual void bindTexture() override {}
 		virtual void drawPost() override
 		{
-
 			glDrawArrays(GL_TRIANGLES, 0, 36);
-
-
 		}
 
 
@@ -707,7 +706,7 @@ namespace T13 {
 		bool init{ false };
 
 
-		glm::vec3 lightPos{ 2.f, 0.0f, 2.0f };
+		glm::vec3 lightPos{ 1.f, 0.0f, 2.0f };
 
 
 		float _Constant{ 1.0f };
