@@ -12,11 +12,11 @@
 namespace T13 {
 	const String tutorialLink = "learnopengl.com/Lighting/Light-casters";
 
-	const String lightVertexFilename = "T14ColorsVertex.h";
-	const String lightFragmentFileName = "T14ColorsFragment.h";
+	const String lightVertexFilename = "T13ColorsVertex.h";
+	const String lightFragmentFileName = "T13ColorsFragment.h";
 
-	const String lampVertexFilename = "T14LampVertex.h";
-	const String lampFragmentFileName = "T14LampFragment.h";
+	const String lampVertexFilename = "T13LampVertex.h";
+	const String lampFragmentFileName = "T13LampFragment.h";
 
 
 	struct UniformsCube : public UniformsBase
@@ -706,7 +706,7 @@ namespace T13 {
 		bool init{ false };
 
 
-		glm::vec3 lightPos{ 1.f, 0.0f, 2.0f };
+		glm::vec3 lightPos{ 2.f, 0.0f, 2.0f };
 
 
 		float _Constant{ 1.0f };
