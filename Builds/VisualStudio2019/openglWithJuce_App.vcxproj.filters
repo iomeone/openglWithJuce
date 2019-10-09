@@ -8,6 +8,9 @@
     <Filter Include="openglWithJuce\Shader">
       <UniqueIdentifier>{5A915126-A968-D910-5404-8AEFA812C1CF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="openglWithJuce\Engine\ModelLoader">
+      <UniqueIdentifier>{9AFF954E-8F95-9DBC-36DE-B544E2B76A04}</UniqueIdentifier>
+    </Filter>
     <Filter Include="openglWithJuce\Engine">
       <UniqueIdentifier>{661CF54D-A66D-B033-A642-4A66CFBF6585}</UniqueIdentifier>
     </Filter>
@@ -209,6 +212,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT6.h">
       <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Mesh.h">
+      <Filter>openglWithJuce\Engine\ModelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Model.h">
+      <Filter>openglWithJuce\Engine\ModelLoader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Camera.h">
       <Filter>openglWithJuce\Engine</Filter>

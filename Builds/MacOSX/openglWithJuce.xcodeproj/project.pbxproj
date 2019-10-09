@@ -299,6 +299,13 @@
 			path = ../../Source/Shader/T12ColorsVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		3A9A7D8314D471C858A57C82 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Model.h;
+			path = ../../Source/Model.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		3AA27D12F0BA3B7C70290C5C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -402,6 +409,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = T11LampFragment.h;
 			path = ../../Source/Shader/T11LampFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		6D927A2DEF57393989103796 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Mesh.h;
+			path = ../../Source/Mesh.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		720136A83E4CB87232C3EF52 = {
@@ -863,9 +877,19 @@
 			name = Shader;
 			sourceTree = "<group>";
 		};
+		147CC8FBF2A457EC28F881AA = {
+			isa = PBXGroup;
+			children = (
+				6D927A2DEF57393989103796,
+				3A9A7D8314D471C858A57C82,
+			);
+			name = ModelLoader;
+			sourceTree = "<group>";
+		};
 		79390D4DEAC6512B514A024D = {
 			isa = PBXGroup;
 			children = (
+				147CC8FBF2A457EC28F881AA,
 				53CCC3C1E179A464D885395D,
 				1E21BF4A5A526E0F34DBAFA4,
 				28142ABDE575919B85545FB6,

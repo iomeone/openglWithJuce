@@ -81,6 +81,10 @@
       <FILE id="O9XFzV" name="vertexT6.h" compile="0" resource="0" file="Source/Shader/vertexT6.h"/>
     </GROUP>
     <GROUP id="{B1DAD2A2-892A-BB42-C3E1-9D2B1B6FDD70}" name="Engine">
+      <GROUP id="{ACC961C9-662C-0B30-FA7B-2782186E6DD2}" name="ModelLoader">
+        <FILE id="tUAB3x" name="Mesh.h" compile="0" resource="0" file="Source/Mesh.h"/>
+        <FILE id="eAelE4" name="Model.h" compile="0" resource="0" file="Source/Model.h"/>
+      </GROUP>
       <FILE id="DhjyiY" name="Camera.h" compile="0" resource="0" file="Source/Camera.h"/>
       <FILE id="i5qh9u" name="ShaderProgram.h" compile="0" resource="0" file="Source/ShaderProgram.h"/>
       <FILE id="fECTis" name="SpriteBase.h" compile="0" resource="0" file="Source/SpriteBase.h"/>

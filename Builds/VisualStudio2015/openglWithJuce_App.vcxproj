@@ -201,6 +201,8 @@
     <ClInclude Include="..\..\Source\Shader\vertexT4.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT5.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT6.h"/>
+    <ClInclude Include="..\..\Source\Mesh.h"/>
+    <ClInclude Include="..\..\Source\Model.h"/>
     <ClInclude Include="..\..\Source\Camera.h"/>
     <ClInclude Include="..\..\Source\ShaderProgram.h"/>
     <ClInclude Include="..\..\Source\SpriteBase.h"/>
