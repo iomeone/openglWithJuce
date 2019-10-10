@@ -159,6 +159,13 @@
 			path = ../../Source/Shader/T14LampVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		08E80BAECE037A0EC45AE653 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T15ModelFragment.h;
+			path = ../../Source/Shader/T15ModelFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		139CD54986567409B87ED944 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -507,6 +514,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = "T7LampFragment .h";
 			path = "../../Source/Shader/T7LampFragment .h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		8BD346119B044118BA664F6A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T15ModelVertex.h;
+			path = ../../Source/Shader/T15ModelVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		8FCD5A74494DFCD48571CB99 = {
@@ -874,6 +888,8 @@
 				AF8B236083ECD6F1ED9B9550,
 				F3497E75DC0C96FD2D5803B9,
 				05DC98A9F53854F00A2BD935,
+				08E80BAECE037A0EC45AE653,
+				8BD346119B044118BA664F6A,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,

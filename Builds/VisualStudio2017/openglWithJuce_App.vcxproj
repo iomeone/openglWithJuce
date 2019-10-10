@@ -195,6 +195,8 @@
     <ClInclude Include="..\..\Source\Shader\T14ColorsVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\T14LampFragment.h"/>
     <ClInclude Include="..\..\Source\Shader\T14LampVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T15ModelFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T15ModelVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>

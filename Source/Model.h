@@ -46,17 +46,27 @@ public:
 		loadModel(path);
 	}
 
-	// draws the model, and thus all its meshes
-	void Draw()
+	void init()
 	{
-		for (unsigned int i = 0; i < meshes.size(); i++)
-			meshes[i].draw();
+		for (auto& mesh : meshes)	mesh.init();
 	}
 
-	void setUniformEnv(OpenGLShaderProgram *shader)
+	// draws the model, and thus all its meshes
+	void Draw()	
+	{
+		for (auto& mesh : meshes)	mesh.draw(); 
+	}
+
+	void setUniformEnv(OpenGLShaderProgram *shader)	
+	{	
+		for (auto& mesh : meshes)	mesh.setUniformEnv(shader);	
+	}
+
+
+	void setScreenWidthAndHeight(float w, float h)
 	{
 		for (auto& mesh : meshes)
-			mesh.setUniformEnv(shader);
+			mesh.setScreenWidthAndHeight(w, h);
 	}
 
 private:
@@ -188,6 +198,14 @@ private:
 		{
 			aiString str;
 			mat->GetTexture(type, i, &str);
+			String textureFullPath = str.C_Str();
+		 
+			if (!File::isAbsolutePath(str.C_Str()))
+			{
+				File f(directory);
+				textureFullPath = f.getParentDirectory().getChildFile(str.C_Str()).getFullPathName();
+			}
+			
 			// check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
 			bool skip = false;
 			for (unsigned int j = 0; j < textures_loaded.size(); j++)
@@ -203,7 +221,7 @@ private:
 			{   // if texture hasn't been loaded already, load it
 				Texture texture;
 				texture.type = typeName;
-				texture.path = str.C_Str();
+				texture.path = textureFullPath.toStdString();
 				textures.push_back(texture);
 				textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
 			}

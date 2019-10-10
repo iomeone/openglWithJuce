@@ -68,8 +68,8 @@ public:
 				nu->set(textureUnitIndex);
 				_UniformMap[uniformName] = nu;
 			}
-			else
-				jassertfalse;
+			//else
+			//	jassertfalse;
 
 			DBG("new texture: " << uniformName);
 		}
@@ -174,14 +174,13 @@ public:
 			else if (name == "texture_height")
 				number = std::to_string(heightNr++); // transfer unsigned int to stream
 
-													 // now set the sampler to the correct texture unit
-
+			// now set the sampler to the correct texture unit
 			uniformMesh->setTextureUniformIndex((name + number).c_str(), i);
-			//	_openGLContext.extensions.glUniform1i(glGetUniformLocation(shader.ID, (name + number).c_str()), i);
 
 			// and finally bind the texture
+			textures[i].tex = TextureCache::getTexture(textures[i].path);
 			textures[i].tex->bind();
-			//glBindTexture(GL_TEXTURE_2D, textures[i].id);
+
 		}
 	}
 

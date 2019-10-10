@@ -73,6 +73,10 @@
       <FILE id="ZS7r7I" name="T14LampFragment.h" compile="0" resource="0"
             file="Source/Shader/T14LampFragment.h"/>
       <FILE id="fo85Fj" name="T14LampVertex.h" compile="0" resource="0" file="Source/Shader/T14LampVertex.h"/>
+      <FILE id="rG3mNT" name="T15ModelFragment.h" compile="0" resource="0"
+            file="Source/Shader/T15ModelFragment.h"/>
+      <FILE id="sHQru8" name="T15ModelVertex.h" compile="0" resource="0"
+            file="Source/Shader/T15ModelVertex.h"/>
       <FILE id="PJcivr" name="vertexT1.h" compile="0" resource="0" file="Source/Shader/vertexT1.h"/>
       <FILE id="lDtqGz" name="vertexT2.h" compile="0" resource="0" file="Source/Shader/vertexT2.h"/>
       <FILE id="irgfxX" name="vertexT3.h" compile="0" resource="0" file="Source/Shader/vertexT3.h"/>
