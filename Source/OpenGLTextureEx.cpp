@@ -49,6 +49,16 @@
 			JUCE_CHECK_OPENGL_ERROR
 				glGenTextures(1, &textureID);
 			glBindTexture(GL_TEXTURE_2D, textureID);
+
+#if JUCE_OPENGL3
+			typedef void(*glGenerateMipmap_type)(GLuint array);
+			glGenerateMipmap_type pglGenerateMipmap;
+			pglGenerateMipmap = (glGenerateMipmap_type)OpenGLHelpers::getExtensionFunction("glGenerateMipmap");
+			if (pglGenerateMipmap)
+				pglGenerateMipmap(GL_TEXTURE_2D);
+#else
+#endif
+
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
 			//auto glMagFilter = (ownerContext->texMagFilter == OpenGLContext::linear ? GL_LINEAR : GL_NEAREST);
