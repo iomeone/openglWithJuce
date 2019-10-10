@@ -93,6 +93,7 @@ namespace T15 {
 					_lblCompileInfo->setText(_shaderProgram->getCompileResult() + " \n" + tutorialLink, NotificationType::dontSendNotification);
 				}
 			}
+			glDisable(GL_BLEND);
 			glEnable(GL_DEPTH_TEST);
 			OpenGLHelpers::clear(juce::Colour(0.2f, 0.3f, 0.3f, 1.0f));
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
