@@ -188,7 +188,7 @@ namespace T3 {
 		OpenGLContext& _openGLContext;
 
 		bool& _useUniform;
-		OpenGLTexture* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
+		OpenGLTextureEx* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
 
 		std::unique_ptr<UniformsTutorial3> _uniforms;
 		//std::unique_ptr<AttributesTutorial3> _attributes;

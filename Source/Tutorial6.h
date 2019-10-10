@@ -287,7 +287,7 @@ namespace T6 {
 		Camera& _camera;
 
 		bool& _useCircle;
-		OpenGLTexture* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
+		OpenGLTextureEx* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
 
 		std::unique_ptr<UniformsTutorial6> _uniforms;
 

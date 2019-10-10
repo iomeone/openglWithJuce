@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <map>
+#include "OpenGLTextureEx.h"
 //This caches the textures so that multiple sprites can use the same textures
 class TextureCache
 {
@@ -22,7 +23,7 @@ public:
 	}
 	static void clear()
 	{
-		std::map<String, OpenGLTexture* >& _textureMap = TextureCache::getTextureMap();
+		std::map<String, OpenGLTextureEx* >& _textureMap = TextureCache::getTextureMap();
 		for (auto i : _textureMap)
 		{
 			delete i.second;
@@ -30,7 +31,7 @@ public:
 		_textureMap.clear();
 			
 	}
-	static  OpenGLTexture* getTexture(String texturePath)
+	static  OpenGLTextureEx* getTexture(String texturePath)
 	{
 		//lookup the texture and see if its in the map
 		auto mit = getTextureMap().find(texturePath);
@@ -46,9 +47,9 @@ public:
 			}
 			else
 			{
-				std::map<String, OpenGLTexture* >& _textureMap = TextureCache::getTextureMap();
+				std::map<String, OpenGLTextureEx* >& _textureMap = TextureCache::getTextureMap();
 				auto image = juce::ImageFileFormat::loadFrom(f);
-				OpenGLTexture* pTexture = new OpenGLTexture();
+				OpenGLTextureEx* pTexture = new OpenGLTextureEx();
 				pTexture->loadImage(image);
 				_textureMap[texturePath] = pTexture;
 				return pTexture;
@@ -60,9 +61,9 @@ public:
 
 public:
 
-	static std::map<String, OpenGLTexture* > & getTextureMap()
+	static std::map<String, OpenGLTextureEx* > & getTextureMap()
 	{
-		static std::map<String, OpenGLTexture* > _textureMap;
+		static std::map<String, OpenGLTextureEx* > _textureMap;
 		return _textureMap;
 	}
 };

@@ -105,6 +105,7 @@ namespace T15 {
 				_shaderProgram->_shader->use();
 				_model.Draw();
 			}
+			glEnable(GL_BLEND);
 		}
 
 		//==============================================================================

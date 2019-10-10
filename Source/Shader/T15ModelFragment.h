@@ -17,7 +17,7 @@ uniform Material material;
 
 void main()
 {    
-	FragColor = texture(texture_diffuse1, TexCoords);
+	FragColor = texture(texture_diffuse1, TexCoords) * 6.0;
 /*   	FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);
 	
 	vec3 result = light * material.ambient + light * material.diffuse + light * material.specular;

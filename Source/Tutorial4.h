@@ -200,7 +200,7 @@ namespace T4 {
 		OpenGLContext& _openGLContext;
 
 		bool& _useUniform;
-		OpenGLTexture* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
+		OpenGLTextureEx* _pTextureBox{ nullptr }, *_pTextureFace{ nullptr };
 
 		std::unique_ptr<UniformsTutorial4> _uniforms;
 

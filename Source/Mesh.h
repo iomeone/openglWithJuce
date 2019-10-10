@@ -40,7 +40,7 @@ struct Vertex {
 };
 
 struct Texture {
-	OpenGLTexture* tex{ nullptr };
+	OpenGLTextureEx* tex{ nullptr };
     string type;
     string path;
 };

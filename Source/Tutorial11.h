@@ -301,7 +301,7 @@ namespace T11 {
         
         glm::mat4 _model;
         
-        OpenGLTexture* _pTextureDiffuseMap{ nullptr }, *_pTextureSpecularMap{ nullptr };
+        OpenGLTextureEx* _pTextureDiffuseMap{ nullptr }, *_pTextureSpecularMap{ nullptr };
         
         bool _useTexture {false};
     };

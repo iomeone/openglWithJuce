@@ -328,7 +328,7 @@ namespace T14 {
  
 	public:
 
-		OpenGLTexture* _pTextureDiffuseMap{ nullptr }, *_pTextureSpecularMap{ nullptr };
+		OpenGLTextureEx* _pTextureDiffuseMap{ nullptr }, *_pTextureSpecularMap{ nullptr };
 
 		String diffuseMapPath;
 		String specularMapPath;

@@ -138,6 +138,7 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\OpenGLTextureEx.cpp"/>
     <ClCompile Include="..\..\Source\ValueTreeView.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
@@ -156,6 +157,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\OpenGLTextureEx.h"/>
     <ClInclude Include="..\..\Source\ValueTreeView.h"/>
     <ClInclude Include="..\..\Source\Shader\fragmentT1.h"/>
     <ClInclude Include="..\..\Source\Shader\fragmentT2.h"/>

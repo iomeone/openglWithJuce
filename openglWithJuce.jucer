@@ -5,6 +5,10 @@
               defines="JUCE_OPENGL3">
   <MAINGROUP id="WwC13L" name="openglWithJuce">
     <GROUP id="{B133A227-1C67-EE07-D5F8-842F1CE10454}" name="Utility">
+      <FILE id="K2Ru44" name="OpenGLTextureEx.cpp" compile="1" resource="0"
+            file="Source/OpenGLTextureEx.cpp"/>
+      <FILE id="zTlm89" name="OpenGLTextureEx.h" compile="0" resource="0"
+            file="Source/OpenGLTextureEx.h"/>
       <FILE id="hA5qj1" name="ValueTreeView.cpp" compile="1" resource="0"
             file="Source/ValueTreeView.cpp"/>
       <FILE id="XCfZYN" name="ValueTreeView.h" compile="0" resource="0" file="Source/ValueTreeView.h"/>

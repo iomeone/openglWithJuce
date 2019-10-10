@@ -28,6 +28,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\OpenGLTextureEx.cpp">
+      <Filter>openglWithJuce\Utility</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ValueTreeView.cpp">
       <Filter>openglWithJuce\Utility</Filter>
     </ClCompile>
@@ -78,6 +81,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\OpenGLTextureEx.h">
+      <Filter>openglWithJuce\Utility</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ValueTreeView.h">
       <Filter>openglWithJuce\Utility</Filter>
     </ClInclude>

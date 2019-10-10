@@ -53,6 +53,10 @@
 			isa = PBXBuildFile;
 			fileRef = 20F81EFD5B1C783258F175FE;
 		};
+		06955D37D1C6804899BB09C2 = {
+			isa = PBXBuildFile;
+			fileRef = 6C7F00B66CD707B4612AB4A4;
+		};
 		37D54CDC52CBEAD46E63D710 = {
 			isa = PBXBuildFile;
 			fileRef = A65020481B2650E5D2EBB5C5;
@@ -143,6 +147,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Tutorial5.h;
 			path = ../../Source/Tutorial5.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		05BA6731D59A21454AB9E8C3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = OpenGLTextureEx.h;
+			path = ../../Source/OpenGLTextureEx.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		05DA703710746D2F6D2C3C41 = {
@@ -402,6 +413,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Tutorial7.h;
 			path = ../../Source/Tutorial7.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		6C7F00B66CD707B4612AB4A4 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = OpenGLTextureEx.cpp;
+			path = ../../Source/OpenGLTextureEx.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		6CC35DD479EB051C6EDC69E5 = {
@@ -841,6 +859,8 @@
 		E1F223ABCF9434376C9C5904 = {
 			isa = PBXGroup;
 			children = (
+				6C7F00B66CD707B4612AB4A4,
+				05BA6731D59A21454AB9E8C3,
 				A65020481B2650E5D2EBB5C5,
 				F56C1F25AAEDDE62671C4D31,
 			);
@@ -1252,6 +1272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06955D37D1C6804899BB09C2,
 				37D54CDC52CBEAD46E63D710,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
