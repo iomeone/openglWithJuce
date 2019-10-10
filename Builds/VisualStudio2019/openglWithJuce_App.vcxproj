@@ -221,6 +221,7 @@
     <ClInclude Include="..\..\Source\Tutorial12.h"/>
     <ClInclude Include="..\..\Source\Tutorial13.h"/>
     <ClInclude Include="..\..\Source\Tutorial14.h"/>
+    <ClInclude Include="..\..\Source\Tutorial15.h"/>
     <ClInclude Include="..\..\Source\CompList.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>

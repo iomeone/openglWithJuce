@@ -165,9 +165,9 @@ namespace T5 {
 			_openGLContext.extensions.glBindVertexArray(0);
 		}
 
-		void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
+		void setUniformEnv(OpenGLShaderProgram *shader)
 		{
-			_uniforms.reset(new UniformsTutorial5(ogc, *shader));
+			_uniforms.reset(new UniformsTutorial5(_openGLContext, *shader));
 		}
 
 		void draw()
@@ -357,7 +357,7 @@ namespace T5 {
 			{
 				if (res == 1)
 				{
-					_sprite.setUniformEnv(openGLContext, _shaderProgram->_shader);
+					_sprite.setUniformEnv( _shaderProgram->_shader);
 				}
 
 				const MessageManagerLock mmLock;

@@ -19,8 +19,11 @@
 #include <sstream>
 #include <iostream>
 #include <vector>
+
+
 #include "Camera.h"
 #include "SpriteBase.h"
+#include "TextureCache.h"
 using namespace std;
 
 struct Vertex {
@@ -37,10 +40,52 @@ struct Vertex {
 };
 
 struct Texture {
-    unsigned int id;
+	OpenGLTexture* tex{ nullptr };
     string type;
     string path;
 };
+
+
+class UniformMesh : public UniformsBase
+{
+public:
+	UniformMesh(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) :
+		UniformsBase(openGLContext, shader) {}
+
+	void setTextureUniformIndex(String uniformName, GLint textureUnitIndex )
+	{
+		auto u = _UniformMap.find(uniformName);
+		if ( u != _UniformMap.end())
+		{
+			u->second->set(textureUnitIndex);
+		}
+		else
+		{
+			auto nu = createUniform(_openglContext, _shader, uniformName.getCharPointer());
+			
+			if (nu)
+			{
+				nu->set(textureUnitIndex);
+				_UniformMap[uniformName] = nu;
+			}
+			else
+				jassertfalse;
+
+			DBG("new texture: " << uniformName);
+		}
+	}
+
+	
+	~UniformMesh()
+	{		 
+		for (auto i : _UniformMap) delete i.second;
+	}
+
+	std::map<String, OpenGLShaderProgram::Uniform* > _UniformMap;
+};
+
+
+
 
 class Mesh : public SpriteBaseEx {
 public:
@@ -48,55 +93,30 @@ public:
     vector<Vertex> vertices;
     vector<unsigned int> indices;
     vector<Texture> textures;
-    unsigned int VAO;
+
+	OpenGLContext& _openglContext;
 	
     /*  Functions  */
     // constructor
     Mesh(OpenGLContext& openglContext, Camera& camera, vector<Vertex>& vertices, vector<unsigned int>& indices, vector<Texture>& textures) :
-		SpriteBaseEx(openglContext, camera)
+		SpriteBaseEx(openglContext, camera),
+		_openglContext(openglContext)
     {
         this->vertices = vertices;
         this->indices = indices;
         this->textures = textures;
     }
 
-    // render the mesh
-    void Draw(OpenGLShaderProgram& shader)
-    {
-        // bind appropriate textures
-        unsigned int diffuseNr  = 1;
-        unsigned int specularNr = 1;
-        unsigned int normalNr   = 1;
-        unsigned int heightNr   = 1;
-        for(unsigned int i = 0; i < textures.size(); i++)
-        {
-            glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
-            // retrieve texture number (the N in diffuse_textureN)
-            string number;
-            string name = textures[i].type;
-            if(name == "texture_diffuse")
-				number = std::to_string(diffuseNr++);
-			else if(name == "texture_specular")
-				number = std::to_string(specularNr++); // transfer unsigned int to stream
-            else if(name == "texture_normal")
-				number = std::to_string(normalNr++); // transfer unsigned int to stream
-             else if(name == "texture_height")
-			    number = std::to_string(heightNr++); // transfer unsigned int to stream
+   
 
-													 // now set the sampler to the correct texture unit
-            glUniform1i(glGetUniformLocation(shader.ID, (name + number).c_str()), i);
-            // and finally bind the texture
-            glBindTexture(GL_TEXTURE_2D, textures[i].id);
-        }
-        
-        // draw mesh
-        glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-
-        // always good practice to set everything back to defaults once configured.
-        glActiveTexture(GL_TEXTURE0);
-    }
+	virtual void setupTexture() override
+	{
+		for (auto texture : textures)
+		{
+			texture.tex = TextureCache::getTexture(texture.path);
+			jassert(texture.tex);
+		}
+	}
 
     /*  Functions    */
     // initializes all the buffer objects/arrays
@@ -130,4 +150,60 @@ public:
 		_openGLContext.extensions.glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Bitangent));
 
     }
+
+
+	virtual void bindTexture() override
+	{
+		// bind appropriate textures
+		unsigned int diffuseNr = 1;
+		unsigned int specularNr = 1;
+		unsigned int normalNr = 1;
+		unsigned int heightNr = 1;
+		for (unsigned int i = 0; i < textures.size(); i++)
+		{
+			_openGLContext.extensions.glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
+			// retrieve texture number (the N in diffuse_textureN)
+			string number;
+			string name = textures[i].type;
+			if (name == "texture_diffuse")
+				number = std::to_string(diffuseNr++);
+			else if (name == "texture_specular")
+				number = std::to_string(specularNr++); // transfer unsigned int to stream
+			else if (name == "texture_normal")
+				number = std::to_string(normalNr++); // transfer unsigned int to stream
+			else if (name == "texture_height")
+				number = std::to_string(heightNr++); // transfer unsigned int to stream
+
+													 // now set the sampler to the correct texture unit
+
+			uniformMesh->setTextureUniformIndex((name + number).c_str(), i);
+			//	_openGLContext.extensions.glUniform1i(glGetUniformLocation(shader.ID, (name + number).c_str()), i);
+
+			// and finally bind the texture
+			textures[i].tex->bind();
+			//glBindTexture(GL_TEXTURE_2D, textures[i].id);
+		}
+	}
+
+
+	virtual void drawPost()	override
+	{
+		// draw mesh
+		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+	}
+
+	virtual UniformsBase * getUniformBase() override
+	{
+		return (UniformsBase*)uniformMesh.get();
+	}
+
+	void setUniformEnv( OpenGLShaderProgram *shader)
+	{
+		uniformMesh.reset(new UniformMesh(_openGLContext, *shader));
+	}
+
+
+	std::unique_ptr<UniformMesh> uniformMesh{ nullptr };
+	 ;
+
 };

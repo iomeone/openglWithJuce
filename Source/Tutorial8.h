@@ -169,9 +169,9 @@ namespace T8 {
 			_openGLContext.extensions.glBindVertexArray(0);
 		}
 
-		void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
+		void setUniformEnv(OpenGLShaderProgram *shader)
 		{
-			_uniforms.reset(new Uniforms(ogc, *shader));
+			_uniforms.reset(new Uniforms(_openGLContext, *shader));
 		}
 
 		void draw()
@@ -291,7 +291,7 @@ namespace T8 {
 			{
 				if (res == 1)
 				{
-					sprite.setUniformEnv(openGLContext, shaderProg->_shader);
+					sprite.setUniformEnv(shaderProg->_shader);
 				}
 
 				const MessageManagerLock mmLock;

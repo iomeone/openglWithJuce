@@ -754,6 +754,13 @@
 			path = System/Library/Frameworks/WebKit.framework;
 			sourceTree = SDKROOT;
 		};
+		EE6354C9DA5215CF0F68CD18 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Tutorial15.h;
+			path = ../../Source/Tutorial15.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		EEF7A01BE85FB311D5405182 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -915,6 +922,7 @@
 				338D6BA4A89D81F7E7DFE170,
 				9641F97028E9B7226D214DC7,
 				B608D26206EC7931DCE611F3,
+				EE6354C9DA5215CF0F68CD18,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";

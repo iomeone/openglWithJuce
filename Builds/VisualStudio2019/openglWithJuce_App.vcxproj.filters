@@ -273,6 +273,9 @@
     <ClInclude Include="..\..\Source\Tutorial14.h">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Tutorial15.h">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\CompList.h">
       <Filter>openglWithJuce\Source</Filter>
     </ClInclude>

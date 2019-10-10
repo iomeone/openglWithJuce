@@ -21,6 +21,10 @@
 #include <iostream>
 #include <map>
 #include <vector>
+
+#include "Camera.h"
+
+#include "Mesh.h"
 using namespace std;
 
 class Model
@@ -31,19 +35,28 @@ public:
 	vector<Mesh> meshes;
 	string directory;
 	bool gammaCorrection;
+	OpenGLContext& _openglContext;
+	Camera& _camera;
 
 	/*  Functions   */
 	// constructor, expects a filepath to a 3D model.
-	Model(string const &path, bool gamma = false) : gammaCorrection(gamma)
+	Model( OpenGLContext& openglContext, Camera camera, bool gamma = false) : gammaCorrection(gamma), _openglContext(openglContext), _camera(camera) {}
+	void load(string const &path)
 	{
 		loadModel(path);
 	}
 
 	// draws the model, and thus all its meshes
-	void Draw(Shader shader)
+	void Draw()
 	{
 		for (unsigned int i = 0; i < meshes.size(); i++)
-			meshes[i].Draw(shader);
+			meshes[i].draw();
+	}
+
+	void setUniformEnv(OpenGLShaderProgram *shader)
+	{
+		for (auto& mesh : meshes)
+			mesh.setUniformEnv(shader);
 	}
 
 private:
@@ -163,7 +176,7 @@ private:
 		textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
 		// return a mesh object created from the extracted mesh data
-		return Mesh(vertices, indices, textures);
+		return Mesh(_openglContext, _camera, vertices, indices, textures);
 	}
 
 	// checks all material textures of a given type and loads the textures if they're not loaded yet.
@@ -189,7 +202,6 @@ private:
 			if (!skip)
 			{   // if texture hasn't been loaded already, load it
 				Texture texture;
-				texture.id = TextureFromFile(str.C_Str(), this->directory);
 				texture.type = typeName;
 				texture.path = str.C_Str();
 				textures.push_back(texture);

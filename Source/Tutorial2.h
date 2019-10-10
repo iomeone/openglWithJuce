@@ -100,9 +100,9 @@ namespace T2 {
 			_openGLContext.extensions.glBindVertexArray(0);
 		}
 
-		void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
+		void setUniformEnv( OpenGLShaderProgram *shader)
 		{
-			_uniforms.reset(new Uniforms(ogc, *shader));
+			_uniforms.reset(new Uniforms(_openGLContext, *shader));
 		}
 
 		void draw()
@@ -190,7 +190,7 @@ namespace T2 {
 			{
 				if (res == 1)
 				{
-					_sprite.setUniformEnv(openGLContext, _shaderProgram->_shader);
+					_sprite.setUniformEnv( _shaderProgram->_shader);
 				}
 
 

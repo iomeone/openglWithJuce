@@ -165,6 +165,7 @@ namespace T13 {
 		virtual void initBuffer() override
 		{
 			
+			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -186,9 +187,9 @@ namespace T13 {
 			return (UniformsBase*)_uniformCube.get();
 		}
 
-		void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
+		void setUniformEnv( OpenGLShaderProgram *shader)
 		{
-			_uniformCube.reset(new UniformsCube(ogc, *shader));
+			_uniformCube.reset(new UniformsCube(_openGLContext, *shader));
 		}
 
 
@@ -275,6 +276,7 @@ namespace T13 {
 		virtual void initBuffer() override
 		{
 			 
+			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute
@@ -296,9 +298,9 @@ namespace T13 {
 			return (UniformsBase*)_uniformLamp.get();
 		}
 
-		void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
+		void setUniformEnv( OpenGLShaderProgram *shader)
 		{
-			_uniformLamp.reset(new UniformsBase(ogc, *shader));
+			_uniformLamp.reset(new UniformsBase(_openGLContext, *shader));
 		}
 
 		virtual void setupTexture() override {}
@@ -414,7 +416,7 @@ namespace T13 {
 
 			if (res == 1)
 			{
-				_spriteLight.setUniformEnv(openGLContext, _shaderProgramLight->_shader);
+				_spriteLight.setUniformEnv(_shaderProgramLight->_shader);
 			}
 			else if (res == 0)
 			{
@@ -427,7 +429,7 @@ namespace T13 {
 
 			if (res == 1)
 			{
-				_spriteLamp.setUniformEnv(openGLContext, _shaderProgramLamp->_shader);
+				_spriteLamp.setUniformEnv(_shaderProgramLamp->_shader);
 			}
 			else if (res == 0)
 			{

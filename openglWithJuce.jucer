@@ -105,6 +105,7 @@
       <FILE id="K33UTj" name="Tutorial12.h" compile="0" resource="0" file="Source/Tutorial12.h"/>
       <FILE id="QJNkwW" name="Tutorial13.h" compile="0" resource="0" file="Source/Tutorial13.h"/>
       <FILE id="jIiaPq" name="Tutorial14.h" compile="0" resource="0" file="Source/Tutorial14.h"/>
+      <FILE id="tdCdsq" name="Tutorial15.h" compile="0" resource="0" file="Source/Tutorial15.h"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>

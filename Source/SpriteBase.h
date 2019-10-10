@@ -13,7 +13,7 @@
 class UniformsBase
 {
 public:
-	UniformsBase(OpenGLContext& openGLContext, OpenGLShaderProgram& shader)
+	UniformsBase(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) : _openglContext(openGLContext), _shader(shader)
 	{
 		model = createUniform(openGLContext, shader, "model");
 		view = createUniform(openGLContext, shader, "view");
@@ -32,6 +32,9 @@ public:
 
 		return new OpenGLShaderProgram::Uniform(shader, uniformName);
 	}
+
+	OpenGLContext& _openglContext;
+	OpenGLShaderProgram& _shader;
 };
 
 
@@ -73,13 +76,9 @@ public:
 
 
 		_openGLContext.extensions.glBindVertexArray(VAO);
-
-		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-
+		 
 		initBuffer();
-
-
+		 
 		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
 		_openGLContext.extensions.glBindVertexArray(0);
 	}
@@ -210,6 +209,8 @@ public:
 		drawPost();
 		_openGLContext.extensions.glBindVertexArray(0);
 
+		// always good practice to set everything back to defaults once configured.
+		_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
 		return;
 	}
 	void setScreenWidthAndHeight(float w, float h)

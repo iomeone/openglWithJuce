@@ -142,10 +142,10 @@ namespace T3 {
 			_openGLContext.extensions.glBindVertexArray(0);
 		}
 
-		void setUniformEnv(OpenGLContext& ogc, OpenGLShaderProgram *shader)
+		void setUniformEnv(OpenGLShaderProgram *shader)
 		{
 			//_attributes.reset(new AttributesTutorial3(ogc, *shader));
-			_uniforms.reset(new UniformsTutorial3(ogc, *shader));
+			_uniforms.reset(new UniformsTutorial3(_openGLContext, *shader));
 
 		}
 
@@ -253,7 +253,7 @@ namespace T3 {
 			{
 				if (res == 1)
 				{
-					_sprite.setUniformEnv(openGLContext, _shaderProgram->_shader);
+					_sprite.setUniformEnv(_shaderProgram->_shader);
 				}
 
 				const MessageManagerLock mmLock;
