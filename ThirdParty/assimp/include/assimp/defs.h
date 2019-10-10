@@ -50,7 +50,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef AI_DEFINES_H_INC
 #define AI_DEFINES_H_INC
 
-#include <assimp/config.h>
+#ifdef _WIN64
+#include <assimp/config_WinX64.h>
+#elif __APPLE_
+#   error "todo: build mac version of assimp and corresponding head file"
+#endif
+
+
 
 //////////////////////////////////////////////////////////////////////////
 /* Define ASSIMP_BUILD_NO_XX_IMPORTER to disable a specific
