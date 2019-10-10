@@ -26,3 +26,6 @@ Just open the solution file in master/Builds (current only support xcode visual 
 
 ## Tutorial8:Basic-Lighting  https://learnopengl.com/Lighting/Basic-Lighting
 ![Basic-Lighting](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Basic-Lighting.gif)  
+
+## 15:Model-Loading  https://learnopengl.com/Model-Loading/Model
+![Model-Loading](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/model.png)  

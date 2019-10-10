@@ -43,9 +43,12 @@ namespace T15 {
 			openGLContext.setOpenGLVersionRequired(juce::OpenGLContext::openGL3_2);
 			openGLContext.setComponentPaintingEnabled(true);
 
+			setWantsKeyboardFocus(true);
+
 			_lblCompileInfo.reset(new Label("compileInfo", "Shader source build info."));
 			addAndMakeVisible(_lblCompileInfo.get());
 
+			_camera.ProcessKeyboard(Camera_Movement::BACKWARD, 10.0);
 			setSize(800, 600);
 		}
 		~Tutorial15()
