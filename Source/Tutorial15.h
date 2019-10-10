@@ -22,10 +22,6 @@
 #endif
 
 
-
-
-
-
 namespace T15 {
 	const String tutorialLink = "learnopengl.com/Model-Loading/Model";
 	const String vertexFilename = "T15ModelVertex.h";
@@ -72,7 +68,6 @@ namespace T15 {
 			 _model.load(objFile.getFullPathName().toStdString());
 
 			 _model.init();
-			//_sprite.init(textureBoxFile, textureAwsomeFace);
 		}
 		void shutdown() override
 		{
@@ -129,8 +124,6 @@ namespace T15 {
 
 		void buttonClicked(Button* buttonThatWasClicked) override
 		{
-
-		
 			//[UserbuttonClicked_Post]
 			//[/UserbuttonClicked_Post]
 		}
@@ -196,8 +189,6 @@ namespace T15 {
 			firstMouse = true;
 		}
 
-
-
 		void mouseExit(const MouseEvent& event) override
 		{
 			firstMouse = true;
@@ -216,10 +207,8 @@ namespace T15 {
 		//==============================================================================
 		// Your private member variables go here...
 		Camera _camera;
-		//SpriteTutorial6 _sprite;
 		std::unique_ptr<ShaderProgram> _shaderProgram;
 		std::unique_ptr<Label> _lblCompileInfo{ nullptr };
-		bool init{ false };
  
 		Model _model;
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial15)
