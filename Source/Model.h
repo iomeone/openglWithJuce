@@ -54,7 +54,24 @@ public:
 	// draws the model, and thus all its meshes
 	void Draw()	
 	{
-		for (auto& mesh : meshes)	mesh.draw(); 
+		for (auto& mesh : meshes)
+		{
+			if(mesh.uniformMesh->material_ambient)
+			mesh.uniformMesh->material_ambient->set( mesh._material.Ambient.r, mesh._material.Ambient.g, mesh._material.Ambient.b);
+
+			if (mesh.uniformMesh->material_diffuse)
+			mesh.uniformMesh->material_diffuse->set(mesh._material.Diffuse.r, mesh._material.Diffuse.g, mesh._material.Diffuse.b);
+
+			if (mesh.uniformMesh->material_specular)
+			mesh.uniformMesh->material_specular->set(mesh._material.Specular.r, mesh._material.Specular.g, mesh._material.Specular.b);
+
+			if (mesh.uniformMesh->material_shininess)
+			mesh.uniformMesh->material_shininess->set(mesh._material.Shininess);
+
+
+			mesh.draw();
+		}
+
 	}
 
 	void setUniformEnv(OpenGLShaderProgram *shader)	
@@ -185,8 +202,9 @@ private:
 		std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
 		textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
+		auto m = loadMaterial(material);
 		// return a mesh object created from the extracted mesh data
-		return Mesh(_openglContext, _camera, vertices, indices, textures);
+		return Mesh(_openglContext, _camera, vertices, indices, textures, m);
 	}
 
 	// checks all material textures of a given type and loads the textures if they're not loaded yet.
@@ -227,5 +245,26 @@ private:
 			}
 		}
 		return textures;
+	}
+
+
+	Material loadMaterial(aiMaterial* mat) {
+		Material material;
+		aiColor3D color(0.f, 0.f, 0.f);
+		float shininess;
+
+		mat->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+		material.Diffuse = glm::vec3(color.r, color.b, color.g);
+
+		mat->Get(AI_MATKEY_COLOR_AMBIENT, color);
+		material.Ambient = glm::vec3(color.r, color.b, color.g);
+
+		mat->Get(AI_MATKEY_COLOR_SPECULAR, color);
+		material.Specular = glm::vec3(color.r, color.b, color.g);
+
+		mat->Get(AI_MATKEY_SHININESS, shininess);
+		material.Shininess = shininess;
+
+		return material;
 	}
 };

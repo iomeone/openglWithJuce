@@ -27,7 +27,8 @@ public:
 		OpenGLShaderProgram& shader,
 		const char* uniformName)
 	{
-		if (openGLContext.extensions.glGetUniformLocation(shader.getProgramID(), uniformName) < 0)
+		GLint e = openGLContext.extensions.glGetUniformLocation(shader.getProgramID(), uniformName);
+		if ( e < 0)
 			return nullptr;
 
 		return new OpenGLShaderProgram::Uniform(shader, uniformName);

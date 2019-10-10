@@ -46,11 +46,24 @@ struct Texture {
 };
 
 
+struct Material {
+	glm::vec3 Diffuse;
+	glm::vec3 Specular;
+	glm::vec3 Ambient;
+	float Shininess;
+};
+
 class UniformMesh : public UniformsBase
 {
 public:
 	UniformMesh(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) :
-		UniformsBase(openGLContext, shader) {}
+		UniformsBase(openGLContext, shader)
+	{
+		material_ambient = createUniform(openGLContext, shader, "material.ambient");
+		material_diffuse = createUniform(openGLContext, shader, "material.diffuse");
+		material_specular = createUniform(openGLContext, shader, "material.specular");
+		material_shininess = createUniform(openGLContext, shader, "material.shininess");
+	}
 
 	void setTextureUniformIndex(String uniformName, GLint textureUnitIndex )
 	{
@@ -82,6 +95,9 @@ public:
 	}
 
 	std::map<String, OpenGLShaderProgram::Uniform* > _UniformMap;
+
+
+	ScopedPointer<OpenGLShaderProgram::Uniform> material_ambient{ nullptr },  material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr };
 };
 
 
@@ -94,17 +110,20 @@ public:
     vector<unsigned int> indices;
     vector<Texture> textures;
 
+	Material _material;
+
 	OpenGLContext& _openglContext;
 	
     /*  Functions  */
     // constructor
-    Mesh(OpenGLContext& openglContext, Camera& camera, vector<Vertex>& vertices, vector<unsigned int>& indices, vector<Texture>& textures) :
+    Mesh(OpenGLContext& openglContext, Camera& camera, vector<Vertex>& vertices, vector<unsigned int>& indices, vector<Texture>& textures, Material& material) :
 		SpriteBaseEx(openglContext, camera),
 		_openglContext(openglContext)
     {
         this->vertices = vertices;
         this->indices = indices;
         this->textures = textures;
+		this->_material = material;
     }
 
    
