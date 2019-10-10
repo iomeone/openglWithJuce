@@ -40,7 +40,7 @@ public:
 
 	/*  Functions   */
 	// constructor, expects a filepath to a 3D model.
-	Model( OpenGLContext& openglContext, Camera camera, bool gamma = false) : gammaCorrection(gamma), _openglContext(openglContext), _camera(camera) {}
+	Model( OpenGLContext& openglContext, Camera& camera, bool gamma = false) : gammaCorrection(gamma), _openglContext(openglContext), _camera(camera) {}
 	void load(string const &path)
 	{
 		loadModel(path);
