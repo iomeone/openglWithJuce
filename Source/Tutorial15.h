@@ -167,6 +167,7 @@ namespace T15 {
 	public:
 		//==============================================================================
 		Tutorial15() : _model(openGLContext, _camera)/* : _sprite(openGLContext, _camera, _useCircle)*/
+					, _modelAlocasia(openGLContext, _camera)
 					, _lamp(openGLContext, _camera)
 		{
 			openGLContext.setOpenGLVersionRequired(juce::OpenGLContext::openGL3_2);
@@ -198,10 +199,23 @@ namespace T15 {
 
 			auto objFile = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("nanosuit").getChildFile("nanosuit.obj");
 			jassert(objFile.existsAsFile());
-			 _model.load(objFile.getFullPathName().toStdString());
-			 _model.init();
-			 auto m = glm::translate(glm::mat4(1.0f), glm::vec3(0.f, -8.f, 0.f));
-			 _model.setModel(m);
+			_model.load(objFile.getFullPathName().toStdString());
+			_model.init();
+			auto m = glm::translate(glm::mat4(1.0f), glm::vec3(5.f, -8.f, 0.f));
+			_model.setModel(m);
+
+
+			 auto objFileA = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("Alocasia").getChildFile("01Alocasia_obj.obj");
+			 jassert(objFileA.existsAsFile());
+			 _modelAlocasia.load(objFileA.getFullPathName().toStdString());
+			 _modelAlocasia.init();
+			 m = glm::translate(glm::mat4(1.0f), glm::vec3(-5.f, -8.f, 0.f));
+			 m = glm::scale(m, glm::vec3(0.01f, 0.01f, 0.01f));
+			 _modelAlocasia.setModel(m);
+
+			 
+
+
 
 			 auto vertexFileLamp = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(lampVertexFilename);
 			 auto fragmentFileLamp = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(lampFragmentFileName);
@@ -225,8 +239,12 @@ namespace T15 {
 			auto res = _shaderProgram->updateShader();
 			if (res >= 0)
 			{
-				if (res == 1) 
+				if (res == 1)
+				{
 					_model.setUniformEnv(_shaderProgram->_shader);
+					_modelAlocasia.setUniformEnv(_shaderProgram->_shader);
+				}
+					
 
 				const MessageManagerLock mmLock;
 				if (mmLock.lockWasGained())
@@ -255,9 +273,9 @@ namespace T15 {
 			lightPos.z = abs( 8 * cos(inc) );
 			// change the light color
 			glm::vec3 lightColor;
-			lightColor.x = sin(inc * 2.0f);
-			lightColor.y = sin(inc* 0.7f);
-			lightColor.z = sin(inc * 1.3f);
+			lightColor.x =  sin(inc * 2.0f);
+			lightColor.y =	sin(inc* 0.7f);
+			lightColor.z =	sin(inc * 1.3f);
 
 
 			
@@ -273,6 +291,7 @@ namespace T15 {
 
 				_shaderProgram->_shader->use();
 				_model.Draw(_camera.getCameraPos(), lightPos, lightColor);
+				_modelAlocasia.Draw(_camera.getCameraPos(), lightPos, lightColor);
 			}
 			glEnable(GL_BLEND);
 
@@ -300,8 +319,6 @@ namespace T15 {
 			{
 				_lblCompileInfo->setBounds(r.removeFromTop(proportionOfHeight(0.05000f)));
 			}
-
-			_model.setScreenWidthAndHeight(getBounds().getWidth(), getBounds().getHeight());
 		}
 
 		void buttonClicked(Button* buttonThatWasClicked) override
@@ -394,7 +411,8 @@ namespace T15 {
 
 
 		Model _model;
-
+		Model _modelAlocasia;
+		
 		std::unique_ptr<ShaderProgram> _shaderProgramLamp{ nullptr };
 		SpriteLamp _lamp;
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial15)
