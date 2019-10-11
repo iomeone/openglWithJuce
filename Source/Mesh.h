@@ -59,6 +59,11 @@ public:
 	UniformMesh(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) :
 		UniformsBase(openGLContext, shader)
 	{
+		light_position = createUniform(openGLContext, shader, "light.position");
+		light_ambient = createUniform(openGLContext, shader, "light.ambient");
+		light_diffuse = createUniform(openGLContext, shader, "light.diffuse");
+		light_specular = createUniform(openGLContext, shader, "light.specular");
+
 		material_ambient = createUniform(openGLContext, shader, "material.ambient");
 		material_diffuse = createUniform(openGLContext, shader, "material.diffuse");
 		material_specular = createUniform(openGLContext, shader, "material.specular");
@@ -97,7 +102,8 @@ public:
 	std::map<String, OpenGLShaderProgram::Uniform* > _UniformMap;
 
 
-	ScopedPointer<OpenGLShaderProgram::Uniform> material_ambient{ nullptr },  material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr };
+	ScopedPointer<OpenGLShaderProgram::Uniform> material_ambient{ nullptr },  material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr },
+		light_position { nullptr }, light_ambient{ nullptr }, light_diffuse{ nullptr }, light_specular{ nullptr };
 };
 
 

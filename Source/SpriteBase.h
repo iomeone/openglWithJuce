@@ -18,9 +18,10 @@ public:
 		model = createUniform(openGLContext, shader, "model");
 		view = createUniform(openGLContext, shader, "view");
 		projection = createUniform(openGLContext, shader, "projection");
+		viewPos = createUniform(openGLContext, shader, "viewPos");
 	}
 
-	ScopedPointer<OpenGLShaderProgram::Uniform>  model{ nullptr }, view{ nullptr }, projection{ nullptr };
+	ScopedPointer<OpenGLShaderProgram::Uniform>  model{ nullptr }, view{ nullptr }, projection{ nullptr }, viewPos{ nullptr };
 
 public:
 	static OpenGLShaderProgram::Uniform* createUniform(OpenGLContext& openGLContext,
@@ -68,6 +69,12 @@ public:
 	virtual void bindTexture() = 0;
 	virtual void drawPost() = 0;
 	virtual UniformsBase * getUniformBase() = 0;
+
+
+	virtual void setUniformEnv(OpenGLShaderProgram *shader)
+	{
+		_defaultUniform.reset(new UniformsBase(_openGLContext, *shader));
+	}
 
 	void init()
 	{
@@ -129,6 +136,8 @@ public:
 	Camera& _camera;
 
 	glm::mat4 _model;
+	std::unique_ptr< UniformsBase> _defaultUniform{ nullptr };
+	
 };
 
 

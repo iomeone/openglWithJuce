@@ -51,11 +51,43 @@ public:
 		for (auto& mesh : meshes)	mesh.init();
 	}
 
-	// draws the model, and thus all its meshes
-	void Draw()	
+	void setModel(glm::mat4& m)
 	{
 		for (auto& mesh : meshes)
+			mesh.setModel(m);
+	}
+
+	// draws the model, and thus all its meshes
+	void Draw(glm::vec3 viewPos, glm::vec3 lightPos, glm::vec3 lightColor)	
+	{
+
+		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // increase the influence
+		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
+
+		for (auto& mesh : meshes)
 		{
+
+			if (mesh.uniformMesh->light_ambient)
+			{
+				mesh.uniformMesh->light_ambient->set(ambientColor.r, ambientColor.g, ambientColor.b);
+			}
+			if (mesh.uniformMesh->light_diffuse)
+			{
+				mesh.uniformMesh->light_diffuse->set(diffuseColor.r, diffuseColor.g, diffuseColor.b);
+			}
+			if (mesh.uniformMesh->light_specular)
+			{
+				mesh.uniformMesh->light_specular->set(1.0f, 1.0f, 1.0f);
+			}
+
+			if (mesh.uniformMesh->light_position)
+			{
+				mesh.uniformMesh->light_position->set(lightPos.x, lightPos.y, lightPos.z);
+			}
+
+			if (mesh.uniformMesh->viewPos)
+				mesh.uniformMesh->viewPos->set(viewPos.x, viewPos.y, viewPos.z);
+
 			if(mesh.uniformMesh->material_ambient)
 			mesh.uniformMesh->material_ambient->set( mesh._material.Ambient.r, mesh._material.Ambient.g, mesh._material.Ambient.b);
 

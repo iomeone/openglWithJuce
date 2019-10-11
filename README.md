@@ -28,4 +28,4 @@ Just open the solution file in master/Builds (current only support xcode visual 
 ![Basic-Lighting](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/Basic-Lighting.gif)  
 
 ## 15:Model-Loading  https://learnopengl.com/Model-Loading/Model
-![Model-Loading](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/model.png)  
+![Model-Loading](https://raw.githubusercontent.com/iomeone/openglWithJuce/master/Screen/openglWithJuce15.gif)  
