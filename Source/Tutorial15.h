@@ -193,10 +193,17 @@ namespace T15 {
 			macPath(f);
 
 
+			//load the model shader and lamp shader.
 			auto vertexFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(vertexFilename);
 			auto fragmentFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(fragmentFileName);
 			_shaderProgram.reset(new ShaderProgram(openGLContext, vertexFile.getFullPathName(), fragmentFile.getFullPathName()));
 
+			auto vertexFileLamp = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(lampVertexFilename);
+			auto fragmentFileLamp = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(lampFragmentFileName);
+			_shaderProgramLamp.reset(new ShaderProgram(openGLContext, vertexFileLamp.getFullPathName(), fragmentFileLamp.getFullPathName()));
+
+
+			// load the nanosuit model
 			auto objFile = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("nanosuit").getChildFile("nanosuit.obj");
 			jassert(objFile.existsAsFile());
 			_model.load(objFile.getFullPathName().toStdString());
@@ -205,6 +212,7 @@ namespace T15 {
 			_model.setModel(m);
 
 
+			// load the Alocasia model
 			 auto objFileA = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("Alocasia").getChildFile("01Alocasia_obj.obj");
 			 jassert(objFileA.existsAsFile());
 			 _modelAlocasia.load(objFileA.getFullPathName().toStdString());
@@ -213,13 +221,8 @@ namespace T15 {
 			 m = glm::scale(m, glm::vec3(0.01f, 0.01f, 0.01f));
 			 _modelAlocasia.setModel(m);
 
-			 
 
-
-
-			 auto vertexFileLamp = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(lampVertexFilename);
-			 auto fragmentFileLamp = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(lampFragmentFileName);
-			 _shaderProgramLamp.reset(new ShaderProgram(openGLContext, vertexFileLamp.getFullPathName(), fragmentFileLamp.getFullPathName()));
+			 // load the lamp model. (it's model just has tweleve triangles).
 			 _lamp.init();
 
 
