@@ -61,6 +61,10 @@
 			isa = PBXBuildFile;
 			fileRef = A65020481B2650E5D2EBB5C5;
 		};
+		C96F1C2720E94C821863BD55 = {
+			isa = PBXBuildFile;
+			fileRef = 44CD7C031DED2855A2D94B98;
+		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -212,6 +216,13 @@
 			path = RecentFilesMenuTemplate.nib;
 			sourceTree = "SOURCE_ROOT";
 		};
+		2121E468FA90E40061E824D7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T16StencilTextureVertex.h;
+			path = ../../Source/Shader/T16StencilTextureVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		219815B87A36E3497282D51E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -273,6 +284,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_opengl.mm";
 			path = "../../JuceLibraryCode/include_juce_opengl.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		30CC05F36C0DC02691C62772 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T16StencilSingleColorVertex.h;
+			path = ../../Source/Shader/T16StencilSingleColorVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		338D6BA4A89D81F7E7DFE170 = {
@@ -352,6 +370,20 @@
 			path = ../../Source/Shader/T12LampVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		44CD7C031DED2855A2D94B98 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Tutorial16.cpp;
+			path = ../../Source/Tutorial16.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		518AF8C5DA5A569F0E4E46E5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T16StencilTextureFragment.h;
+			path = ../../Source/Shader/T16StencilTextureFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		52DDB94DDCA6C2CE5115062A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -371,6 +403,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_gui_extra.mm";
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		57E14247FC26F7733687CB4F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T16StencilSingleColorFragment.h;
+			path = ../../Source/Shader/T16StencilSingleColorFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		5BE738FD704228F87F29460C = {
@@ -910,6 +949,10 @@
 				05DC98A9F53854F00A2BD935,
 				08E80BAECE037A0EC45AE653,
 				8BD346119B044118BA664F6A,
+				57E14247FC26F7733687CB4F,
+				30CC05F36C0DC02691C62772,
+				518AF8C5DA5A569F0E4E46E5,
+				2121E468FA90E40061E824D7,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
@@ -959,6 +1002,7 @@
 				9641F97028E9B7226D214DC7,
 				B608D26206EC7931DCE611F3,
 				EE6354C9DA5215CF0F68CD18,
+				44CD7C031DED2855A2D94B98,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -1274,6 +1318,7 @@
 			files = (
 				06955D37D1C6804899BB09C2,
 				37D54CDC52CBEAD46E63D710,
+				C96F1C2720E94C821863BD55,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				D473426BFE34164F2B044D35,

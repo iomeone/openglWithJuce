@@ -81,6 +81,14 @@
             file="Source/Shader/T15ModelFragment.h"/>
       <FILE id="sHQru8" name="T15ModelVertex.h" compile="0" resource="0"
             file="Source/Shader/T15ModelVertex.h"/>
+      <FILE id="WNvmm5" name="T16StencilSingleColorFragment.h" compile="0"
+            resource="0" file="Source/Shader/T16StencilSingleColorFragment.h"/>
+      <FILE id="EjUucD" name="T16StencilSingleColorVertex.h" compile="0"
+            resource="0" file="Source/Shader/T16StencilSingleColorVertex.h"/>
+      <FILE id="CvtLfW" name="T16StencilTextureFragment.h" compile="0" resource="0"
+            file="Source/Shader/T16StencilTextureFragment.h"/>
+      <FILE id="W2gR9X" name="T16StencilTextureVertex.h" compile="0" resource="0"
+            file="Source/Shader/T16StencilTextureVertex.h"/>
       <FILE id="PJcivr" name="vertexT1.h" compile="0" resource="0" file="Source/Shader/vertexT1.h"/>
       <FILE id="lDtqGz" name="vertexT2.h" compile="0" resource="0" file="Source/Shader/vertexT2.h"/>
       <FILE id="irgfxX" name="vertexT3.h" compile="0" resource="0" file="Source/Shader/vertexT3.h"/>
@@ -114,6 +122,7 @@
       <FILE id="QJNkwW" name="Tutorial13.h" compile="0" resource="0" file="Source/Tutorial13.h"/>
       <FILE id="jIiaPq" name="Tutorial14.h" compile="0" resource="0" file="Source/Tutorial14.h"/>
       <FILE id="tdCdsq" name="Tutorial15.h" compile="0" resource="0" file="Source/Tutorial15.h"/>
+      <FILE id="xXVBMI" name="Tutorial16.cpp" compile="1" resource="0" file="Source/Tutorial16.cpp"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>

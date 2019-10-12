@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\OpenGLTextureEx.cpp"/>
     <ClCompile Include="..\..\Source\ValueTreeView.cpp"/>
+    <ClCompile Include="..\..\Source\Tutorial16.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
@@ -199,6 +200,10 @@
     <ClInclude Include="..\..\Source\Shader\T14LampVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\T15ModelFragment.h"/>
     <ClInclude Include="..\..\Source\Shader\T15ModelVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T16StencilSingleColorFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T16StencilSingleColorVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T16StencilTextureFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T16StencilTextureVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>

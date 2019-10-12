@@ -13,12 +13,15 @@
 
 namespace OpenGL33Helpers
 {
-    String versionString { "#version 330 core" };
-    
+   
+	inline String GetVersionString()
+	{
+		return String("#version 330 core");
+	}
     /*
      This is modified version of juce::OpenGLHelpers::translateVertexShaderToV3.
      */
-    String translateVertexShaderToV3 (const String& code)
+    inline String translateVertexShaderToV3 (const String& code)
     {
 #if JUCE_OPENGL3
         if (OpenGLShaderProgram::getLanguageVersion() > 1.2)
@@ -36,7 +39,7 @@ namespace OpenGL33Helpers
             
             output += code.substring (last);
             
-            return versionString + "\n" + output.replace ("varying", "out");
+            return GetVersionString() + "\n" + output.replace ("varying", "out");
         }
 #endif
         
@@ -46,11 +49,11 @@ namespace OpenGL33Helpers
     /*
      This is modified version of juce::OpenGLHelpers::translateVertexShaderToV3.
      */
-    String translateFragmentShaderToV3 (const String& code)
+	inline String translateFragmentShaderToV3 (const String& code)
     {
 #if JUCE_OPENGL3
         if (OpenGLShaderProgram::getLanguageVersion() > 1.2)
-            return versionString + "\n"
+            return  GetVersionString() + "\n"
                    "out " JUCE_MEDIUMP " vec4 fragColor;\n"
                     + code.replace ("varying", "in")
                           .replace ("texture2D", "texture")
