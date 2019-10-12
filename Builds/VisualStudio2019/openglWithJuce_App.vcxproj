@@ -141,6 +141,7 @@
     <ClCompile Include="..\..\Source\OpenGLTextureEx.cpp"/>
     <ClCompile Include="..\..\Source\ValueTreeView.cpp"/>
     <ClCompile Include="..\..\Source\Tutorial16.cpp"/>
+    <ClCompile Include="..\..\Source\Tutorial17.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>

@@ -67,6 +67,7 @@ public:
 	virtual void initBuffer() = 0;
 
 	virtual void bindTexture() = 0;
+	virtual void drawPre() {};
 	virtual void drawPost() = 0;
 	virtual UniformsBase * getUniformBase() = 0;
 
@@ -93,7 +94,6 @@ public:
 
 	void draw()
 	{
-		
 		if (getUniformBase()->view)
 		{
 			glm::mat4 view = _camera.getViewMat();

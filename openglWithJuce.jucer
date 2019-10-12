@@ -123,6 +123,7 @@
       <FILE id="jIiaPq" name="Tutorial14.h" compile="0" resource="0" file="Source/Tutorial14.h"/>
       <FILE id="tdCdsq" name="Tutorial15.h" compile="0" resource="0" file="Source/Tutorial15.h"/>
       <FILE id="xXVBMI" name="Tutorial16.cpp" compile="1" resource="0" file="Source/Tutorial16.cpp"/>
+      <FILE id="xgt30F" name="Tutorial17.cpp" compile="1" resource="0" file="Source/Tutorial17.cpp"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>

@@ -65,6 +65,10 @@
 			isa = PBXBuildFile;
 			fileRef = 44CD7C031DED2855A2D94B98;
 		};
+		B149B3F93FBE396450061B7F = {
+			isa = PBXBuildFile;
+			fileRef = A9AFC2026F3827B5BE56F84B;
+		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -643,6 +647,13 @@
 			path = ../../Source/ValueTreeView.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		A9AFC2026F3827B5BE56F84B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Tutorial17.cpp;
+			path = ../../Source/Tutorial17.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		ADCBED73B98CF1E948EB9427 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1003,6 +1014,7 @@
 				B608D26206EC7931DCE611F3,
 				EE6354C9DA5215CF0F68CD18,
 				44CD7C031DED2855A2D94B98,
+				A9AFC2026F3827B5BE56F84B,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -1319,6 +1331,7 @@
 				06955D37D1C6804899BB09C2,
 				37D54CDC52CBEAD46E63D710,
 				C96F1C2720E94C821863BD55,
+				B149B3F93FBE396450061B7F,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				D473426BFE34164F2B044D35,
