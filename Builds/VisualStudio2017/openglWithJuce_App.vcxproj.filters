@@ -225,6 +225,12 @@
     <ClInclude Include="..\..\Source\Shader\T16StencilTextureVertex.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T17TextureFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T17TextureVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>

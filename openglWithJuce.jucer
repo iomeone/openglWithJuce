@@ -89,6 +89,10 @@
             file="Source/Shader/T16StencilTextureFragment.h"/>
       <FILE id="W2gR9X" name="T16StencilTextureVertex.h" compile="0" resource="0"
             file="Source/Shader/T16StencilTextureVertex.h"/>
+      <FILE id="mYSfVg" name="T17TextureFragment.h" compile="0" resource="0"
+            file="Source/Shader/T17TextureFragment.h"/>
+      <FILE id="HiV3JW" name="T17TextureVertex.h" compile="0" resource="0"
+            file="Source/Shader/T17TextureVertex.h"/>
       <FILE id="PJcivr" name="vertexT1.h" compile="0" resource="0" file="Source/Shader/vertexT1.h"/>
       <FILE id="lDtqGz" name="vertexT2.h" compile="0" resource="0" file="Source/Shader/vertexT2.h"/>
       <FILE id="irgfxX" name="vertexT3.h" compile="0" resource="0" file="Source/Shader/vertexT3.h"/>

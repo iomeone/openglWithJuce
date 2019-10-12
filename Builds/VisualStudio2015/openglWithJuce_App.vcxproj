@@ -205,6 +205,8 @@
     <ClInclude Include="..\..\Source\Shader\T16StencilSingleColorVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\T16StencilTextureFragment.h"/>
     <ClInclude Include="..\..\Source\Shader\T16StencilTextureVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T17TextureFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T17TextureVertex.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
     <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>

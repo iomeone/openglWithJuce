@@ -185,6 +185,13 @@
 			path = ../../Source/Shader/T15ModelFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		0E9211905E412C99C6FE6F8C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T17TextureFragment.h;
+			path = ../../Source/Shader/T17TextureFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		139CD54986567409B87ED944 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -843,6 +850,13 @@
 			path = ../../Source/Tutorial15.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		EE93C9E83BED78CB3CDB5036 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T17TextureVertex.h;
+			path = ../../Source/Shader/T17TextureVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		EEF7A01BE85FB311D5405182 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -964,6 +978,8 @@
 				30CC05F36C0DC02691C62772,
 				518AF8C5DA5A569F0E4E46E5,
 				2121E468FA90E40061E824D7,
+				0E9211905E412C99C6FE6F8C,
+				EE93C9E83BED78CB3CDB5036,
 				C0CB4A22C6F5E42E468CA76E,
 				3AA27D12F0BA3B7C70290C5C,
 				A219B18E57DC9E454F0F395F,
