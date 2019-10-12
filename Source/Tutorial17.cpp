@@ -447,7 +447,7 @@ namespace T17 {
 			glEnable(GL_DEPTH_TEST);
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
+			//glEnable(GL_CULL_FACE);   if we enable this, we call see that the right face are culled!!
 			if (_shaderProgramScene->_shader )
 			{
 				OpenGLHelpers::clear(juce::Colour(0.2f, 0.3f, 0.3f, 1.0f));
@@ -456,7 +456,14 @@ namespace T17 {
 				_shaderProgramScene->_shader->use();
 
 				_spritePlane.draw();
+
+				glm::mat4 model = glm::mat4(1.0f);
+				static float angle = 0.f;
+				angle += 0.01;
+				model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+				_spriteCube.setModel(model);
 				_spriteCube.draw();
+
 				_spriteGlass.draw();
 
 			}
