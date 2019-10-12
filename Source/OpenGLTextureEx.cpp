@@ -10,7 +10,84 @@
 
 #include "OpenGLTextureEx.h"
 
-#define JUCE_CHECK_OPENGL_ERROR
+
+static const char* getGLErrorMessage(const GLenum e) noexcept
+{
+	switch (e)
+	{
+	case GL_INVALID_ENUM:                   return "GL_INVALID_ENUM";
+	case GL_INVALID_VALUE:                  return "GL_INVALID_VALUE";
+	case GL_INVALID_OPERATION:              return "GL_INVALID_OPERATION";
+	case GL_OUT_OF_MEMORY:                  return "GL_OUT_OF_MEMORY";
+#ifdef GL_STACK_OVERFLOW
+	case GL_STACK_OVERFLOW:                 return "GL_STACK_OVERFLOW";
+#endif
+#ifdef GL_STACK_UNDERFLOW
+	case GL_STACK_UNDERFLOW:                return "GL_STACK_UNDERFLOW";
+#endif
+#ifdef GL_INVALID_FRAMEBUFFER_OPERATION
+	case GL_INVALID_FRAMEBUFFER_OPERATION:  return "GL_INVALID_FRAMEBUFFER_OPERATION";
+#endif
+	default: break;
+	}
+
+	return "Unknown error";
+}
+
+
+static bool checkPeerIsValid(OpenGLContext* context)
+{
+	jassert(context != nullptr);
+
+	if (context != nullptr)
+	{
+		if (auto* comp = context->getTargetComponent())
+		{
+			if (auto* peer = comp->getPeer())
+			{
+#if JUCE_MAC || JUCE_IOS
+				if (auto* nsView = (JUCE_IOS_MAC_VIEW*)peer->getNativeHandle())
+				{
+					if (auto nsWindow = [nsView window])
+					{
+#if JUCE_MAC
+						return ([nsWindow isVisible]
+							&& (![nsWindow hidesOnDeactivate] || [NSApp isActive]));
+#else
+						ignoreUnused(nsWindow);
+						return true;
+#endif
+					}
+				}
+#else
+				ignoreUnused(peer);
+				return true;
+#endif
+			}
+		}
+	}
+
+	return false;
+}
+static void checkGLError(const char* file, const int line)
+{
+	for (;;)
+	{
+		const GLenum e = glGetError();
+
+		if (e == GL_NO_ERROR)
+			break;
+
+		// if the peer is not valid then ignore errors
+		if (!checkPeerIsValid(OpenGLContext::getCurrentContext()))
+			continue;
+
+		DBG("***** " << getGLErrorMessage(e) << "  at " << file << " : " << line);
+		jassertfalse;
+	}
+}
+
+#define JUCE_CHECK_OPENGL_ERROR checkGLError (__FILE__, __LINE__);
 
 	static int getAllowedTextureSize(int x)
 	{
