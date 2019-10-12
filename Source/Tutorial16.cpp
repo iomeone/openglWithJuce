@@ -279,6 +279,7 @@ namespace T16 {
 			, _spritePlane(openGLContext, _camera)
 			, _spriteCubeLarger(openGLContext, _camera)
 		{
+			openGLContext.setPixelFormat(OpenGLPixelFormat(8, 8, 16, 8));
 			openGLContext.setOpenGLVersionRequired(juce::OpenGLContext::openGL3_2);
 			openGLContext.setComponentPaintingEnabled(true);
 
