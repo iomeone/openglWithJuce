@@ -277,6 +277,7 @@ namespace T16 {
 		//==============================================================================
 		Tutorial16() : _spriteCube(openGLContext, _camera)/* : _sprite(openGLContext, _camera, _useCircle)*/
 			, _spritePlane(openGLContext, _camera)
+			, _spriteCubeLarger(openGLContext, _camera)
 		{
 			openGLContext.setOpenGLVersionRequired(juce::OpenGLContext::openGL3_2);
 			openGLContext.setComponentPaintingEnabled(true);
@@ -309,11 +310,12 @@ namespace T16 {
 			auto FragmentSingleColorFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(FragmentSingleColorFileName);
 			_shaderProgramSingleColor.reset(new ShaderProgram(openGLContext, VertexSingleColorFile.getFullPathName(), FragmentSingleColorFile.getFullPathName()));
 
-			_spriteCube._texutureCubePath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("marble.jpg").getFullPathName();
+			_spriteCubeLarger._texutureCubePath = _spriteCube._texutureCubePath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("marble.jpg").getFullPathName();
 			_spritePlane._textureFloorPath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("metal.png").getFullPathName();
 		
 			_spriteCube.init();
 			_spritePlane.init();
+			_spriteCubeLarger.init();
 
 		}
 		void shutdown() override
@@ -350,8 +352,8 @@ namespace T16 {
 			res = _shaderProgramSingleColor->updateShader();
 			if (res >= 0)
 			{
-			/*	if (res == 1)
-					_lamp.setUniformEnv(_shaderProgramLamp->_shader);*/
+				if (res == 1)
+					_spriteCubeLarger.setUniformEnv(_shaderProgramSingleColor->_shader);
 
 				const MessageManagerLock mmLock;
 				if (mmLock.lockWasGained())
@@ -373,16 +375,46 @@ namespace T16 {
 
 
 			glEnable(GL_DEPTH_TEST);
-			OpenGLHelpers::clear(juce::Colour(0.2f, 0.3f, 0.3f, 1.0f));
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			glDepthFunc(GL_LESS);
+			glEnable(GL_STENCIL_TEST);
+			glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+			glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE); // the two lines code just say that : when  stencil value is not 1 and depth test pass, we set stencil value to 1.
 
 
-			if (_shaderProgramScene->_shader)
+			if (_shaderProgramScene->_shader && _shaderProgramSingleColor->_shader)
 			{
+
+				OpenGLHelpers::clear(juce::Colour(0.2f, 0.3f, 0.3f, 1.0f));
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+
 				_shaderProgramScene->_shader->use();
-				_spriteCube.draw();
+
+				glStencilMask(0x00);
 				_spritePlane.draw();
+
+
+				glStencilFunc(GL_ALWAYS, 1, 0xFF);
+				glStencilMask(0xFF);                // the two lines of code say that when depth test pass,  we set stencil value to 1. so the   Stenci buffer ocuupied by container  will set to 1
+				
+				_spriteCube.draw();
+
+
+
+				glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+				glStencilMask(0x00);               // the two lines of code say that when stencil value is not 1 (fragment is not discard), we draw.
+				                                   // so only when container vertex position is landing in the border(edge), the stencil value is not 1, then we draw!!!
+				glDisable(GL_DEPTH_TEST);
+				
+
+				float scale = 1.1f;
+				auto model = glm::mat4(1.0f);
+				_shaderProgramSingleColor->_shader->use();
+				model = glm::scale(model, glm::vec3(scale, scale, scale));
+				_spriteCubeLarger.setModel(model);
+				_spriteCubeLarger.draw();
 			
+				glStencilMask(0xFF);              // restore state
+				glEnable(GL_DEPTH_TEST);
 			}
 		}
 
@@ -487,6 +519,7 @@ namespace T16 {
 		std::unique_ptr<ShaderProgram> _shaderProgramSingleColor{ nullptr };
 
 		SpriteCube _spriteCube;
+		SpriteCube _spriteCubeLarger;
 		SpritePlane _spritePlane;
 
 		std::unique_ptr<Label> _lblCompileInfo{ nullptr };
