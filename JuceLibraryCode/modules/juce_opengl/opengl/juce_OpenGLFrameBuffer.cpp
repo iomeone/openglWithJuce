@@ -34,7 +34,7 @@ public:
            const bool wantsDepthBuffer, const bool wantsStencilBuffer)
         : context (c), width (w), height (h),
           textureID (0), frameBufferID (0), depthOrStencilBuffer (0),
-          hasDepthBuffer (false), hasStencilBuffer (false)
+          hasDepthBuffer (wantsDepthBuffer), hasStencilBuffer (wantsStencilBuffer)
     {
         // Framebuffer objects can only be created when the current thread has an active OpenGL
         // context. You'll need to create this object in one of the OpenGLContext's callbacks.
@@ -176,12 +176,12 @@ private:
 OpenGLFrameBuffer::OpenGLFrameBuffer() {}
 OpenGLFrameBuffer::~OpenGLFrameBuffer() {}
 
-bool OpenGLFrameBuffer::initialise (OpenGLContext& context, int width, int height)
+bool OpenGLFrameBuffer::initialise (OpenGLContext& context, int width, int height, const bool wantsDepthBuffer, const bool wantsStencilBuffer)
 {
     jassert (context.isActive()); // The context must be active when creating a framebuffer!
 
     pimpl.reset();
-    pimpl.reset (new Pimpl (context, width, height, false, false));
+    pimpl.reset (new Pimpl (context, width, height, wantsDepthBuffer, wantsStencilBuffer));
 
     if (! pimpl->createdOk())
         pimpl.reset();

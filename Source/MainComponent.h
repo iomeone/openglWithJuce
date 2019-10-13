@@ -84,7 +84,7 @@ private:
 	
 	std::unique_ptr<Component> _curSubComp{ nullptr };
 
-	int curSubCompIndex{ 16 };
+	int curSubCompIndex{ 17 };
 
 	
 

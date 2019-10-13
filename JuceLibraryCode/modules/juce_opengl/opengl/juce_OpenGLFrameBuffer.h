@@ -49,7 +49,7 @@ public:
         Note that a valid openGL context must be selected when you call this method,
         or it will fail.
     */
-    bool initialise (OpenGLContext& context, int width, int height);
+    bool initialise (OpenGLContext& context, int width, int height, const bool wantsDepthBuffer=false, const bool wantsStencilBuffer=false);
 
     /** Tries to allocates a buffer containing a copy of a given image.
         Note that a valid openGL context must be selected when you call this method,
