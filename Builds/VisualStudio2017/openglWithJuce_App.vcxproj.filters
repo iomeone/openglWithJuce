@@ -96,6 +96,18 @@
     <ClInclude Include="..\..\Source\ValueTreeView.h">
       <Filter>openglWithJuce\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T18ScreenFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T18ScreenVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Shader\fragmentT1.h">
       <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
@@ -265,18 +277,6 @@
       <Filter>openglWithJuce\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SpriteBase.h">
-      <Filter>openglWithJuce\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxFragment.h">
-      <Filter>openglWithJuce\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxVertex.h">
-      <Filter>openglWithJuce\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Shader\T18ScreenFragment.h">
-      <Filter>openglWithJuce\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Shader\T18ScreenVertex.h">
       <Filter>openglWithJuce\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\TextureCache.h">

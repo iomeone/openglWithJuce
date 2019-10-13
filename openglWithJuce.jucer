@@ -15,6 +15,14 @@
     </GROUP>
     <FILE id="XhanRu" name="README.md" compile="0" resource="1" file="README.md"/>
     <GROUP id="{9BAD5BA1-9290-2241-5422-76CFDF24FEAD}" name="Shader">
+      <FILE id="R5buSY" name="T18PlaneAndBoxFragment.h" compile="0" resource="0"
+            file="Source/Shader/T18PlaneAndBoxFragment.h"/>
+      <FILE id="nHFPzK" name="T18PlaneAndBoxVertex.h" compile="0" resource="0"
+            file="Source/Shader/T18PlaneAndBoxVertex.h"/>
+      <FILE id="yl7vs4" name="T18ScreenFragment.h" compile="0" resource="0"
+            file="Source/Shader/T18ScreenFragment.h"/>
+      <FILE id="umyBW8" name="T18ScreenVertex.h" compile="0" resource="0"
+            file="Source/Shader/T18ScreenVertex.h"/>
       <FILE id="MDfjh0" name="fragmentT1.h" compile="0" resource="0" file="Source/Shader/fragmentT1.h"/>
       <FILE id="HaKALH" name="fragmentT2.h" compile="0" resource="0" file="Source/Shader/fragmentT2.h"/>
       <FILE id="NtMmnA" name="fragmentT3.h" compile="0" resource="0" file="Source/Shader/fragmentT3.h"/>
@@ -108,14 +116,6 @@
       <FILE id="DhjyiY" name="Camera.h" compile="0" resource="0" file="Source/Camera.h"/>
       <FILE id="i5qh9u" name="ShaderProgram.h" compile="0" resource="0" file="Source/ShaderProgram.h"/>
       <FILE id="fECTis" name="SpriteBase.h" compile="0" resource="0" file="Source/SpriteBase.h"/>
-      <FILE id="R5buSY" name="T18PlaneAndBoxFragment.h" compile="0" resource="0"
-            file="Source/Shader/T18PlaneAndBoxFragment.h"/>
-      <FILE id="nHFPzK" name="T18PlaneAndBoxVertex.h" compile="0" resource="0"
-            file="Source/Shader/T18PlaneAndBoxVertex.h"/>
-      <FILE id="yl7vs4" name="T18ScreenFragment.h" compile="0" resource="0"
-            file="Source/Shader/T18ScreenFragment.h"/>
-      <FILE id="umyBW8" name="T18ScreenVertex.h" compile="0" resource="0"
-            file="Source/Shader/T18ScreenVertex.h"/>
       <FILE id="cCQyvZ" name="TextureCache.h" compile="0" resource="0" file="Source/TextureCache.h"/>
     </GROUP>
     <GROUP id="{8701B764-FC81-7CC0-D6F2-927607E9E674}" name="Tutorial">

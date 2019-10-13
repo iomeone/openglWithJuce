@@ -94,4 +94,4 @@ static ComponentList<T11::Tutorial11> t11((const String)("11: Directional-Light"
 static ComponentList<T12::Tutorial12> t12((const String)("12: Point-Light"), 11);
 static ComponentList<T13::Tutorial13> t13((const String)("13: Spot-Light"), 12);
 static ComponentList<T14::Tutorial14> t14((const String)("14: Multiple-lights"), 13);
-//static ComponentList<T15::Tutorial15> t15((const String)("15: Model"), 14);
+static ComponentList<Component> t15((const String)("15: Model"), 14);
