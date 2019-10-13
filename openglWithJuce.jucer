@@ -108,6 +108,14 @@
       <FILE id="DhjyiY" name="Camera.h" compile="0" resource="0" file="Source/Camera.h"/>
       <FILE id="i5qh9u" name="ShaderProgram.h" compile="0" resource="0" file="Source/ShaderProgram.h"/>
       <FILE id="fECTis" name="SpriteBase.h" compile="0" resource="0" file="Source/SpriteBase.h"/>
+      <FILE id="R5buSY" name="T18PlaneAndBoxFragment.h" compile="0" resource="0"
+            file="Source/Shader/T18PlaneAndBoxFragment.h"/>
+      <FILE id="nHFPzK" name="T18PlaneAndBoxVertex.h" compile="0" resource="0"
+            file="Source/Shader/T18PlaneAndBoxVertex.h"/>
+      <FILE id="yl7vs4" name="T18ScreenFragment.h" compile="0" resource="0"
+            file="Source/Shader/T18ScreenFragment.h"/>
+      <FILE id="umyBW8" name="T18ScreenVertex.h" compile="0" resource="0"
+            file="Source/Shader/T18ScreenVertex.h"/>
       <FILE id="cCQyvZ" name="TextureCache.h" compile="0" resource="0" file="Source/TextureCache.h"/>
     </GROUP>
     <GROUP id="{8701B764-FC81-7CC0-D6F2-927607E9E674}" name="Tutorial">
@@ -128,6 +136,7 @@
       <FILE id="tdCdsq" name="Tutorial15.h" compile="0" resource="0" file="Source/Tutorial15.h"/>
       <FILE id="xXVBMI" name="Tutorial16.cpp" compile="1" resource="0" file="Source/Tutorial16.cpp"/>
       <FILE id="xgt30F" name="Tutorial17.cpp" compile="1" resource="0" file="Source/Tutorial17.cpp"/>
+      <FILE id="Fgxa7d" name="Tutorial18.cpp" compile="1" resource="0" file="Source/Tutorial18.cpp"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>

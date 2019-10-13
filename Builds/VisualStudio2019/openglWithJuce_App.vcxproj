@@ -142,6 +142,7 @@
     <ClCompile Include="..\..\Source\ValueTreeView.cpp"/>
     <ClCompile Include="..\..\Source\Tutorial16.cpp"/>
     <ClCompile Include="..\..\Source\Tutorial17.cpp"/>
+    <ClCompile Include="..\..\Source\Tutorial18.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
@@ -218,6 +219,10 @@
     <ClInclude Include="..\..\Source\Camera.h"/>
     <ClInclude Include="..\..\Source\ShaderProgram.h"/>
     <ClInclude Include="..\..\Source\SpriteBase.h"/>
+    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxVertex.h"/>
+    <ClInclude Include="..\..\Source\Shader\T18ScreenFragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T18ScreenVertex.h"/>
     <ClInclude Include="..\..\Source\TextureCache.h"/>
     <ClInclude Include="..\..\Source\Tutorial1.h"/>
     <ClInclude Include="..\..\Source\Tutorial2.h"/>
