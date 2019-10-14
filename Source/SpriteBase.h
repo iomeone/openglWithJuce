@@ -20,7 +20,7 @@ public:
 		projection = createUniform(openGLContext, shader, "projection");
 		viewPos = createUniform(openGLContext, shader, "viewPos");
 	}
-
+	virtual void doSth() {}; // just make dynamic_cast happy
 	ScopedPointer<OpenGLShaderProgram::Uniform>  model{ nullptr }, view{ nullptr }, projection{ nullptr }, viewPos{ nullptr };
 
 public:

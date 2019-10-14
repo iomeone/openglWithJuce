@@ -78,6 +78,19 @@ namespace T18 {
 
     };
 
+
+	struct UniformsScreen : public UniformsBase
+	{
+	public:
+		UniformsScreen(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) : UniformsBase(openGLContext, shader)
+		{
+			screenTexture = createUniform(openGLContext, shader, "screenTexture");
+		}
+
+		ScopedPointer<OpenGLShaderProgram::Uniform> screenTexture{ nullptr };
+
+	};
+
     class SpriteCube : public SpriteBase
     {
     public:
@@ -163,31 +176,60 @@ namespace T18 {
             else
                 jassertfalse;
 
-            if (_uniformCube->texture1)
-                _uniformCube->texture1->set(0);
+			jassert(_uniformBase);
+			UniformsCubeAndPlan * ucp = dynamic_cast<UniformsCubeAndPlan*>(_uniformBase);
+			if (ucp)
+			{
+				if (ucp->texture1)
+					ucp->texture1->set(0);
+			}
+
+
+			UniformsScreen * us = dynamic_cast<UniformsScreen*>(_uniformBase);
+			if (us)
+			{
+				if (us->screenTexture)
+					us->screenTexture->set(0);
+			}
+
 
         }
         virtual void drawPost() override
         {
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
+
+		void  setUniformBase(UniformsBase* ub)
+		{
+			_uniformBase = ub;
+		}
+
         virtual UniformsBase * getUniformBase() override
         {
-            jassert(_uniformCube);  // you need call setUniformEnv
-            return (UniformsBase*)_uniformCube.get();
+            jassert(_uniformBase);  // you need call setUniformEnv
+            return  _uniformBase;
         }
 
-        void setUniformEnv(OpenGLShaderProgram *shader)
+        void setUniformScene(OpenGLShaderProgram *shader)
         {
             _uniformCube.reset(new UniformsCubeAndPlan(_openGLContext, *shader));
         }
+		void setUniformScreen(OpenGLShaderProgram *shader)
+		{
+			_uniformScreen.reset(new UniformsScreen(_openGLContext, *shader));
+		}
 
     public:
 
         OpenGLTextureEx* _pTextureCube{ nullptr };
         String _texutureCubePath;
 
+
+		UniformsBase* _uniformBase{ nullptr };
+
         std::unique_ptr<UniformsCubeAndPlan> _uniformCube{ nullptr };
+
+		std::unique_ptr<UniformsScreen> _uniformScreen{ nullptr };
     };
 
     class SpritePlane : public SpriteBase
@@ -238,14 +280,38 @@ namespace T18 {
             else
                 jassertfalse;
 
-            if (_uniformPlane->texture1)
-                _uniformPlane->texture1->set(0);
+			jassert(_uniformBase);
+			UniformsCubeAndPlan * ucp = dynamic_cast<UniformsCubeAndPlan*>(_uniformBase);
+			if (ucp)
+			{
+				if (ucp->texture1)
+					ucp->texture1->set(0);
+			}
+
+
+			UniformsScreen * us = dynamic_cast<UniformsScreen*>(_uniformBase);
+			if (us)
+			{
+				if (us->screenTexture)
+					us->screenTexture->set(0);
+			}
+
         }
 
-        void setUniformEnv(OpenGLShaderProgram *shader)
-        {
-            _uniformPlane.reset(new UniformsCubeAndPlan(_openGLContext, *shader));
-        }
+		void  setUniformBase(UniformsBase* ub)
+		{
+			_uniformBase = ub;
+		}
+
+
+		void setUniformScene(OpenGLShaderProgram *shader)
+		{
+			_uniformCube.reset(new UniformsCubeAndPlan(_openGLContext, *shader));
+		}
+		void setUniformScreen(OpenGLShaderProgram *shader)
+		{
+			_uniformScreen.reset(new UniformsScreen(_openGLContext, *shader));
+		}
 
 
         virtual void drawPost() override
@@ -254,16 +320,110 @@ namespace T18 {
         }
         virtual UniformsBase * getUniformBase() override
         {
-            jassert(_uniformPlane);  // you need call setUniformEnv
-            return (UniformsBase*)_uniformPlane.get(); // we use default uniform
+			jassert(_uniformBase);  // you need call setUniformEnv
+			return  _uniformBase;
         }
     public:
         OpenGLTextureEx*  _pTextureFloor{ nullptr };  // we should only can delete this in  opengl shutdown function when opengl context is active.  so we delete it by TextureCache::clear(); method
         String _textureFloorPath;
 
-        std::unique_ptr<UniformsCubeAndPlan> _uniformPlane{ nullptr };
+
+
+		UniformsBase* _uniformBase{ nullptr };
+
+		std::unique_ptr<UniformsCubeAndPlan> _uniformCube{ nullptr };
+
+		std::unique_ptr<UniformsScreen> _uniformScreen{ nullptr };
 
     };
+
+	class SpriteQuard : public SpriteBase
+	{
+	public:
+		SpriteQuard(OpenGLContext& openglContext, Camera& camera) : SpriteBase(openglContext, camera)
+		{
+
+		}
+
+		void setTexture(GLuint frameBufferTextureID)
+		{
+			_frameBufferTextureID = frameBufferTextureID;
+		}
+
+		virtual void setupTexture() override
+		{
+			jassert(_frameBufferTextureID != 0); // you need setTexture first!
+		}
+		virtual void initBuffer() override
+		{
+			Vertex vertices[] = {
+				// positions         // texture coords
+			{   -1.0f,  1.0f, 0.0f,  0.0f, 1.0f},
+			{   -1.0f, -1.0f, 0.0f, 0.0f, 0.0f },
+			{    1.0f, -1.0f, 0.0f, 1.0f, 0.0f },
+
+			{    -1.0f,  1.0f, 0.0f, 0.0f, 1.0f},
+			{    1.0f, -1.0f, 0.0f, 1.0f, 0.0f },
+			{    1.0f,  1.0f, 0.0f, 1.0f, 1.0f }
+
+			};
+
+			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
+			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+			// position attribute
+			_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
+			_openGLContext.extensions.glEnableVertexAttribArray(0);
+
+			// uv attribute
+			_openGLContext.extensions.glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
+			_openGLContext.extensions.glEnableVertexAttribArray(1);
+		}
+
+		virtual void bindTexture() override
+		{
+			_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
+
+			jassert(_frameBufferTextureID != 0);
+
+			glBindTexture(GL_TEXTURE_2D, _frameBufferTextureID);
+
+
+			UniformsScreen * us = dynamic_cast<UniformsScreen*>(_uniformBase);
+			if (us)
+			{
+				if (us->screenTexture)
+					us->screenTexture->set(0);
+			}
+
+		}
+
+		void setUniformEnv(OpenGLShaderProgram *shader)
+		{
+			_uniformScreen.reset(new UniformsScreen(_openGLContext, *shader));
+		}
+
+		virtual void drawPost() override
+		{
+			glDrawArrays(GL_TRIANGLES, 0, 6);
+		}
+
+		virtual UniformsBase * getUniformBase() override
+		{
+			jassert(_uniformScreen);  // you need call setUniformEnv
+			return  _uniformScreen.get();
+		}
+	public:
+		GLuint _frameBufferTextureID	{ 0 };
+		String _textureFloorPath;
+
+
+
+		UniformsBase* _uniformBase{ nullptr };
+
+		std::unique_ptr<UniformsScreen> _uniformScreen{ nullptr };
+
+	};
 
 
     class Tutorial18 : public OpenGLAppComponent,
@@ -274,6 +434,7 @@ namespace T18 {
         //==============================================================================
         Tutorial18() : _spriteCube(openGLContext, _camera)/* : _sprite(openGLContext, _camera, _useCircle)*/
             , _spritePlane(openGLContext, _camera)
+			, _spriteQuard(openGLContext, _camera)
         
         {
             openGLContext.setPixelFormat(OpenGLPixelFormat(8, 8, 16, 8));
@@ -300,12 +461,18 @@ namespace T18 {
             macPath(f);
             
             _frameBuffer.initialise(openGLContext, 800, 600, true, true);
+			_spriteQuard.setTexture(_frameBuffer.getTextureID());
 
             //load the model shader and lamp shader.
             auto vertexSceneFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(vertexSceneFilename);
             auto fragmentSceneFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(fragmentSceneFileName);
-
             _shaderProgramScene.reset(new ShaderProgram(openGLContext, vertexSceneFile.getFullPathName(), fragmentSceneFile.getFullPathName()));
+
+
+			auto vertexScreenFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(vertexScreenFilename);
+			auto fragmentScreenFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(fragmentScreenFilename);
+			_shaderScreen.reset(new ShaderProgram(openGLContext, vertexScreenFile.getFullPathName(), fragmentScreenFile.getFullPathName()));
+		
 
             _spriteCube._texutureCubePath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("marble.jpg").getFullPathName();
             _spritePlane._textureFloorPath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("metal.png").getFullPathName();
@@ -313,13 +480,17 @@ namespace T18 {
 
             _spriteCube.init();
             _spritePlane.init();
-
-
+			_spriteQuard.init();
+		
         }
         void shutdown() override
         {
+			_frameBuffer.release();
             _shaderProgramScene->stopThread(1000);
             _shaderProgramScene.reset();
+
+			_shaderScreen->stopThread(1000);
+			_shaderScreen.reset();
 
             TextureCache::clear();
         }
@@ -333,8 +504,8 @@ namespace T18 {
             {
                 if (res == 1)
                 {
-                    _spriteCube.setUniformEnv(_shaderProgramScene->_shader);
-                    _spritePlane.setUniformEnv(_shaderProgramScene->_shader);   // cube and plan use the same shader!
+                    _spriteCube.setUniformScene(_shaderProgramScene->_shader);
+                    _spritePlane.setUniformScene(_shaderProgramScene->_shader);   // cube and plan use the same shader!
                 }
 
 
@@ -344,23 +515,62 @@ namespace T18 {
 
             }
 
+			res = _shaderScreen->updateShader();
+			if (res >= 0)
+			{
+				if (res == 1)
+				{
+					//_spriteCube.setUniformScreen(_shaderProgramScene->_shader);     // nerver used.  (it's uncommon an sprite uses different shaders)
+					//_spritePlane.setUniformScreen(_shaderProgramScene->_shader);   // nerver used.  (it's uncommon an sprite uses different shaders)
+					_spriteQuard.setUniformEnv(_shaderProgramScene->_shader);
+				}
 
-            glEnable(GL_DEPTH_TEST);
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            //glEnable(GL_CULL_FACE);   if we enable this, we call see that the right face are culled!!
-            if (_shaderProgramScene->_shader )
+
+				const MessageManagerLock mmLock;
+				if (mmLock.lockWasGained())
+					_lblCompileInfo->setText(_shaderProgramScene->getCompileResult() + " \n" + tutorialLink, NotificationType::dontSendNotification);
+
+			}
+
+
+			
+            if (_shaderProgramScene->_shader && _shaderScreen->_shader )
             {
+				_frameBuffer.makeCurrentRenderingTarget();
+				glEnable(GL_DEPTH_TEST);
                 OpenGLHelpers::clear(juce::Colour(0.2f, 0.3f, 0.3f, 1.0f));
-                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
                 _shaderProgramScene->_shader->use();
 
+				_spritePlane.setUniformBase(_spritePlane._uniformCube.get());
                 _spritePlane.draw();
  
+				_spriteCube.setUniformBase(_spritePlane._uniformCube.get());
                 _spriteCube.draw();
 
- 
+
+
+
+
+
+				_frameBuffer.releaseAsRenderingTarget();
+				glDisable(GL_DEPTH_TEST);
+				// clear all relevant buffers
+				glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // set clear color to white (not really necessery actually, since we won't be able to see behind the quad anyways)
+				glClear(GL_COLOR_BUFFER_BIT);
+
+
+				_shaderScreen->_shader->use();
+				_spriteQuard.draw();
+
+				//_spritePlane.setUniformBase(_spritePlane._uniformScreen.get());
+				//_spritePlane.draw();
+
+				//_spriteCube.setUniformBase(_spritePlane._uniformScreen.get());
+				//_spriteCube.draw();
+
+				
             }
         }
 
@@ -412,7 +622,6 @@ namespace T18 {
         bool firstMouse{ true };
         void mouseMove(const MouseEvent& e) override
         {
-
             static float lastX = 0., lastY = 0.;
 
             float xpos = e.getPosition().x;
@@ -458,9 +667,11 @@ namespace T18 {
         // Your private member variables go here...
         Camera _camera;
         std::unique_ptr<ShaderProgram> _shaderProgramScene;
+		std::unique_ptr<ShaderProgram> _shaderScreen;
 
         SpriteCube _spriteCube;
         SpritePlane _spritePlane;
+		SpriteQuard _spriteQuard;
         
         OpenGLFrameBuffer _frameBuffer;
 
