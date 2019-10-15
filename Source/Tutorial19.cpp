@@ -37,52 +37,6 @@ namespace T19 {
 
 
 
-#pragma pack(1)
-	struct Vertex {
-		struct Position {
-			float x;
-			float y;
-			float z;
-		};
-
-		struct UV {
-			float u;
-			float v;
-		};
-
-		Position position;
-
-		UV uv;
-
-		Vertex(float x, float y, float z, float u, float v)
-		{
-			position.x = x;
-			position.y = y;
-			position.z = z;
-
-			uv.u = u;
-			uv.v = v;
-		}
-	};
-
-
-	struct VertexSkyBox {
-		struct Position {
-			float x;
-			float y;
-			float z;
-		};
-
-		Position position;
-
-		VertexSkyBox(float x, float y, float z)
-		{
-			position.x = x;
-			position.y = y;
-			position.z = z;
-		}
-	};
-#pragma pack()
 
 
 	struct UniformsCube : public UniformsBase
@@ -128,6 +82,35 @@ namespace T19 {
 
 		virtual void initBuffer() override
 		{
+
+#pragma pack(1)
+			struct Vertex {
+				struct Position {
+					float x;
+					float y;
+					float z;
+				};
+
+				struct UV {
+					float u;
+					float v;
+				};
+
+				Position position;
+
+				UV uv;
+
+				Vertex(float x, float y, float z, float u, float v)
+				{
+					position.x = x;
+					position.y = y;
+					position.z = z;
+
+					uv.u = u;
+					uv.v = v;
+				}
+			};
+#pragma pack()
 
 			Vertex vertices[] = {
 				// positions         // texture coords
@@ -242,6 +225,24 @@ namespace T19 {
 		virtual void initBuffer() override
 		{
 
+#pragma pack(1)
+			struct VertexSkyBox {
+				struct Position {
+					float x;
+					float y;
+					float z;
+				};
+
+				Position position;
+
+				VertexSkyBox(float x, float y, float z)
+				{
+					position.x = x;
+					position.y = y;
+					position.z = z;
+				}
+			};
+#pragma pack()
 			VertexSkyBox vertices[] = {
 									// positions          
 							{-1.0f,  1.0f, -1.0f},
@@ -291,7 +292,7 @@ namespace T19 {
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute
-			_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
+			_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexSkyBox), (GLvoid*)offsetof(VertexSkyBox, position));
 			_openGLContext.extensions.glEnableVertexAttribArray(0);
 
 		}
@@ -319,7 +320,7 @@ namespace T19 {
 
 		virtual void drawPost() override
 		{
-			glDrawArrays(GL_TRIANGLES, 0, 6);
+			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
 		virtual UniformsBase * getUniformBase() override
 		{
@@ -333,8 +334,6 @@ namespace T19 {
 		String _textureSkyboxId{ "Skybox" };
 
 		std::unique_ptr<UniformSkybox> _uniformSkybox{ nullptr };
-
-	 
 
 	};
 
@@ -397,7 +396,6 @@ namespace T19 {
 
 			_spriteCube.init();
 			_spriteSkybox.init();
- 
 
 		}
 		void shutdown() override
@@ -438,11 +436,9 @@ namespace T19 {
 					_spriteSkybox.setUniformEnv(_shaderScreen->_shader);   // cube and plan use the same shader
 				}
 
-
 				const MessageManagerLock mmLock;
 				if (mmLock.lockWasGained())
 					_lblCompileInfo->setText(_shaderScreen->getCompileResult() + " \n" + tutorialLink, NotificationType::dontSendNotification);
-
 			}
 
 
