@@ -207,6 +207,13 @@
 			path = ../../Source/Shader/T17TextureFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		1208D2A481C6AD887BD8D3D0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T19SkyboxFragment.h;
+			path = ../../Source/Shader/T19SkyboxFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		139CD54986567409B87ED944 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -289,6 +296,13 @@
 			lastKnownFileType = text.plist.xml;
 			name = "Info-App.plist";
 			path = "Info-App.plist";
+			sourceTree = "SOURCE_ROOT";
+		};
+		29244D3DB909C6BFC65EEE2B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T19CubeFragment.h;
+			path = ../../Source/Shader/T19CubeFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		293247D8D44FD1FD12913358 = {
@@ -450,6 +464,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = T16StencilSingleColorFragment.h;
 			path = ../../Source/Shader/T16StencilSingleColorFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		5AD2989B1979224F808ABC88 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T19CubeVertex.h;
+			path = ../../Source/Shader/T19CubeVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		5BE738FD704228F87F29460C = {
@@ -837,6 +858,13 @@
 			path = "../../JuceLibraryCode/include_juce_cryptography.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		D3BEA5CE0D65A063E2C461D5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T19SkyboxVertex.h;
+			path = ../../Source/Shader/T19SkyboxVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D3DF08A2783019138A88FF9E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -984,6 +1012,10 @@
 		35CF69214B759D83E3A0C7B0 = {
 			isa = PBXGroup;
 			children = (
+				29244D3DB909C6BFC65EEE2B,
+				5AD2989B1979224F808ABC88,
+				1208D2A481C6AD887BD8D3D0,
+				D3BEA5CE0D65A063E2C461D5,
 				872B580E9EBD05C653B0E14F,
 				005E7C451EB8250A5D1ED565,
 				B072C14981037CEFAEA37366,

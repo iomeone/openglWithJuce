@@ -64,6 +64,24 @@ namespace T19 {
 			uv.v = v;
 		}
 	};
+
+
+	struct VertexSkyBox {
+		struct Position {
+			float x;
+			float y;
+			float z;
+		};
+
+		Position position;
+
+		VertexSkyBox(float x, float y, float z)
+		{
+			position.x = x;
+			position.y = y;
+			position.z = z;
+		}
+	};
 #pragma pack()
 
 
@@ -85,10 +103,10 @@ namespace T19 {
 	public:
 		UniformSkybox(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) : UniformsBase(openGLContext, shader)
 		{
-			screenTexture = createUniform(openGLContext, shader, "screenTexture");
+			skybox = createUniform(openGLContext, shader, "skybox");
 		}
 
-		ScopedPointer<OpenGLShaderProgram::Uniform> screenTexture{ nullptr };
+		ScopedPointer<OpenGLShaderProgram::Uniform> skybox{ nullptr };
 
 	};
 
@@ -217,23 +235,56 @@ namespace T19 {
 		}
 		virtual void setupTexture() override
 		{
-			_pTextureFloor = TextureCache::getTexture(_textureFloorPath);
-			if (!_pTextureFloor)
+			_pTextureSkybox = TextureCache::getCubeTexture(_textureSkyboxPath, _textureSkyboxId);
+			if (!_pTextureSkybox)
 				jassertfalse;
 		}
 		virtual void initBuffer() override
 		{
 
-			Vertex vertices[] = {
-				// positions         // texture coords
-			{    5.0f, -0.5f,  5.0f,   2.0f, 0.0f     },
-			{    -5.0f, -0.5f,  5.0f,  0.0f, 0.0f },
-			{    -5.0f, -0.5f, -5.0f,  0.0f, 2.0f },
+			VertexSkyBox vertices[] = {
+									// positions          
+							{-1.0f,  1.0f, -1.0f},
+							{-1.0f, -1.0f, -1.0f },
+							 {1.0f, -1.0f, -1.0f},
+							 {1.0f, -1.0f, -1.0f},
+							 {1.0f,  1.0f, -1.0f},
+							{-1.0f,  1.0f, -1.0f},
 
-			{    5.0f, -0.5f,  5.0f,   2.0f, 0.0f     },
-			{    -5.0f, -0.5f, -5.0f,  0.0f, 2.0f },
-			{    5.0f, -0.5f, -5.0f,   2.0f, 2.0f  }
+							{-1.0f, -1.0f,  1.0f},
+							{-1.0f, -1.0f, -1.0f},
+							{-1.0f,  1.0f, -1.0f},
+							{-1.0f,  1.0f, -1.0f},
+							{-1.0f,  1.0f,  1.0f},
+							{-1.0f, -1.0f,  1.0f},
 
+							 {1.0f, -1.0f, -1.0f},
+							 {1.0f, -1.0f,  1.0f},
+							 {1.0f,  1.0f,  1.0f},
+							 {1.0f,  1.0f,  1.0f},
+							 {1.0f,  1.0f, -1.0f},
+							 {1.0f, -1.0f, -1.0f},
+
+							{-1.0f, -1.0f,  1.0f},
+							{-1.0f,  1.0f,  1.0f},
+							{ 1.0f,  1.0f,  1.0f},
+							{ 1.0f,  1.0f,  1.0f},
+							{ 1.0f, -1.0f,  1.0f},
+							{-1.0f, -1.0f,  1.0f},
+
+							{-1.0f,  1.0f, -1.0f},
+							{ 1.0f,  1.0f, -1.0f},
+							{ 1.0f,  1.0f,  1.0f},
+							{ 1.0f,  1.0f,  1.0f},
+							{-1.0f,  1.0f,  1.0f},
+							{-1.0f,  1.0f, -1.0f},
+
+							{-1.0f, -1.0f, -1.0f},
+							{-1.0f, -1.0f,  1.0f},
+							{ 1.0f, -1.0f, -1.0f},
+							{ 1.0f, -1.0f, -1.0f},
+							{-1.0f, -1.0f,  1.0f},
+							{ 1.0f, -1.0f,  1.0f}
 			};
 
 			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -243,23 +294,20 @@ namespace T19 {
 			_openGLContext.extensions.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
 			_openGLContext.extensions.glEnableVertexAttribArray(0);
 
-			// uv attribute
-			_openGLContext.extensions.glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
-			_openGLContext.extensions.glEnableVertexAttribArray(1);
 		}
 
 		virtual void bindTexture() override
 		{
 			_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
-			if (_pTextureFloor)
-				_pTextureFloor->bind();
+			if (_pTextureSkybox)
+				_pTextureSkybox->bindCube();
 			else
 				jassertfalse;
 
 			jassert(_uniformSkybox);
 
-			if (_uniformSkybox->screenTexture)
-				_uniformSkybox->screenTexture->set(0);
+			if (_uniformSkybox->skybox)
+				_uniformSkybox->skybox->set(0);
 
 		}
 
@@ -267,7 +315,6 @@ namespace T19 {
 		{
 			_uniformSkybox.reset(new UniformSkybox(_openGLContext, *shader));
 		}
-
 
 
 		virtual void drawPost() override
@@ -280,8 +327,10 @@ namespace T19 {
 			return  _uniformSkybox.get();
 		}
 	public:
-		OpenGLTextureEx*  _pTextureFloor{ nullptr };  // we should only can delete this in  opengl shutdown function when opengl context is active.  so we delete it by TextureCache::clear(); method
-		String _textureFloorPath;
+		OpenGLTextureEx*  _pTextureSkybox{ nullptr };  // we should only can delete this in  opengl shutdown function when opengl context is active.  so we delete it by TextureCache::clear(); method
+		 
+		std::vector<String> _textureSkyboxPath;
+		String _textureSkyboxId{ "Skybox" };
 
 		std::unique_ptr<UniformSkybox> _uniformSkybox{ nullptr };
 
@@ -336,8 +385,15 @@ namespace T19 {
 
 
 			_spriteCube._texutureCubePath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("marble.jpg").getFullPathName();
-			_spriteSkybox._textureFloorPath = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("metal.png").getFullPathName();
+		
+			_spriteSkybox._textureSkyboxPath.push_back(f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("skybox").getChildFile("right.jpg").getFullPathName());
+			_spriteSkybox._textureSkyboxPath.push_back(f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("skybox").getChildFile("left.jpg").getFullPathName());
+			_spriteSkybox._textureSkyboxPath.push_back(f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("skybox").getChildFile("top.jpg").getFullPathName());
+			_spriteSkybox._textureSkyboxPath.push_back(f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("skybox").getChildFile("bottom.jpg").getFullPathName());
+			_spriteSkybox._textureSkyboxPath.push_back(f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("skybox").getChildFile("front.jpg").getFullPathName());
+			_spriteSkybox._textureSkyboxPath.push_back(f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("skybox").getChildFile("back.jpg").getFullPathName());
 
+			jassert(_spriteSkybox._textureSkyboxPath.size() == 6);
 
 			_spriteCube.init();
 			_spriteSkybox.init();
@@ -400,8 +456,11 @@ namespace T19 {
 				_shaderProgramScene->_shader->use();
 				_spriteCube.draw();
 
+
+				glDepthFunc(GL_LEQUAL);
 				_shaderScreen->_shader->use();
 				_spriteSkybox.draw();
+				glDepthFunc(GL_LESS);
 			}
 			else
 				jassertfalse;

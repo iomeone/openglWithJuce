@@ -59,6 +59,41 @@ public:
 		return mit->second;
 	}
 
+	static  OpenGLTextureEx* getCubeTexture(std::vector<String> faces, String cubeMapName)
+	{
+		//lookup the texture and see if its in the map
+		auto mit = getTextureMap().find(cubeMapName);
+
+		//check if its not in the map
+		if (mit == getTextureMap().end()) 
+		{
+			std::map<String, OpenGLTextureEx* >& _textureMap = TextureCache::getTextureMap();
+			OpenGLTextureEx* pTexture = new OpenGLTextureEx();
+			int index = 0;
+			for (auto texturePath : faces)
+			{
+				File f = texturePath;
+
+				if (!f.existsAsFile())
+				{
+					AlertWindow::showMessageBox(AlertWindow::AlertIconType::InfoIcon, "Error Texture Path", texturePath);
+					return nullptr;
+				}
+				else
+				{
+					auto image = juce::ImageFileFormat::loadFrom(f);
+					pTexture->loadCubeImage(image, index);
+					index++;
+				}
+			}
+			_textureMap[cubeMapName] = pTexture;
+			return pTexture;
+
+		}
+
+		return mit->second;
+	}
+
 public:
 
 	static std::map<String, OpenGLTextureEx* > & getTextureMap()

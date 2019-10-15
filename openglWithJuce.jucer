@@ -15,6 +15,13 @@
     </GROUP>
     <FILE id="XhanRu" name="README.md" compile="0" resource="1" file="README.md"/>
     <GROUP id="{9BAD5BA1-9290-2241-5422-76CFDF24FEAD}" name="Shader">
+      <FILE id="uIn2jW" name="T19CubeFragment.h" compile="0" resource="0"
+            file="Source/Shader/T19CubeFragment.h"/>
+      <FILE id="C19miL" name="T19CubeVertex.h" compile="0" resource="0" file="Source/Shader/T19CubeVertex.h"/>
+      <FILE id="Sfk2Gg" name="T19SkyboxFragment.h" compile="0" resource="0"
+            file="Source/Shader/T19SkyboxFragment.h"/>
+      <FILE id="smKjEh" name="T19SkyboxVertex.h" compile="0" resource="0"
+            file="Source/Shader/T19SkyboxVertex.h"/>
       <FILE id="R5buSY" name="T18PlaneAndBoxFragment.h" compile="0" resource="0"
             file="Source/Shader/T18PlaneAndBoxFragment.h"/>
       <FILE id="nHFPzK" name="T18PlaneAndBoxVertex.h" compile="0" resource="0"

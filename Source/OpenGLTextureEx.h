@@ -29,6 +29,9 @@
 		*/
 		void loadImage(const Image& image);
 
+
+		void loadCubeImage(const Image& image, const int index);
+
 		/** Creates a texture from a raw array of pixels.
 			If width and height are not powers-of-two, the texture will be created with a
 			larger size, and only the subsection (0, 0, width, height) will be initialised.
@@ -58,6 +61,8 @@
 		/** Binds the texture to the currently active openGL context. */
 		void bind() const;
 
+		void bindCube() const;
+
 		/** Unbinds the texture to the currently active openGL context. */
 		void unbind() const;
 
@@ -78,6 +83,6 @@
 		OpenGLContext* ownerContext;
 
 		void create(int w, int h, const void*, GLenum, bool topLeft);
-
+		void createCube(const int w, const int h, const int index, const void* pixels, GLenum type, bool topLeft);
 		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OpenGLTextureEx)
 	};
