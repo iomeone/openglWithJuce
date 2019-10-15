@@ -528,7 +528,7 @@ namespace T18 {
 
 				const MessageManagerLock mmLock;
 				if (mmLock.lockWasGained())
-					_lblCompileInfo->setText(_shaderProgramScene->getCompileResult() + " \n" + tutorialLink, NotificationType::dontSendNotification);
+					_lblCompileInfo->setText(_shaderScreen->getCompileResult() + " \n" + tutorialLink, NotificationType::dontSendNotification);
 
 			}
 

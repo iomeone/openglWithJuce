@@ -43,6 +43,9 @@
     <ClCompile Include="..\..\Source\Tutorial18.cpp">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Tutorial19.cpp">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>openglWithJuce\Source</Filter>
     </ClCompile>

@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<Project DefaultTargets="Build"
-         ToolsVersion="15.0"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -16,29 +13,25 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2D09197E-6533-7572-7309-58ED5F5D800A}</ProjectGuid>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
-                 Label="Configuration">
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</WindowsTargetPlatformVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
-                 Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</WindowsTargetPlatformVersion>
   </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
-  <ImportGroup Label="ExtensionSettings"/>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-            Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-            Label="LocalAppDataPlatform"/>
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
@@ -58,7 +51,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <HeaderFileName/>
+      <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -67,7 +60,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;JUCE_OPENGL3;JUCER_VS2017_78A5024=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader/>
+      <PrecompiledHeader />
       <AssemblerListingLocation>$(IntDir)\</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)\</ObjectFileName>
       <ProgramDataBaseFileName>$(IntDir)\</ProgramDataBaseFileName>
@@ -92,7 +85,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\openglWithJuce.bsc</OutputFile>
     </Bscmake>
-    <Lib/>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -100,7 +93,7 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <HeaderFileName/>
+      <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
@@ -108,7 +101,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;JUCE_OPENGL3;JUCER_VS2017_78A5024=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=0;JucePlugin_Build_AAX=0;JucePlugin_Build_Standalone=0;JucePlugin_Build_Unity=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeader/>
+      <PrecompiledHeader />
       <AssemblerListingLocation>$(IntDir)\</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)\</ObjectFileName>
       <ProgramDataBaseFileName>$(IntDir)\</ProgramDataBaseFileName>
@@ -135,122 +128,123 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(IntDir)\openglWithJuce.bsc</OutputFile>
     </Bscmake>
-    <Lib/>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\OpenGLTextureEx.cpp"/>
-    <ClCompile Include="..\..\Source\ValueTreeView.cpp"/>
-    <ClCompile Include="..\..\Source\Tutorial16.cpp"/>
-    <ClCompile Include="..\..\Source\Tutorial17.cpp"/>
-    <ClCompile Include="..\..\Source\Tutorial18.cpp"/>
-    <ClCompile Include="..\..\Source\MainComponent.cpp"/>
-    <ClCompile Include="..\..\Source\Main.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_processors.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_core.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_cryptography.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_data_structures.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_events.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_graphics.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_basics.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
-    <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
+    <ClCompile Include="..\..\Source\OpenGLTextureEx.cpp" />
+    <ClCompile Include="..\..\Source\ValueTreeView.cpp" />
+    <ClCompile Include="..\..\Source\Tutorial16.cpp" />
+    <ClCompile Include="..\..\Source\Tutorial17.cpp" />
+    <ClCompile Include="..\..\Source\Tutorial18.cpp" />
+    <ClCompile Include="..\..\Source\Tutorial19.cpp" />
+    <ClCompile Include="..\..\Source\MainComponent.cpp" />
+    <ClCompile Include="..\..\Source\Main.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_processors.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_core.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_cryptography.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_data_structures.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_events.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_graphics.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_basics.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp" />
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\OpenGLTextureEx.h"/>
-    <ClInclude Include="..\..\Source\ValueTreeView.h"/>
-    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T18ScreenFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T18ScreenVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\fragmentT1.h"/>
-    <ClInclude Include="..\..\Source\Shader\fragmentT2.h"/>
-    <ClInclude Include="..\..\Source\Shader\fragmentT3.h"/>
-    <ClInclude Include="..\..\Source\Shader\fragmentT4.h"/>
-    <ClInclude Include="..\..\Source\Shader\fragmentT5.h"/>
-    <ClInclude Include="..\..\Source\Shader\fragmentT6.h"/>
-    <ClInclude Include="..\..\Source\Shader\T7ColorsFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T7ColorsVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T7LampFragment .h"/>
-    <ClInclude Include="..\..\Source\Shader\T7LampVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T8ColorsFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T8ColorsVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T8LampFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T8LampVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T9ColorsFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T9ColorsVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T9LampFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T9LampVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T10ColorsFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T10ColorsVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T10LampFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T10LampVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T11ColorsFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T11ColorsVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T11LampFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T11LampVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T12ColorsFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T12ColorsVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T12LampFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T12LampVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T13ColorsFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T13ColorsVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T13LampFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T13LampVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T14ColorsFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T14ColorsVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T14LampFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T14LampVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T15ModelFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T15ModelVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T16StencilSingleColorFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T16StencilSingleColorVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T16StencilTextureFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T16StencilTextureVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\T17TextureFragment.h"/>
-    <ClInclude Include="..\..\Source\Shader\T17TextureVertex.h"/>
-    <ClInclude Include="..\..\Source\Shader\vertexT1.h"/>
-    <ClInclude Include="..\..\Source\Shader\vertexT2.h"/>
-    <ClInclude Include="..\..\Source\Shader\vertexT3.h"/>
-    <ClInclude Include="..\..\Source\Shader\vertexT4.h"/>
-    <ClInclude Include="..\..\Source\Shader\vertexT5.h"/>
-    <ClInclude Include="..\..\Source\Shader\vertexT6.h"/>
-    <ClInclude Include="..\..\Source\Mesh.h"/>
-    <ClInclude Include="..\..\Source\Model.h"/>
-    <ClInclude Include="..\..\Source\Camera.h"/>
-    <ClInclude Include="..\..\Source\ShaderProgram.h"/>
-    <ClInclude Include="..\..\Source\SpriteBase.h"/>
-    <ClInclude Include="..\..\Source\TextureCache.h"/>
-    <ClInclude Include="..\..\Source\Tutorial1.h"/>
-    <ClInclude Include="..\..\Source\Tutorial2.h"/>
-    <ClInclude Include="..\..\Source\Tutorial3.h"/>
-    <ClInclude Include="..\..\Source\Tutorial4.h"/>
-    <ClInclude Include="..\..\Source\Tutorial5.h"/>
-    <ClInclude Include="..\..\Source\Tutorial6.h"/>
-    <ClInclude Include="..\..\Source\Tutorial7.h"/>
-    <ClInclude Include="..\..\Source\Tutorial8.h"/>
-    <ClInclude Include="..\..\Source\Tutorial9.h"/>
-    <ClInclude Include="..\..\Source\Tutorial10.h"/>
-    <ClInclude Include="..\..\Source\Tutorial11.h"/>
-    <ClInclude Include="..\..\Source\Tutorial12.h"/>
-    <ClInclude Include="..\..\Source\Tutorial13.h"/>
-    <ClInclude Include="..\..\Source\Tutorial14.h"/>
-    <ClInclude Include="..\..\Source\Tutorial15.h"/>
-    <ClInclude Include="..\..\Source\CompList.h"/>
-    <ClInclude Include="..\..\Source\MainComponent.h"/>
-    <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>
-    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h"/>
-    <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
+    <ClInclude Include="..\..\Source\OpenGLTextureEx.h" />
+    <ClInclude Include="..\..\Source\ValueTreeView.h" />
+    <ClInclude Include="..\..\Source\Shader\T18CubeFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T18CubeVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T18SkyboxFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T18SkyboxVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\fragmentT1.h" />
+    <ClInclude Include="..\..\Source\Shader\fragmentT2.h" />
+    <ClInclude Include="..\..\Source\Shader\fragmentT3.h" />
+    <ClInclude Include="..\..\Source\Shader\fragmentT4.h" />
+    <ClInclude Include="..\..\Source\Shader\fragmentT5.h" />
+    <ClInclude Include="..\..\Source\Shader\fragmentT6.h" />
+    <ClInclude Include="..\..\Source\Shader\T7ColorsFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T7ColorsVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T7LampFragment .h" />
+    <ClInclude Include="..\..\Source\Shader\T7LampVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T8ColorsFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T8ColorsVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T8LampFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T8LampVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T9ColorsFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T9ColorsVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T9LampFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T9LampVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T10ColorsFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T10ColorsVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T10LampFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T10LampVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T11ColorsFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T11ColorsVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T11LampFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T11LampVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T12ColorsFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T12ColorsVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T12LampFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T12LampVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T13ColorsFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T13ColorsVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T13LampFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T13LampVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T14ColorsFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T14ColorsVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T14LampFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T14LampVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T15ModelFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T15ModelVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T16StencilSingleColorFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T16StencilSingleColorVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T16StencilTextureFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T16StencilTextureVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\T17TextureFragment.h" />
+    <ClInclude Include="..\..\Source\Shader\T17TextureVertex.h" />
+    <ClInclude Include="..\..\Source\Shader\vertexT1.h" />
+    <ClInclude Include="..\..\Source\Shader\vertexT2.h" />
+    <ClInclude Include="..\..\Source\Shader\vertexT3.h" />
+    <ClInclude Include="..\..\Source\Shader\vertexT4.h" />
+    <ClInclude Include="..\..\Source\Shader\vertexT5.h" />
+    <ClInclude Include="..\..\Source\Shader\vertexT6.h" />
+    <ClInclude Include="..\..\Source\Mesh.h" />
+    <ClInclude Include="..\..\Source\Model.h" />
+    <ClInclude Include="..\..\Source\Camera.h" />
+    <ClInclude Include="..\..\Source\ShaderProgram.h" />
+    <ClInclude Include="..\..\Source\SpriteBase.h" />
+    <ClInclude Include="..\..\Source\TextureCache.h" />
+    <ClInclude Include="..\..\Source\Tutorial1.h" />
+    <ClInclude Include="..\..\Source\Tutorial2.h" />
+    <ClInclude Include="..\..\Source\Tutorial3.h" />
+    <ClInclude Include="..\..\Source\Tutorial4.h" />
+    <ClInclude Include="..\..\Source\Tutorial5.h" />
+    <ClInclude Include="..\..\Source\Tutorial6.h" />
+    <ClInclude Include="..\..\Source\Tutorial7.h" />
+    <ClInclude Include="..\..\Source\Tutorial8.h" />
+    <ClInclude Include="..\..\Source\Tutorial9.h" />
+    <ClInclude Include="..\..\Source\Tutorial10.h" />
+    <ClInclude Include="..\..\Source\Tutorial11.h" />
+    <ClInclude Include="..\..\Source\Tutorial12.h" />
+    <ClInclude Include="..\..\Source\Tutorial13.h" />
+    <ClInclude Include="..\..\Source\Tutorial14.h" />
+    <ClInclude Include="..\..\Source\Tutorial15.h" />
+    <ClInclude Include="..\..\Source\CompList.h" />
+    <ClInclude Include="..\..\Source\MainComponent.h" />
+    <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h" />
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h" />
+    <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\README.md"/>
+    <None Include="..\..\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include=".\resources.rc"/>
+    <ResourceCompile Include=".\resources.rc" />
   </ItemGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
-  <ImportGroup Label="ExtensionTargets"/>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

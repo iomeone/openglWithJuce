@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="openglWithJuce\Utility">
@@ -41,6 +40,9 @@
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Tutorial18.cpp">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Tutorial19.cpp">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
@@ -95,18 +97,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\ValueTreeView.h">
       <Filter>openglWithJuce\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxFragment.h">
-      <Filter>openglWithJuce\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Shader\T18PlaneAndBoxVertex.h">
-      <Filter>openglWithJuce\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Shader\T18ScreenFragment.h">
-      <Filter>openglWithJuce\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Shader\T18ScreenVertex.h">
-      <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Shader\fragmentT1.h">
       <Filter>openglWithJuce\Shader</Filter>
@@ -341,6 +331,18 @@
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T18CubeVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T18CubeFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T18SkyboxVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T18SkyboxFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
