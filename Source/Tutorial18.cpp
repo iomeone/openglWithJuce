@@ -384,7 +384,7 @@ namespace T18 {
 		{
 			_openGLContext.extensions.glActiveTexture(GL_TEXTURE0);
 
-			jassert(_frameBufferTextureID != 0);
+			jassert(_frameBufferTextureID != 0);                      // you need call setupTexture
 
 			glBindTexture(GL_TEXTURE_2D, _frameBufferTextureID);
 
