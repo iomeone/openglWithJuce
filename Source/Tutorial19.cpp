@@ -320,6 +320,10 @@ namespace T19 {
 
 		virtual void drawPost() override
 		{
+		
+			glm::mat4 view = glm::mat4(glm::mat3(_camera.getViewMat()));
+			getUniformBase()->view->setMatrix4(glm::value_ptr(view), 1, GL_FALSE);
+
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
 		virtual UniformsBase * getUniformBase() override

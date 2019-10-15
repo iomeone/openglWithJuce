@@ -86,8 +86,11 @@ static void checkGLError(const char* file, const int line)
 		jassertfalse;
 	}
 }
-
+#ifdef _WIN64
 #define JUCE_CHECK_OPENGL_ERROR checkGLError (__FILE__, __LINE__);
+#else
+#define JUCE_CHECK_OPENGL_ERROR   
+#endif
 
 
 #define GL_TEXTURE_WRAP_R                 0x8072
