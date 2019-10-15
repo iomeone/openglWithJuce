@@ -522,7 +522,7 @@ namespace T18 {
 				{
 					//_spriteCube.setUniformScreen(_shaderProgramScene->_shader);     // nerver used.  (it's uncommon an sprite uses different shaders)
 					//_spritePlane.setUniformScreen(_shaderProgramScene->_shader);   // nerver used.  (it's uncommon an sprite uses different shaders)
-					_spriteQuard.setUniformEnv(_shaderProgramScene->_shader);
+					_spriteQuard.setUniformEnv(_shaderScreen->_shader);
 				}
 
 
