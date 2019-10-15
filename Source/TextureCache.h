@@ -81,8 +81,30 @@ public:
 				}
 				else
 				{
-					auto image = juce::ImageFileFormat::loadFrom(f);
-					pTexture->loadCubeImage(image, index);
+
+					auto   image = juce::ImageFileFormat::loadFrom(f);
+					juce::Image mirrorImage(image.getFormat(), image.getHeight(), image.getWidth(), true);
+					
+
+					Graphics g(mirrorImage);
+			/*		
+					https://forum.juce.com/t/i-can-draw-an-image-now-how-do-you-mirror-flip-it/30250/15
+					Feature request :
+
+					AffineTransform AffineTransform::horizontalFlip(float width)
+					{
+						return { -1.f, 0.f, width,
+								  0.f, 1.f, 0.f };
+					}
+					to complement the AffineTransform::verticalFlip(int height)*/
+					AffineTransform transform4mirroring = AffineTransform::verticalFlip(image.getHeight());
+				 
+					g.drawImageTransformed(image, transform4mirroring);
+					// remove color is simple:
+					//mirrorImage.desaturate();
+
+
+					pTexture->loadCubeImage(mirrorImage, index);
 					index++;
 				}
 			}
