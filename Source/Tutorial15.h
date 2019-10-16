@@ -127,7 +127,6 @@ namespace T15 {
 		virtual void setupTexture() override{}  // light don't have any texture
 		virtual void initBuffer() override
 		{
-			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute

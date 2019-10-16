@@ -78,6 +78,7 @@ public:
     */
     bool addFragmentShader (const String& shaderSourceCode);
 
+	bool addGeometryShader(const String& shaderSourceCode);
     /** Links all the compiled shaders into a usable program.
         If your app is built in debug mode, this method will assert if the program
         fails to link correctly.

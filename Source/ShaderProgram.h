@@ -67,11 +67,17 @@ namespace OpenGL33Helpers
 class ShaderProgram :public Thread
 {
 public:
-	ShaderProgram(OpenGLContext & ogc, String vertexFilePath, String fragmentFilePath)
+	ShaderProgram(OpenGLContext & ogc, String vertexFilePath, String fragmentFilePath , String geometryFilePath = "")
 		: Thread("Shader Thread"), _openGLContext(ogc)
 	{
+		if (geometryFilePath != "")
+		{
+			_wantUseGeometry = true;
+		}
+
 		_fVertex = vertexFilePath;
 		_fFragment = fragmentFilePath;
+		_fGeometry = geometryFilePath;
 		
 		while (true)
 		{
@@ -109,6 +115,26 @@ public:
 			{
 				AlertWindow::showMessageBox(AlertWindow::AlertIconType::InfoIcon, "error", "Please create fragment shader source file at: " + vertexFilePath);
 				bfind = false;
+			}
+
+			if (_wantUseGeometry)
+			{
+				if (_fGeometry.existsAsFile())
+				{
+
+					lastModiyGeometry = _fGeometry.getLastModificationTime();
+					juce::StringArray sa;
+					_fGeometry.readLines(sa);
+					_strGeometry = sa.joinIntoString("\n");
+					_oldGeometry = _strGeometry;
+
+				}
+				else
+				{
+					AlertWindow::showMessageBox(AlertWindow::AlertIconType::InfoIcon, "error", "Please create Geometry shader source file at: " + geometryFilePath);
+					bfind = false;
+				}
+
 			}
 				
 			if (bfind)
@@ -161,7 +187,22 @@ public:
 				}
 			}
 
-			if (!_strFragment.isEmpty() || !_strVertex.isEmpty())
+			if(_wantUseGeometry)
+			{
+				juce::Time tGeometry = _fGeometry.getLastModificationTime();
+
+				if (lastModiyGeometry != tGeometry)
+				{
+					lastModiyFragment = tGeometry;
+					juce::StringArray sa;
+					_fGeometry.readLines(sa);
+
+					_strGeometry = sa.joinIntoString("\n");
+					_oldGeometry = _strFragment;
+				}
+			}
+
+			if (!_strFragment.isEmpty() || !_strVertex.isEmpty() || !_strGeometry.isEmpty())
 			{
 				if (_strFragment.isEmpty())
 				{
@@ -171,6 +212,10 @@ public:
 				{
 					_strVertex = _oldVertex;
 				}
+				if (_strGeometry.isEmpty())
+				{
+					_strGeometry = _oldGeometry;
+				}
 				
 			}
 			_isReadingFile = false;
@@ -178,6 +223,7 @@ public:
 	}
 
 
+ 
 	int updateShader()
 	{
 		bool result = -1;
@@ -187,6 +233,9 @@ public:
 		}
 		if (_strFragment.length() == 0 || _strVertex.length() == 0)
 			return -1;
+		if (_wantUseGeometry && _strGeometry.length() == 0)
+			return -1;
+
 		
 		ScopedPointer<OpenGLShaderProgram> newShader(new OpenGLShaderProgram(_openGLContext));
 		jassert(_openGLContext.isActive());
@@ -194,17 +243,28 @@ public:
         
         auto translatedVertexShader = OpenGL33Helpers::translateVertexShaderToV3(_strVertex);
         auto translatedFragmentShader = OpenGL33Helpers::translateFragmentShaderToV3(_strFragment);
+		auto translatedGeometryShader = OpenGL33Helpers::translateVertexShaderToV3(_strGeometry);
         
         DBG("---- Translated vertex shader -----");
         DBG(translatedVertexShader);
         
         DBG("---- Translated fragment shader -----");
         DBG(translatedFragmentShader);
+
+		DBG("---- Translated fragment shader -----");
+		DBG(translatedGeometryShader);
         
+		bool bag = true;
+		if (_wantUseGeometry)
+		{
+			bag = newShader->addGeometryShader(translatedGeometryShader);
+		}
 		if (newShader->addVertexShader(translatedVertexShader)
 			&& newShader->addFragmentShader(translatedFragmentShader)
+			&& bag
 			&& newShader->link())
 		{
+			
 			_shader = nullptr;
 			_shader = newShader;
 			_compileResult = "GLSL: v" + String(juce::OpenGLShaderProgram::getLanguageVersion(), 2);
@@ -234,15 +294,17 @@ private:
 	
 	juce::File _fVertex;
 	juce::File _fFragment;
+	juce::File _fGeometry;
 
 	String _strVertex, _oldVertex;
 	String _strFragment, _oldFragment;
+	String _strGeometry, _oldGeometry;
 
 	juce::Time lastModiyFragment;
 	juce::Time lastModiyVertex;
-
+	juce::Time lastModiyGeometry;
  
-
+	bool _wantUseGeometry{ false };
 	OpenGLContext & _openGLContext;
 
 	juce::Atomic<bool> _isReadingFile{ false };

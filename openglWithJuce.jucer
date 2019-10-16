@@ -15,6 +15,9 @@
     </GROUP>
     <FILE id="XhanRu" name="README.md" compile="0" resource="1" file="README.md"/>
     <GROUP id="{9BAD5BA1-9290-2241-5422-76CFDF24FEAD}" name="Shader">
+      <FILE id="OUJBj6" name="T20Fragment.h" compile="0" resource="0" file="Source/Shader/T20Fragment.h"/>
+      <FILE id="n9JjgQ" name="T20Geometry.h" compile="0" resource="0" file="Source/Shader/T20Geometry.h"/>
+      <FILE id="KqpWkW" name="T20Vertex.h" compile="0" resource="0" file="Source/Shader/T20Vertex.h"/>
       <FILE id="uIn2jW" name="T19CubeFragment.h" compile="0" resource="0"
             file="Source/Shader/T19CubeFragment.h"/>
       <FILE id="C19miL" name="T19CubeVertex.h" compile="0" resource="0" file="Source/Shader/T19CubeVertex.h"/>
@@ -145,6 +148,7 @@
       <FILE id="xgt30F" name="Tutorial17.cpp" compile="1" resource="0" file="Source/Tutorial17.cpp"/>
       <FILE id="Fgxa7d" name="Tutorial18.cpp" compile="1" resource="0" file="Source/Tutorial18.cpp"/>
       <FILE id="VnHV5f" name="Tutorial19.cpp" compile="1" resource="0" file="Source/Tutorial19.cpp"/>
+      <FILE id="NvFgws" name="Tutorial20.cpp" compile="1" resource="0" file="Source/Tutorial20.cpp"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>

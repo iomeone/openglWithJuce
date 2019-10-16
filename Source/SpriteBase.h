@@ -40,14 +40,48 @@ public:
 };
 
 
+class OpenglVertexBuffer
+{
+public:
+	OpenglVertexBuffer(OpenGLContext& context) :VBO(0), VAO(0), _openGLContext(context){}
 
+	void init()
+	{
+		_openGLContext.extensions.glGenVertexArrays(1, &VAO);
+		_openGLContext.extensions.glGenBuffers(1, &VBO);
+	}
+
+	void bind()
+	{
+		_openGLContext.extensions.glBindVertexArray(VAO);
+		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+	}
+	void unbind()
+	{
+		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
+		_openGLContext.extensions.glBindVertexArray(0);
+	}
+
+	~OpenglVertexBuffer()
+	{
+		unbind();
+		_openGLContext.extensions.glDeleteVertexArrays(1, &VAO);
+		_openGLContext.extensions.glDeleteBuffers(1, &VBO);
+	}
+
+	OpenGLContext& _openGLContext;
+
+	GLuint VBO, VAO;
+};
 class SpriteBase
 {
 public:
-	SpriteBase(OpenGLContext& openGLContext, Camera& camera, glm::mat4 model = glm::mat4(1.0f)) :VBO(0), VAO(0),
+	SpriteBase(OpenGLContext& openGLContext, Camera& camera, glm::mat4 model = glm::mat4(1.0f)) :
 		_openGLContext(openGLContext),
 		_camera(camera),
-		_model(model)
+		_model(model),
+		_openglVertexBuffer(openGLContext)
 	{
 	}
 
@@ -56,11 +90,8 @@ public:
 		_model = model;
 	}
 
-
 	~SpriteBase()
 	{
-		_openGLContext.extensions.glDeleteVertexArrays(1, &VAO);
-		_openGLContext.extensions.glDeleteBuffers(1, &VBO);
 	}
 
 	virtual void setupTexture() = 0;
@@ -80,16 +111,13 @@ public:
 	void init()
 	{
 		setupTexture();
-		_openGLContext.extensions.glGenVertexArrays(1, &VAO);
-		_openGLContext.extensions.glGenBuffers(1, &VBO);
-
-
-		_openGLContext.extensions.glBindVertexArray(VAO);
+		
+		_openglVertexBuffer.init();
+		_openglVertexBuffer.bind();
 		 
 		initBuffer();
 		 
-		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
-		_openGLContext.extensions.glBindVertexArray(0);
+		_openglVertexBuffer.unbind();
 	}
 
 	void draw()
@@ -113,9 +141,9 @@ public:
 		}
 
 		bindTexture();
-		_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+		_openglVertexBuffer.bind(); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 		drawPost();
-		_openGLContext.extensions.glBindVertexArray(0);
+		_openglVertexBuffer.unbind();
 
 		return;
 	}
@@ -130,13 +158,13 @@ public:
 	float _screenWidth{ 1200.f };
 	float _screenHeight{ 800.f };
 
-	GLuint VBO, VAO;
-
 	OpenGLContext& _openGLContext;
 	Camera& _camera;
 
 	glm::mat4 _model;
 	std::unique_ptr< UniformsBase> _defaultUniform{ nullptr };
+
+	OpenglVertexBuffer _openglVertexBuffer;
 	
 };
 

@@ -77,6 +77,10 @@
 			isa = PBXBuildFile;
 			fileRef = 831A18A7EBF9AE04CDF67CF0;
 		};
+		C15C5341A0173FBB83291012 = {
+			isa = PBXBuildFile;
+			fileRef = F25EEA8BAF610FED4B848303;
+		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -382,6 +386,13 @@
 			path = "../../JuceLibraryCode/include_juce_gui_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		390A1C0FACFA17F2B9DDE76C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T20Geometry.h;
+			path = ../../Source/Shader/T20Geometry.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		39156831A4D7DCCB8B45D871 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -564,6 +575,13 @@
 			path = ../../Source/Shader/T13LampVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		76275DA7F24BA34E8F961458 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T20Fragment.h;
+			path = ../../Source/Shader/T20Fragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		793D3C354C10DB122187B75C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -681,6 +699,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = T10ColorsVertex.h;
 			path = ../../Source/Shader/T10ColorsVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		987154DA02A4FA6C8CFC87CC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T20Vertex.h;
+			path = ../../Source/Shader/T20Vertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		9BC252BD7D7D1A4B22D27C52 = {
@@ -956,6 +981,13 @@
 			path = ../../Source/Shader/T11ColorsFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		F25EEA8BAF610FED4B848303 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Tutorial20.cpp;
+			path = ../../Source/Tutorial20.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		F3497E75DC0C96FD2D5803B9 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1012,6 +1044,9 @@
 		35CF69214B759D83E3A0C7B0 = {
 			isa = PBXGroup;
 			children = (
+				76275DA7F24BA34E8F961458,
+				390A1C0FACFA17F2B9DDE76C,
+				987154DA02A4FA6C8CFC87CC,
 				29244D3DB909C6BFC65EEE2B,
 				5AD2989B1979224F808ABC88,
 				1208D2A481C6AD887BD8D3D0,
@@ -1119,6 +1154,7 @@
 				A9AFC2026F3827B5BE56F84B,
 				30DC419D6AD00A77653FFB87,
 				831A18A7EBF9AE04CDF67CF0,
+				F25EEA8BAF610FED4B848303,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -1438,6 +1474,7 @@
 				B149B3F93FBE396450061B7F,
 				EAA21497DBE0626F4517FC30,
 				15252E3DD00B8CFB8545942C,
+				C15C5341A0173FBB83291012,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				D473426BFE34164F2B044D35,

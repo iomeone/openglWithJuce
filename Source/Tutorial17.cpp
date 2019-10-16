@@ -140,7 +140,6 @@ namespace T17 {
 
 			};
 
-			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute
@@ -215,7 +214,6 @@ namespace T17 {
 
 			};
 
-			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute
@@ -292,7 +290,6 @@ namespace T17 {
 
 			};
 
-			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute

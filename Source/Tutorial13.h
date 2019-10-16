@@ -165,7 +165,6 @@ namespace T13 {
 		virtual void initBuffer() override
 		{
 			
-			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
@@ -227,7 +226,6 @@ namespace T13 {
 			};
 
 			
-			_openGLContext.extensions.glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 
 
 			static float sa = 0.005;
@@ -276,7 +274,6 @@ namespace T13 {
 		virtual void initBuffer() override
 		{
 			 
-			_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 			// position attribute

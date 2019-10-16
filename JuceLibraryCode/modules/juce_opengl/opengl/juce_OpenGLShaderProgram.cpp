@@ -101,6 +101,8 @@ bool OpenGLShaderProgram::addShader (const String& code, GLenum type)
 
 bool OpenGLShaderProgram::addVertexShader (const String& code)    { return addShader (code, GL_VERTEX_SHADER); }
 bool OpenGLShaderProgram::addFragmentShader (const String& code)  { return addShader (code, GL_FRAGMENT_SHADER); }
+#define GL_GEOMETRY_SHADER 0x8DD9
+bool OpenGLShaderProgram::addGeometryShader(const String& code) { return addShader(code, GL_GEOMETRY_SHADER); }
 
 bool OpenGLShaderProgram::link() noexcept
 {
