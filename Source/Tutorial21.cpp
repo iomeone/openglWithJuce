@@ -35,122 +35,13 @@ namespace T21 {
 	const String geometryCubeFilename = "T21Geometry.h";
 	const String fragmentCubeFileName = "T21Fragment.h";
 
-
-
-
-	struct UniformsCube : public UniformsBase
-	{
-	public:
-		UniformsCube(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) : UniformsBase(openGLContext, shader)
-		{
-			texture_diffuse1 = createUniform(openGLContext, shader, "texture_diffuse1");
-		}
-
-		ScopedPointer<OpenGLShaderProgram::Uniform> texture_diffuse1{ nullptr };
-
-	};
-
-
-
-	class SpriteCube : public SpriteBase
-	{
-	public:
-		SpriteCube(OpenGLContext& openglContext, Camera& camera) : SpriteBase(openglContext, camera)
-		{
-
-		}
-
-		virtual void setupTexture() override
-		{
-		}
-
-
-		virtual void initBuffer() override
-		{
-
-#pragma pack(1)
-			struct Vertex {
-				struct Position {
-					float x;
-					float y;
-	
-				};
-
-				struct Color
-				{
-					float r;
-					float g;
-					float b;
-				};
-
-				Position position;
-				Color color;
-
-				Vertex(float x, float y, float r, float g, float b)
-				{
-					position.x = x;
-					position.y = y;
-					color.r = r;
-					color.g = g;
-					color.b = b;
-
-				}
-			};
-#pragma pack()
-			Vertex vertices[] = {
-				// positions        
-				 {-0.5f,  0.5f, 1.0f, 0.0f, 0.0f}, // top-left
-				 {0.5f,  0.5f, 0.0f, 1.0f, 0.0f}, // top-right
-				 {0.5f, -0.5f, 0.0f, 0.0f, 1.0f}, // bottom-right
-				 {-0.5f, -0.5f, 1.0f, 1.0f, 0.0f}  // bottom-left
-			};
-
-			_openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-			// position attribute
-			_openGLContext.extensions.glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
-			_openGLContext.extensions.glEnableVertexAttribArray(0);
-
-			// uv attribute
-			_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
-			_openGLContext.extensions.glEnableVertexAttribArray(1);
-		}
-
-		virtual void bindTexture() override
-		{
-		}
-		virtual void drawPost() override
-		{
-			glDrawArrays(GL_POINTS, 0, 4);
-		}
-
-		virtual UniformsBase * getUniformBase() override
-		{
-			jassert(_uniformCube);  // you need call setUniformEnv
-			return  _uniformCube.get();
-		}
-
-		void setUniformEnv(OpenGLShaderProgram *shader)
-		{
-			_uniformCube.reset(new UniformsCube(_openGLContext, *shader));
-		}
-
-
-	public:
-
-		std::unique_ptr<UniformsCube> _uniformCube{ nullptr };
-	};
-
-
-
 	class Tutorial21 : public OpenGLAppComponent,
 		public Button::Listener,
 		public Slider::Listener
 	{
 	public:
 		//==============================================================================
-		Tutorial21() : _spriteCube(openGLContext, _camera),
-			_model(openGLContext, _camera)
+		Tutorial21() : _model(openGLContext, _camera)
 
 		{
 			openGLContext.setPixelFormat(OpenGLPixelFormat(8, 8, 16, 8));
@@ -184,7 +75,6 @@ namespace T21 {
 
 
 			_shaderProgramScene.reset(new ShaderProgram(openGLContext, vertexSceneFile.getFullPathName(), fragmentSceneFile.getFullPathName(), geometryFile.getFullPathName()));
-			_spriteCube.init();
 
 
 			// load the nanosuit model
@@ -214,7 +104,6 @@ namespace T21 {
 			{
 				if (res == 1)
 				{
-					_spriteCube.setUniformEnv(_shaderProgramScene->_shader);
 					_model.setUniformEnv(_shaderProgramScene->_shader);
 				}
 
@@ -334,8 +223,6 @@ namespace T21 {
 		// Your private member variables go here...
 		Camera _camera;
 		std::unique_ptr<ShaderProgram> _shaderProgramScene;
-
-		SpriteCube _spriteCube;
 
 		Model _model;
 
