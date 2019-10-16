@@ -68,6 +68,9 @@ public:
 		material_diffuse = createUniform(openGLContext, shader, "material.diffuse");
 		material_specular = createUniform(openGLContext, shader, "material.specular");
 		material_shininess = createUniform(openGLContext, shader, "material.shininess");
+
+		time = createUniform(openGLContext, shader, "time");
+		
 	}
 
 	void setTextureUniformIndex(String uniformName, GLint textureUnitIndex )
@@ -103,7 +106,7 @@ public:
 
 
 	ScopedPointer<OpenGLShaderProgram::Uniform> material_ambient{ nullptr },  material_diffuse{ nullptr }, material_specular{ nullptr }, material_shininess{ nullptr },
-		light_position { nullptr }, light_ambient{ nullptr }, light_diffuse{ nullptr }, light_specular{ nullptr };
+		light_position { nullptr }, light_ambient{ nullptr }, light_diffuse{ nullptr }, light_specular{ nullptr }, time{ nullptr };
 };
 
 

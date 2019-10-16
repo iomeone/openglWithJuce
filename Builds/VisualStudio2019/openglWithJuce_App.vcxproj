@@ -145,6 +145,7 @@
     <ClCompile Include="..\..\Source\Tutorial18.cpp"/>
     <ClCompile Include="..\..\Source\Tutorial19.cpp"/>
     <ClCompile Include="..\..\Source\Tutorial20.cpp"/>
+    <ClCompile Include="..\..\Source\Tutorial21.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
@@ -164,6 +165,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\OpenGLTextureEx.h"/>
     <ClInclude Include="..\..\Source\ValueTreeView.h"/>
+    <ClInclude Include="..\..\Source\Shader\T21Fragment.h"/>
+    <ClInclude Include="..\..\Source\Shader\T21Geometry.h"/>
+    <ClInclude Include="..\..\Source\Shader\T21Vertex.h"/>
     <ClInclude Include="..\..\Source\Shader\T20Fragment.h"/>
     <ClInclude Include="..\..\Source\Shader\T20Geometry.h"/>
     <ClInclude Include="..\..\Source\Shader\T20Vertex.h"/>

@@ -58,7 +58,7 @@ public:
 	}
 
 	// draws the model, and thus all its meshes
-	void Draw(glm::vec3 viewPos, glm::vec3 lightPos, glm::vec3 lightColor)	
+	void Draw(glm::vec3 viewPos, glm::vec3 lightPos, glm::vec3 lightColor, float time = 0.0f)
 	{
 
 		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // increase the influence
@@ -66,7 +66,10 @@ public:
 
 		for (auto& mesh : meshes)
 		{
-
+			if (mesh.uniformMesh->time)
+			{
+				mesh.uniformMesh->time->set(time);
+			}
 			if (mesh.uniformMesh->light_ambient)
 			{
 				mesh.uniformMesh->light_ambient->set(ambientColor.r, ambientColor.g, ambientColor.b);

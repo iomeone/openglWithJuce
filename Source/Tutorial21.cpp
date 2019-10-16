@@ -1,13 +1,12 @@
 /*
   ==============================================================================
 
-    Tutorial20.cpp
-    Created: 16 Oct 2019 11:17:30am
+    Tutorial21.cpp
+    Created: 16 Oct 2019 3:43:30pm
     Author:  user
 
   ==============================================================================
 */
-
 
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -26,15 +25,15 @@
 #include "TextureCache.h"
 
 
+#include "Model.h"
 
 
-namespace T20 {
+
+namespace T21 {
 	const String tutorialLink = "learnopengl.com/Advanced-OpenGL/Geometry-Shader";
-	const String vertexCubeFilename = "T20Vertex.h";
-
-	const String geometryCubeFilename = "T20Geometry.h";
-
-	const String fragmentCubeFileName = "T20Fragment.h";
+	const String vertexCubeFilename = "T21Vertex.h";
+	const String geometryCubeFilename = "T21Geometry.h";
+	const String fragmentCubeFileName = "T21Fragment.h";
 
 
 
@@ -44,10 +43,10 @@ namespace T20 {
 	public:
 		UniformsCube(OpenGLContext& openGLContext, OpenGLShaderProgram& shader) : UniformsBase(openGLContext, shader)
 		{
-			texture1 = createUniform(openGLContext, shader, "texture1");
+			texture_diffuse1 = createUniform(openGLContext, shader, "texture_diffuse1");
 		}
 
-		ScopedPointer<OpenGLShaderProgram::Uniform> texture1{ nullptr };
+		ScopedPointer<OpenGLShaderProgram::Uniform> texture_diffuse1{ nullptr };
 
 	};
 
@@ -144,13 +143,14 @@ namespace T20 {
 
 
 
-	class Tutorial20 : public OpenGLAppComponent,
+	class Tutorial21 : public OpenGLAppComponent,
 		public Button::Listener,
 		public Slider::Listener
 	{
 	public:
 		//==============================================================================
-		Tutorial20() : _spriteCube(openGLContext, _camera)
+		Tutorial21() : _spriteCube(openGLContext, _camera),
+			_model(openGLContext, _camera)
 
 		{
 			openGLContext.setPixelFormat(OpenGLPixelFormat(8, 8, 16, 8));
@@ -165,7 +165,7 @@ namespace T20 {
 			//_camera.ProcessKeyboard(Camera_Movement::BACKWARD, 5.0f);
 			setSize(800, 600);
 		}
-		~Tutorial20()
+		~Tutorial21()
 		{
 			shutdownOpenGL();
 		}
@@ -184,8 +184,16 @@ namespace T20 {
 
 
 			_shaderProgramScene.reset(new ShaderProgram(openGLContext, vertexSceneFile.getFullPathName(), fragmentSceneFile.getFullPathName(), geometryFile.getFullPathName()));
-
 			_spriteCube.init();
+
+
+			// load the nanosuit model
+			auto objFile = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("nanosuit").getChildFile("nanosuit.obj");
+			jassert(objFile.existsAsFile());
+			_model.load(objFile.getFullPathName().toStdString());
+			_model.init();
+			auto m = glm::translate(glm::mat4(1.0f), glm::vec3(5.f, -8.f, 0.f));
+			_model.setModel(m);
 	 
 
 		}
@@ -207,6 +215,7 @@ namespace T20 {
 				if (res == 1)
 				{
 					_spriteCube.setUniformEnv(_shaderProgramScene->_shader);
+					_model.setUniformEnv(_shaderProgramScene->_shader);
 				}
 
 				const MessageManagerLock mmLock;
@@ -214,18 +223,22 @@ namespace T20 {
 					_lblCompileInfo->setText(_shaderProgramScene->getCompileResult() + " \n" + tutorialLink, NotificationType::dontSendNotification);
 
 			}
-
+			glDisable(GL_BLEND);
 			if (_shaderProgramScene->_shader)
 			{
-				glEnable(GL_DEPTH_TEST);
+				//glEnable(GL_DEPTH_TEST);
 				OpenGLHelpers::clear(juce::Colour(0.2f, 0.3f, 0.3f, 1.0f));
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 				_shaderProgramScene->_shader->use();
-				_spriteCube.draw();
+				//_spriteCube.draw();
+				static float inc = 0.0f;
+				inc += 0.001;
+				_model.Draw(_camera.getCameraPos(), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), inc);
 			}
 			else
 				jassertfalse;
+			glEnable(GL_BLEND);
 		}
 
 		//==============================================================================
@@ -321,12 +334,22 @@ namespace T20 {
 		// Your private member variables go here...
 		Camera _camera;
 		std::unique_ptr<ShaderProgram> _shaderProgramScene;
+
 		SpriteCube _spriteCube;
+
+		Model _model;
+
 		std::unique_ptr<Label> _lblCompileInfo{ nullptr };
 
 
-		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial20)
+		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial21)
 	};
 }
 
-static ComponentList<T20::Tutorial20> t20((const String)("20: Geometry-Shader-Points"), 19);
+
+
+#ifdef  _WIN64
+static ComponentList<T21::Tutorial21> t21((const String)("21: Geometry-Exploding-objects"), 20);
+#else
+static ComponentList<T21::Component> t21((const String)("21: Geometry-Exploding-objects"), 20);
+#endif 
