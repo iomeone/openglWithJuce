@@ -85,6 +85,10 @@
 			isa = PBXBuildFile;
 			fileRef = 5E0E04B997C87AFBF52ED998;
 		};
+		32B766AD31F4569C1F57AA97 = {
+			isa = PBXBuildFile;
+			fileRef = 2936FCFDCC5D3F1597D0CCE8;
+		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -320,6 +324,13 @@
 			path = System/Library/Frameworks/Carbon.framework;
 			sourceTree = SDKROOT;
 		};
+		2936FCFDCC5D3F1597D0CCE8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Tutorial22.cpp;
+			path = ../../Source/Tutorial22.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		2A63FCD297B2002E3C37137B = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -453,11 +464,25 @@
 			path = ../../Source/Shader/T12LampVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		408B7099185665D2F4235DE7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T22Vertex.h;
+			path = ../../Source/Shader/T22Vertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		44CD7C031DED2855A2D94B98 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = Tutorial16.cpp;
 			path = ../../Source/Tutorial16.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		463B63C86074891F61C9759C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T22NormalGeometry.h;
+			path = ../../Source/Shader/T22NormalGeometry.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		518AF8C5DA5A569F0E4E46E5 = {
@@ -523,6 +548,13 @@
 			path = ../../Source/Tutorial21.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		60969C59319E095ABBEFF4C8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T22NormalVertex.h;
+			path = ../../Source/Shader/T22NormalVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		60DEBF03A448086A9AD720F5 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -549,6 +581,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Tutorial7.h;
 			path = ../../Source/Tutorial7.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		64BB59A7256E5597FFD69C32 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T22Fragment.h;
+			path = ../../Source/Shader/T22Fragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		6C7F00B66CD707B4612AB4A4 = {
@@ -780,6 +819,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = Tutorial17.cpp;
 			path = ../../Source/Tutorial17.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		AC459EC8C694DFB998412D8A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T22NormalFragment.h;
+			path = ../../Source/Shader/T22NormalFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		ADCBED73B98CF1E948EB9427 = {
@@ -1076,6 +1122,11 @@
 		35CF69214B759D83E3A0C7B0 = {
 			isa = PBXGroup;
 			children = (
+				AC459EC8C694DFB998412D8A,
+				463B63C86074891F61C9759C,
+				60969C59319E095ABBEFF4C8,
+				408B7099185665D2F4235DE7,
+				64BB59A7256E5597FFD69C32,
 				A3C5A933027A90E7B0B2440C,
 				38029DD397B5699A0E4D434E,
 				39A73E32A42CB3BF07AE378C,
@@ -1191,6 +1242,7 @@
 				831A18A7EBF9AE04CDF67CF0,
 				F25EEA8BAF610FED4B848303,
 				5E0E04B997C87AFBF52ED998,
+				2936FCFDCC5D3F1597D0CCE8,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -1512,6 +1564,7 @@
 				15252E3DD00B8CFB8545942C,
 				C15C5341A0173FBB83291012,
 				6C8B062AEAD67DE73A32E2D6,
+				32B766AD31F4569C1F57AA97,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				D473426BFE34164F2B044D35,

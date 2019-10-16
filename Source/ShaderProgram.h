@@ -278,6 +278,7 @@ public:
 		}
 		_strVertex = String();
 		_strFragment = String();
+		_strGeometry = String();
 		return result;
 	}
 

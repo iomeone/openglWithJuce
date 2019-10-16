@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    Tutorial21.cpp
+    Tutorial22.cpp
     Created: 16 Oct 2019 3:43:30pm
     Author:  user
 
@@ -29,19 +29,22 @@
 
 
 
-namespace T21 {
+namespace T22 {
 	const String tutorialLink = "learnopengl.com/Advanced-OpenGL/Geometry-Shader";
-	const String vertexCubeFilename = "T21Vertex.h";
-	const String geometryCubeFilename = "T21Geometry.h";
-	const String fragmentCubeFileName = "T21Fragment.h";
+	const String vertexCubeFilename = "T22Vertex.h";
+	const String fragmentCubeFileName = "T22Fragment.h";
 
-	class Tutorial21 : public OpenGLAppComponent,
+	const String vertexNormalFilename = "T22NormalVertex.h";
+	const String fragmentNormalFileName = "T22NormalFragment.h";
+	const String  geometryNormalFilename = "T22NormalGeometry.h";
+
+	class Tutorial22 : public OpenGLAppComponent,
 		public Button::Listener,
 		public Slider::Listener
 	{
 	public:
 		//==============================================================================
-		Tutorial21() : _model(openGLContext, _camera)
+		Tutorial22() : _model(openGLContext, _camera)
 
 		{
 			openGLContext.setPixelFormat(OpenGLPixelFormat(8, 8, 16, 8));
@@ -56,7 +59,7 @@ namespace T21 {
 			_camera.ProcessKeyboard(Camera_Movement::BACKWARD, 5.0f);
 			setSize(800, 600);
 		}
-		~Tutorial21()
+		~Tutorial22()
 		{
 			shutdownOpenGL();
 		}
@@ -71,11 +74,17 @@ namespace T21 {
 			//load the model shader and lamp shader.
 			auto vertexSceneFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(vertexCubeFilename);
 			auto fragmentSceneFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(fragmentCubeFileName);
-			auto geometryFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(geometryCubeFilename);
+			_shaderProgramScene.reset(new ShaderProgram(openGLContext, vertexSceneFile.getFullPathName(), fragmentSceneFile.getFullPathName()));
 
+			
 
-			_shaderProgramScene.reset(new ShaderProgram(openGLContext, vertexSceneFile.getFullPathName(), fragmentSceneFile.getFullPathName(), geometryFile.getFullPathName()));
+			auto vertexNormalFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(vertexNormalFilename);
+			auto fragmentNormalFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(fragmentNormalFileName);
+			auto geometryNormalFile = f.getParentDirectory().getParentDirectory().getChildFile("Source").getChildFile("Shader").getChildFile(geometryNormalFilename);
 
+			_shaderProgramNormal.reset(new ShaderProgram(openGLContext, vertexNormalFile.getFullPathName(), fragmentNormalFile.getFullPathName(), geometryNormalFile.getFullPathName()));
+
+			
 
 			// load the nanosuit model
 			auto objFile = f.getParentDirectory().getParentDirectory().getChildFile("Resource").getChildFile("nanosuit").getChildFile("nanosuit.obj");
@@ -92,6 +101,9 @@ namespace T21 {
 			_shaderProgramScene->stopThread(1000);
 			_shaderProgramScene.reset();
 
+			_shaderProgramNormal->stopThread(1000);
+			_shaderProgramNormal.reset();
+		
 			TextureCache::clear();
 		}
 		void render() override
@@ -104,7 +116,7 @@ namespace T21 {
 			{
 				if (res == 1)
 				{
-					_model.setUniformEnv(_shaderProgramScene->_shader);
+					//_model.setUniformEnv(_shaderProgramScene->_shader);
 				}
 
 				const MessageManagerLock mmLock;
@@ -112,21 +124,47 @@ namespace T21 {
 					_lblCompileInfo->setText(_shaderProgramScene->getCompileResult() + " \n" + tutorialLink, NotificationType::dontSendNotification);
 
 			}
+
+
+			res = _shaderProgramNormal->updateShader();
+			if (res >= 0)
+			{
+				if (res == 1)
+				{
+					//_model.setUniformEnv(_shaderProgramScene->_shader);
+				}
+
+				const MessageManagerLock mmLock;
+				if (mmLock.lockWasGained())
+					_lblCompileInfo->setText(_shaderProgramNormal->getCompileResult() + " \n" + tutorialLink, NotificationType::dontSendNotification);
+
+			}
+
+			glEnable(GL_DEPTH_TEST);
 			glDisable(GL_BLEND);
 			if (_shaderProgramScene->_shader)
 			{
-				glEnable(GL_DEPTH_TEST);
 				OpenGLHelpers::clear(juce::Colour(0.2f, 0.3f, 0.3f, 1.0f));
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 				_shaderProgramScene->_shader->use();
-				//_spriteCube.draw();
-				static float inc = 0.0f;
-				inc += 0.001;
-				_model.Draw(_camera.getCameraPos(), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f), inc);
+				_model.setUniformEnv(_shaderProgramScene->_shader);
+				_model.Draw(_camera.getCameraPos(), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 			}
 			else
 				jassertfalse;
+		
+
+
+			if (_shaderProgramNormal->_shader)
+			{
+				_shaderProgramNormal->_shader->use();
+				_model.setUniformEnv(_shaderProgramNormal->_shader);
+				_model.Draw(_camera.getCameraPos(), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+			}
+			else
+				jassertfalse;
+
 			glEnable(GL_BLEND);
 		}
 
@@ -223,20 +261,22 @@ namespace T21 {
 		// Your private member variables go here...
 		Camera _camera;
 		std::unique_ptr<ShaderProgram> _shaderProgramScene;
+		std::unique_ptr<ShaderProgram> _shaderProgramNormal;
+		
 
 		Model _model;
 
 		std::unique_ptr<Label> _lblCompileInfo{ nullptr };
 
 
-		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial21)
+		JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Tutorial22)
 	};
 }
 
 
 
 #ifdef  _WIN64
-static ComponentList<T21::Tutorial21> t21((const String)("21: Geometry-Exploding-objects"), 20);
+static ComponentList<T22::Tutorial22> t22((const String)("22: Visualizing normal vectors"), 21);
 #else
-static ComponentList<T21::Component> t21((const String)("21: Geometry-Exploding-objects"), 20);
+static ComponentList<T22::Component> t22((const String)("22: Visualizing normal vectors"), 21);
 #endif 
