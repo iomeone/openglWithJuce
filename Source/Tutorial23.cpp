@@ -65,10 +65,7 @@ namespace T23 {
 				}
 			}
 			_instanceVBO.init();
-			_instanceVBO.bind();
-			_instanceVBO._openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * 100, glm::value_ptr(translations[0]), GL_STATIC_DRAW);
 			_instanceVBO.BufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * 100, &translations[0], GL_STATIC_DRAW);
-			_instanceVBO.unbind();
 		}
 
 
