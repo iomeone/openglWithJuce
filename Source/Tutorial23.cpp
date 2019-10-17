@@ -68,7 +68,6 @@ namespace T23 {
 			_instanceVBO.BufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * 100, &translations[0], GL_STATIC_DRAW);
 		}
 
-
 		virtual void initBuffer() override
 		{
 			// set up vertex data (and buffer(s)) and configure vertex attributes
@@ -140,13 +139,36 @@ namespace T23 {
 
 		}
 
+		void update()
+		{
+			static float inc = 0.f;
+			inc = inc + 0.001;
+	
+
+			int index = 0;
+			float offset = 0.1f;
+			for (int y = -10; y < 10; y += 2)
+			{
+				for (int x = -10; x < 10; x += 2)
+				{
+					glm::vec2 translation;
+					translation.x = (float)x / 10.0f + offset + sin(inc);
+				
+					translation.y = (float)y / 10.0f + offset - cos(inc);
+					translations[index++] = translation;
+				}
+			}
+
+		
+			_instanceVBO.BufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * 100, &translations[0], GL_STATIC_DRAW);
+			_instanceVBO.bind();
+			_openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+			_instanceVBO.unbind();
+		}
+
 		virtual void initPost() override
 		{
 			return;
-			
-			_instanceVBO.bind();
-
-			_instanceVBO.unbind();
 		}
 
 		virtual void bindTexture() override{}
@@ -256,6 +278,7 @@ namespace T23 {
 
 				_shaderProgramQuads->_shader->use();
 
+				_spriteQuads.update();
 				_spriteQuads.draw();
 			}
 			else
