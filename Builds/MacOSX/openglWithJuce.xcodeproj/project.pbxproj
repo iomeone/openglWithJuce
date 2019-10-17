@@ -89,6 +89,10 @@
 			isa = PBXBuildFile;
 			fileRef = 2936FCFDCC5D3F1597D0CCE8;
 		};
+		4FEA7465D1C7DA40D081F14C = {
+			isa = PBXBuildFile;
+			fileRef = 97A4DC3DAAE154903791609B;
+		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -590,6 +594,13 @@
 			path = ../../Source/Shader/T22Fragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		65AB7A0C16C350A3E5D31E98 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T23InstancingVertex.h;
+			path = ../../Source/Shader/T23InstancingVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		6C7F00B66CD707B4612AB4A4 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -765,11 +776,25 @@
 			path = ../../Source/Shader/T10ColorsVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		97A4DC3DAAE154903791609B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Tutorial23.cpp;
+			path = ../../Source/Tutorial23.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		987154DA02A4FA6C8CFC87CC = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = T20Vertex.h;
 			path = ../../Source/Shader/T20Vertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		9B86C0765F7F21FCF9FE0757 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T23InstancingFragment.h;
+			path = ../../Source/Shader/T23InstancingFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		9BC252BD7D7D1A4B22D27C52 = {
@@ -1122,6 +1147,8 @@
 		35CF69214B759D83E3A0C7B0 = {
 			isa = PBXGroup;
 			children = (
+				9B86C0765F7F21FCF9FE0757,
+				65AB7A0C16C350A3E5D31E98,
 				AC459EC8C694DFB998412D8A,
 				463B63C86074891F61C9759C,
 				60969C59319E095ABBEFF4C8,
@@ -1243,6 +1270,7 @@
 				F25EEA8BAF610FED4B848303,
 				5E0E04B997C87AFBF52ED998,
 				2936FCFDCC5D3F1597D0CCE8,
+				97A4DC3DAAE154903791609B,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -1565,6 +1593,7 @@
 				C15C5341A0173FBB83291012,
 				6C8B062AEAD67DE73A32E2D6,
 				32B766AD31F4569C1F57AA97,
+				4FEA7465D1C7DA40D081F14C,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				D473426BFE34164F2B044D35,

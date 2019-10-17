@@ -15,6 +15,10 @@
     </GROUP>
     <FILE id="XhanRu" name="README.md" compile="0" resource="1" file="README.md"/>
     <GROUP id="{9BAD5BA1-9290-2241-5422-76CFDF24FEAD}" name="Shader">
+      <FILE id="kt7mqT" name="T23InstancingFragment.h" compile="0" resource="0"
+            file="Source/Shader/T23InstancingFragment.h"/>
+      <FILE id="AzdcNE" name="T23InstancingVertex.h" compile="0" resource="0"
+            file="Source/Shader/T23InstancingVertex.h"/>
       <FILE id="P0js1D" name="T22NormalFragment.h" compile="0" resource="0"
             file="Source/Shader/T22NormalFragment.h"/>
       <FILE id="ny0Hxp" name="T22NormalGeometry.h" compile="0" resource="0"
@@ -162,6 +166,7 @@
       <FILE id="NvFgws" name="Tutorial20.cpp" compile="1" resource="0" file="Source/Tutorial20.cpp"/>
       <FILE id="mnr6kj" name="Tutorial21.cpp" compile="1" resource="0" file="Source/Tutorial21.cpp"/>
       <FILE id="gIA5oX" name="Tutorial22.cpp" compile="1" resource="0" file="Source/Tutorial22.cpp"/>
+      <FILE id="VyS62R" name="Tutorial23.cpp" compile="1" resource="0" file="Source/Tutorial23.cpp"/>
     </GROUP>
     <GROUP id="{D13420D5-16C4-47FE-EEAA-3D5321F4C582}" name="Source">
       <FILE id="Il9WNE" name="CompList.h" compile="0" resource="0" file="Source/CompList.h"/>

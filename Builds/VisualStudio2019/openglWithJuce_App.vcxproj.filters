@@ -55,6 +55,9 @@
     <ClCompile Include="..\..\Source\Tutorial22.cpp">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Tutorial23.cpp">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>openglWithJuce\Source</Filter>
     </ClCompile>
@@ -107,6 +110,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\ValueTreeView.h">
       <Filter>openglWithJuce\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T23InstancingFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T23InstancingVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Shader\T22NormalFragment.h">
       <Filter>openglWithJuce\Shader</Filter>
