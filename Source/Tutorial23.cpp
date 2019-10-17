@@ -38,6 +38,7 @@ namespace T23 {
 	{
 	public:
 		SpriteQuads(OpenGLContext& openglContext, Camera& camera) : SpriteBase(openglContext, camera)
+			, _instanceVBO(openglContext)
 		{
 
 		}
@@ -46,10 +47,35 @@ namespace T23 {
 		{
 		}
 
+		virtual void initPre() override
+		{
+			// store instance data in an array buffer
+			// --------------------------------------
+			
+			int index = 0;
+			float offset = 0.1f;
+			for (int y = -10; y < 10; y += 2)
+			{
+				for (int x = -10; x < 10; x += 2)
+				{
+					glm::vec2 translation;
+					translation.x = (float)x / 10.0f + offset;
+					translation.y = (float)y / 10.0f + offset;
+					translations[index++] = translation;
+				}
+			}
+			_instanceVBO.init();
+			_instanceVBO.bind();
+			_instanceVBO._openGLContext.extensions.glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * 100, glm::value_ptr(translations[0]), GL_STATIC_DRAW);
+			_instanceVBO.BufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * 100, &translations[0], GL_STATIC_DRAW);
+			_instanceVBO.unbind();
+		}
+
 
 		virtual void initBuffer() override
 		{
-
+			// set up vertex data (and buffer(s)) and configure vertex attributes
+			// ------------------------------------------------------------------
 #pragma pack(1)
 			struct Vertex {
 				struct Position {
@@ -96,9 +122,34 @@ namespace T23 {
 			_openGLContext.extensions.glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
 			_openGLContext.extensions.glEnableVertexAttribArray(0);
 
-			// uv attribute
+			// color attribute
 			_openGLContext.extensions.glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
 			_openGLContext.extensions.glEnableVertexAttribArray(1);
+
+			_openGLContext.extensions.glEnableVertexAttribArray(2);
+			//_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, _instanceVBO.VBO); // this attribute comes from a different vertex buffer
+			_instanceVBO.bind();
+			_openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+			_instanceVBO.unbind();
+
+			typedef void(*glVertexAttribDivisor_type)(GLuint index, GLuint divisor);
+			static glVertexAttribDivisor_type pglVertexAttribDivisor = nullptr;
+			if (!pglVertexAttribDivisor)
+				pglVertexAttribDivisor = (glVertexAttribDivisor_type)OpenGLHelpers::getExtensionFunction("glVertexAttribDivisor");
+			if (pglVertexAttribDivisor)
+				pglVertexAttribDivisor(2, 1);
+			else
+				jassertfalse;
+
+		}
+
+		virtual void initPost() override
+		{
+			return;
+			
+			_instanceVBO.bind();
+
+			_instanceVBO.unbind();
 		}
 
 		virtual void bindTexture() override{}
@@ -112,12 +163,18 @@ namespace T23 {
 		virtual void drawPost() override
 		{
 			typedef void(*glDrawArraysInstanced_type)(GLenum mode, GLint first, GLsizei count, GLsizei instancecount);
-			glDrawArraysInstanced_type pglDrawArraysInstanced;
-			pglDrawArraysInstanced = (glDrawArraysInstanced_type)OpenGLHelpers::getExtensionFunction("glDrawArraysInstanced");
+			static glDrawArraysInstanced_type pglDrawArraysInstanced = nullptr;
+			if(!pglDrawArraysInstanced)
+				pglDrawArraysInstanced = (glDrawArraysInstanced_type)OpenGLHelpers::getExtensionFunction("glDrawArraysInstanced");
 			if (pglDrawArraysInstanced)
 				pglDrawArraysInstanced(GL_TRIANGLES, 0, 6, 100);
+			else
+				jassertfalse;
 			//glDrawArrays(GL_POINTS, 0, 4);
 		}
+
+		glm::vec2 translations[100];;
+		OpenglBuffer _instanceVBO;
 	};
 
 
@@ -313,5 +370,5 @@ namespace T23 {
 
 
  
-static ComponentList<T23::Tutorial23> t23((const String)("23: Instancing"), 22);
+static ComponentList<T23::Tutorial23> t23((const String)("23: instancing_quads"), 22);
  

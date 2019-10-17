@@ -40,10 +40,50 @@ public:
 };
 
 
-class OpenglVertexBuffer
+
+class OpenglBuffer
 {
 public:
-	OpenglVertexBuffer(OpenGLContext& context) :VBO(0), VAO(0), _openGLContext(context){}
+	OpenglBuffer(OpenGLContext& context) :VBO(0), _openGLContext(context) {}
+
+	void init()
+	{
+
+		_openGLContext.extensions.glGenBuffers(1, &VBO);
+	}
+
+	void bind()
+	{
+		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	}
+
+	void BufferData(GLenum target, GLsizeiptr size, const GLvoid * data, GLenum usage)
+	{
+		bind();
+		_openGLContext.extensions.glBufferData(target, size, data, usage);
+		unbind();
+	}
+
+	void unbind()
+	{
+		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
+
+	~OpenglBuffer()
+	{
+		unbind();
+		_openGLContext.extensions.glDeleteBuffers(1, &VBO);
+	}
+
+	OpenGLContext& _openGLContext;
+
+	GLuint VBO;
+};
+
+class OpenglVertexArrayBuffer
+{
+public:
+	OpenglVertexArrayBuffer(OpenGLContext& context) :VBO(0), VAO(0), _openGLContext(context){}
 
 	void init()
 	{
@@ -57,13 +97,14 @@ public:
 		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 	}
+
 	void unbind()
 	{
 		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
 		_openGLContext.extensions.glBindVertexArray(0);
 	}
 
-	~OpenglVertexBuffer()
+	~OpenglVertexArrayBuffer()
 	{
 		unbind();
 		_openGLContext.extensions.glDeleteVertexArrays(1, &VAO);
@@ -95,6 +136,8 @@ public:
 	}
 
 	virtual void setupTexture() = 0;
+	virtual void initPre() {};
+	virtual void initPost() {};
 	virtual void initBuffer() = 0;
 
 	virtual void bindTexture() = 0;
@@ -110,6 +153,8 @@ public:
 
 	void init()
 	{
+		initPre();
+
 		setupTexture();
 		
 		_openglVertexBuffer.init();
@@ -118,6 +163,8 @@ public:
 		initBuffer();
 		 
 		_openglVertexBuffer.unbind();
+
+		initPost();
 	}
 
 	void draw()
@@ -164,7 +211,7 @@ public:
 	glm::mat4 _model;
 	std::unique_ptr< UniformsBase> _defaultUniform{ nullptr };
 
-	OpenglVertexBuffer _openglVertexBuffer;
+	OpenglVertexArrayBuffer _openglVertexBuffer;
 	
 };
 
