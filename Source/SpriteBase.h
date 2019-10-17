@@ -267,7 +267,10 @@ public:
 		_openGLContext.extensions.glBindBuffer(GL_ARRAY_BUFFER, 0);
 		_openGLContext.extensions.glBindVertexArray(0);
 	}
-
+	void setFarPlane(float f)
+	{
+		_farPlane = f;
+	}
 	void draw()
 	{
 
@@ -280,7 +283,7 @@ public:
 		if (getUniformBase()->projection)
 		{
 			glm::mat4 projection;
-			projection = glm::perspective(_camera.getZoom(), _screenWidth / _screenHeight, 0.1f, 100.0f);
+			projection = glm::perspective(_camera.getZoom(), _screenWidth / _screenHeight, 0.1f, _farPlane);
 			getUniformBase()->projection->setMatrix4(glm::value_ptr(projection), 1, GL_FALSE);
 		}
 
@@ -308,7 +311,7 @@ public:
 
 	float _screenWidth{ 1200.f };
 	float _screenHeight{ 800.f };
-
+	float _farPlane{ 100.f };
 	GLuint VBO, VAO, EBO;
 
 	OpenGLContext& _openGLContext;

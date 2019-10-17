@@ -50,6 +50,12 @@ public:
 	{
 		for (auto& mesh : meshes)	mesh.init();
 	}
+	void setFarPlane(float f)
+	{
+		for (auto& mesh : meshes)	mesh.setFarPlane(f);
+	}
+
+	
 
 	void setModel(glm::mat4& m)
 	{

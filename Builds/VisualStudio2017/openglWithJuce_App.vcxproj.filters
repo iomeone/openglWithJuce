@@ -58,6 +58,9 @@
     <ClCompile Include="..\..\Source\Tutorial23.cpp">
       <Filter>openglWithJuce\Tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Tutorial24.cpp">
+      <Filter>openglWithJuce\Tutorial</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\MainComponent.cpp">
       <Filter>openglWithJuce\Source</Filter>
     </ClCompile>
@@ -110,6 +113,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\ValueTreeView.h">
       <Filter>openglWithJuce\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T24AstoridFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T24AstoridVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T24PlanetFragment.h">
+      <Filter>openglWithJuce\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Shader\T24PlanetVertex.h">
+      <Filter>openglWithJuce\Shader</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Shader\T23InstancingFragment.h">
       <Filter>openglWithJuce\Shader</Filter>

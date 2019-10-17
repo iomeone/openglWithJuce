@@ -92,7 +92,7 @@ public:
 			//else
 			//	jassertfalse;
 
-			DBG("new texture: " << uniformName);
+			//DBG("new texture: " << uniformName);
 		}
 	}
 
@@ -177,6 +177,9 @@ public:
 		_openGLContext.extensions.glEnableVertexAttribArray(4);
 		_openGLContext.extensions.glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Bitangent));
 
+
+
+
     }
 
 
@@ -231,6 +234,4 @@ public:
 
 
 	std::unique_ptr<UniformMesh> uniformMesh{ nullptr };
-	 ;
-
 };

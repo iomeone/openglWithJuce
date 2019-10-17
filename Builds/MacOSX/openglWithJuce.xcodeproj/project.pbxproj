@@ -93,6 +93,10 @@
 			isa = PBXBuildFile;
 			fileRef = 97A4DC3DAAE154903791609B;
 		};
+		8497BBDDDB5B7E03C21B0C48 = {
+			isa = PBXBuildFile;
+			fileRef = A2D4D6DD70478E5DAC9CB371;
+		};
 		AA20A161FE19C670486E9653 = {
 			isa = PBXBuildFile;
 			fileRef = 72381FB64487E1DB72E64BAB;
@@ -293,6 +297,13 @@
 			path = ../../Source/Shader/fragmentT3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		25992A2483BD62B9D0D413E2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T24PlanetFragment.h;
+			path = ../../Source/Shader/T24PlanetFragment.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		28142ABDE575919B85545FB6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -333,6 +344,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = Tutorial22.cpp;
 			path = ../../Source/Tutorial22.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		29E2D8273B31B2AA780496D9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T24AstoridFragment.h;
+			path = ../../Source/Shader/T24AstoridFragment.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		2A63FCD297B2002E3C37137B = {
@@ -678,6 +696,13 @@
 			path = ../../Source/Shader/fragmentT1.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		7C1395CF45B90343D2A1989E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T24PlanetVertex.h;
+			path = ../../Source/Shader/T24PlanetVertex.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		7D2E2AB99BCA2759B88CB7E7 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -825,6 +850,13 @@
 			path = ../../Source/Shader/vertexT3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		A2D4D6DD70478E5DAC9CB371 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Tutorial24.cpp;
+			path = ../../Source/Tutorial24.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		A3C5A933027A90E7B0B2440C = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -837,6 +869,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = ValueTreeView.cpp;
 			path = ../../Source/ValueTreeView.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		A8A5A8EB2A98EF78B0B4DCE8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = T24AstoridVertex.h;
+			path = ../../Source/Shader/T24AstoridVertex.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		A9AFC2026F3827B5BE56F84B = {
@@ -1147,6 +1186,10 @@
 		35CF69214B759D83E3A0C7B0 = {
 			isa = PBXGroup;
 			children = (
+				29E2D8273B31B2AA780496D9,
+				A8A5A8EB2A98EF78B0B4DCE8,
+				25992A2483BD62B9D0D413E2,
+				7C1395CF45B90343D2A1989E,
 				9B86C0765F7F21FCF9FE0757,
 				65AB7A0C16C350A3E5D31E98,
 				AC459EC8C694DFB998412D8A,
@@ -1271,6 +1314,7 @@
 				5E0E04B997C87AFBF52ED998,
 				2936FCFDCC5D3F1597D0CCE8,
 				97A4DC3DAAE154903791609B,
+				A2D4D6DD70478E5DAC9CB371,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -1594,6 +1638,7 @@
 				6C8B062AEAD67DE73A32E2D6,
 				32B766AD31F4569C1F57AA97,
 				4FEA7465D1C7DA40D081F14C,
+				8497BBDDDB5B7E03C21B0C48,
 				AA20A161FE19C670486E9653,
 				7BC5C96888E0320D23CA9F5A,
 				D473426BFE34164F2B044D35,

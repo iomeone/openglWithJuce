@@ -103,8 +103,8 @@ namespace T23 {
 #pragma pack()
 			Vertex vertices[] = {
 				// positions     // colors
-				{-0.05f,  0.05f,  1.0f, 0.0f, 0.0f},
-			   {0.05f, -0.05f,  0.0f, 1.0f, 0.0f},
+			  {-0.05f,  0.05f,  1.0f, 0.0f, 0.0f},
+			  {0.05f, -0.05f,  0.0f, 1.0f, 0.0f},
 			  {-0.05f, -0.05f,  0.0f, 0.0f, 1.0f},
 
 			  {-0.05f,  0.05f,  1.0f, 0.0f, 0.0f},
@@ -161,9 +161,9 @@ namespace T23 {
 
 		
 			_instanceVBO.BufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * 100, &translations[0], GL_STATIC_DRAW);
-			_instanceVBO.bind();
-			_openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
-			_instanceVBO.unbind();
+			//_instanceVBO.bind();
+			//_openGLContext.extensions.glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+			//_instanceVBO.unbind();
 		}
 
 		virtual void initPost() override
@@ -192,7 +192,7 @@ namespace T23 {
 			//glDrawArrays(GL_POINTS, 0, 4);
 		}
 
-		glm::vec2 translations[100];;
+		glm::vec2 translations[100];
 		OpenglBuffer _instanceVBO;
 	};
 
